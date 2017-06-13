@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteRule ^bienvenido index.php
+RewriteRule ^productos panel-productos.php
+RewriteRule ^vender form-alta-producto.php
+# RewriteRule ^login form-login.php
+RewriteRule ^registrandome form-alta-usuario.php

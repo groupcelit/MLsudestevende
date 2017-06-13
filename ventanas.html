@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<head>
+	<meta charset="UTF-8">
+	<title>Javascript</title>
+</head>
+<style type="text/css">
+	body{background-color: #fdfdfd; color:#666; font-family:"Myriad Pro";}
+	form{width: 350px;margin:10px; padding: 10px;background-color: #cfcfcf;}
+	a{color:#454545; text-decoration:none;}
+	a:hover{color:#999; text-decoration:underline;}
+</style>
+<body>
+	
+ 	<h1>Javascript</h1>
+
+ 	<h2>implementación sencilla</h2>
+
+
+ 	<h3>ventana alert()</h3>
+ 		<p>
+			<a href="#" onclick="alert('texto informativo.')">probar ventana alert()</a>
+ 		</p>
+ 	<h3>ventana prompt()</h3>
+ 		<p>
+			<a href="#" onclick="prompt('ingrese un número.')">probar ventana prompt()</a>
+ 		</p>
+ 	<h3>ventana confirm()</h3> 
+ 		<p>
+			<a href="#" onclick="confirm('¿está seguro?')">probar ventana confirm()</a>
+ 		</p>
+	<hr>
+	
+	
+	<h2>implementación con retorno desde una función</h2>
+	
+	<p><a href="http://www.google.com" onclick="return false">visitar google</a></p>
+	
+	<p><a href="http://www.google.com" onclick="return confirm('¿desea linkear a google?')">visitar google</a></p>
+	
+	
+	<form action="no-existe.php" method="post" onsubmit="return confirm('¿desea enviar el form?')">
+		<p>
+		<input type="submit" value="enviar formulario">
+		</p>
+	</form>
+	
+	<form action="no-existe.php" method="post" onsubmit="return tuFuncion()">
+		<p>
+		<input type="submit" value="enviar formulario">
+		</p>
+	</form>
+
+
+	<script type="text/javascript">
+		function tuFuncion(){
+			alert('se ejecutó!');
+			return false;
+		}
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+/* Background Image Ways */
+	.background13{
+		background-image:url(../images/bg-01.jpg);
+		background-size: cover;
+		background-repeat: repeat;
+	}
+
+	.background14{
+		background-image:url(../images/video.mp4);
+		background-size: cover;
+		opacity: 1;
+	}
+
+	.background16{
+		background-image:url(../images/bg-03.jpg);
+		background-size: cover;
+	}
+
+	.background40{
+		background-image:url(../images/bg_about.jpg);
+		background-size: cover;
+	}
+
+	.background41{
+		background-image:url(../images/soluciones-bg.jpg);
+		background-size: cover;
+	}
+
+/* Parallax Classes */
+
+	body.parallax .parallax,
+	body.parallax .parallax1,
+	body.parallax .parallax2,
+	body.parallax .parallax3,
+	body.parallax .parallax4,
+	body.parallax .parallax5,
+	body.parallax .parallax6,
+	body.parallax .parallax7,
+	body.parallax .parallax8,
+	body.parallax .parallax9,
+	body.parallax .parallax10,
+	body.parallax .parallax11,
+	body.parallax .parallax12{
+		background-attachment: fixed;
+		background-size:cover;
+	}
