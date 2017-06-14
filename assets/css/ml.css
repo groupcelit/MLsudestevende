@@ -29,7 +29,7 @@ img {
 .filters{
     float: left;
     width: 25%;
-    padding-right: 22px;
+    padding: 0px 22px;
 }
 .results.grid {
     padding-bottom:88px;
