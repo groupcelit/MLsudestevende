@@ -1572,6 +1572,7 @@
 		line-height: 54px;
 		letter-spacing: 0.095rem;
 		color:white;
+		display: inline;
 	}
 
 	.first-nav2{
@@ -6879,7 +6880,10 @@
 	#map #google_map{
 		height: 375px;
 	}
-
+/* Aside */
+	aside ul li a{
+		color: black;
+	}
 /* Footer */
 
 	footer{
@@ -7814,9 +7818,10 @@
 	}
 
 	#shop .box .item_details .shop_item_header{
-		font-size:17px;
-		max-height: 34px;
-		min-height: 34px;
+		font-size:15px;
+		line-height: 16px;
+		max-height: 45px;
+		min-height: 45px;
 		color:#5c5c5c;
 		margin:0;
 		padding:0;
