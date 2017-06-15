@@ -22,7 +22,6 @@
 					<td>Nombre</td>
 					<td><input type="text" name="prd_nombre"></td>
 				</tr>
-				<br>
 				<tr>
 					<td>Descripcion</td>
 					<td><textarea name="prd_descripcion" rows="6"></textarea></td>
@@ -58,9 +57,6 @@
 			</table>
 		</form>
 	</div>
-	<div id="pie">
-		<?php  include "pie.php"  ?>
-	</div>
-	
+	<?php  include "pie.php"  ?>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <aside class="filters grid" role="complementary">
 			<div class="sidebar-offcanvas hidden-print white-bg" id="sidebar" role="navigation">
 				<div class="sidebar-nav">
-					<h3 class="green">VEHÍCULOS</h3>
+					<h3 class="colored-bg white">VEHÍCULOS</h3>
 					<ul class="nav">
 						<li><a href="/4x4"><i class=" fa fa-car"></i> 4X4</a></li>
 						<li><a href="/accesorios-del-automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
@@ -19,7 +19,7 @@
 						<li><a href="/motos-y-cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
 						<li><a href="/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
 					</ul>
-					<h3 class="green">INMUEBLES</h3>
+					<h3 class="colored-bg white">INMUEBLES</h3>
 					<ul class="nav">
 						<li><a href="/campos-y-terrenos"><i class="fa fa-area-chart "></i> Campos y Terrenos</a></li>
 						<li><a href="/casas"><i class="fa fa-home"></i> Casas</a></li>
@@ -28,14 +28,14 @@
 						<li><a href="/locales-galpones-cocheras"><i class="fa fa-hlome"></i> Locales / Galpones / Cocheras</a></li>
 						<li><a href="/quintas"><i class="fa fa-lhome"></i> Quintas</a></li>
 					</ul>
-					<h3 class="yellow">TECNOLOGÍA</h3>
+					<h3 class="colored-bg white">TECNOLOGÍA</h3>
 					<ul class="nav">
 						<li><a href="/audio-y-video"><i class="fa fa-video-camera"></i> Audio y Video</a></li>
 						<li><a href="/fotografia"><i class="fa fa-camera"></i> Fotografía</a></li>
 						<li><a href="/informatica"><i class="fa fa-laptop"></i> Informática</a></li>
 						<li><a href="/telefonia"><i class="fa fa-mobile"></i> Telefonía</a></li>
 					</ul>
-					<h3 class="yellow">VARIOS</h3>
+					<h3 class="colored-bg white">VARIOS</h3>
 					<ul class="nav">
 						<li><a href="/agropecuarios"><i class="icon-rubro-agropecuario-1"></i> Agropecuarios</a></li>
 						<li><a href="/amoblamientos"><i class=" fa fa-bed"></i> Amoblamientos</a></li>

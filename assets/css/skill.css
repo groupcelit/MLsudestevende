@@ -40,7 +40,7 @@
 		color:#3680ff;
 	}
 
-
+	.colored-bg,
 	.second-nav .nav-menu ul li:hover:after,
 	.nav-menu ul li.active,
 	body.dark-layout .news .box .details a.post_read_more_button:hover,
@@ -85,6 +85,7 @@
 	.colored-bg-hover:hover,
 	.widget ul.categories li:hover,
 	.sidebar .widget a.tag:hover,
+	.sidebar-nav ul li:hover,
 	.post .post-inner .post-more:hover,
 	.dark-btn:hover,
 	.colored-btn,
@@ -109,6 +110,9 @@
 		/*border-color:#39f !important;
 		background-color:#39f;*/
 	}
+	 .nav>li>a:focus, .nav>li>a:hover{
+		 background-color: #649bfb;
+	 }
 
 	section#features .feature-boxes .feature-box:hover .feature-icon:after{
 		border-left-color:#3680ff;
