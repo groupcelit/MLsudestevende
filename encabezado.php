@@ -4,11 +4,11 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?php echo($titulo); ?></title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="panel.css" />
 	<!--<link rel="stylesheet" href="assets/assets/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="assets/css/reset.css" />
 	<link rel="stylesheet" href="assets/css/animate.min.css" />
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<!--<link rel="stylesheet" href="assets/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="assets/css/socials.css" />
@@ -26,13 +26,13 @@
 	<link rel="stylesheet" href="assets/css/responsive.css" />
 	<link id="changeable_tone" rel="stylesheet" href="assets/css/page_tones/dark.css" />
 	<link  rel="stylesheet" href="assets/css/skill.css" />
-	<link rel="shortcut icon" href="assets/imagenes/favicon.ico" type="image/x-icon">
-
+	<link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+	<meta name="theme-color" content="#3680ff">
 </head>
 <body class="parallax">
 	<nav id="navigation" class="white-nav">
 	<div class="navigation first-nav double-nav raleway">
-		<div class="nav-inner clearfix">
+		<div class="nav-inner">
 			<div class="logo f-left">
 				<a href="bienvenido" class="logo-link scroll">
 					<div style="display:inline-flex">
@@ -44,10 +44,8 @@
 
 				</a>
 			</div>
-
-
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
-			<div class="nav-menu clearfix f-right">
+			<div class="nav-menu f-right">
 				<ul class="nav semibold">
 					    <!-- <li>
 							 <div class="f-left">
