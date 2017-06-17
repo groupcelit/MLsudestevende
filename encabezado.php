@@ -31,7 +31,7 @@
 </head>
 <body class="parallax">
 	<nav id="navigation" class="white-nav">
-	<div class="navigation first-nav double-nav raleway">
+	<div class="navigation first-nav double-nav raleway b-shadow">
 		<div class="nav-inner">
 			<div class="logo f-left">
 				<a href="bienvenido" class="logo-link scroll">
@@ -47,17 +47,19 @@
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
 			<div class="nav-menu f-right">
 				<ul class="nav semibold">
-					    <!-- <li>
+					     <li>
 							 <div class="f-left">
-								<form action="resultado.php" method="get" class="search-form" >
-									<input type="text" name="termino">
-									<select name="cat_id">
+								<form action="resultado.php" method="get" class="" >
+									<div class="form-group">
+										<input class="search colored transition" type="text" name="Search" placeholder=" Realiza tu busqueda!">
+									</div>
+									<!--<select name="cat_id">
 										<option value=0>- Categorias -</option>
-									</select>
-								<button>O</button>
+									</select>-->
+
 								</form>
 							</div>
-						 </li>-->
+						 </li>
 					<?php if (isset($_SESSION['login'])) { ?>
 						<li><a class="colored" href="logout.php">Salir</a></li>
 					<?php } else { ?>

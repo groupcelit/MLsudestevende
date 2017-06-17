@@ -95,7 +95,8 @@
 	::selection,
 	a.content-button:hover,
 	body.dark-layout .contact .contact_form.type-2.white-form button:hover,
-	.nav-menu ul li:hover{
+	.nav-menu ul li:hover,
+	.search:focus{
 		background-color:#3680ff !important;
 	}
 	.colored-border,
