@@ -43,7 +43,7 @@
 		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
 		<section id="shop" class="results grid">
-			<div class="row col-md-12 gray-bg-2">
+			<div class="row col-md-12">
 				<div class="col-md-12">
                 	<h1 class="text text-left">Macintosh 1987</h1>
                 </div>
@@ -102,12 +102,12 @@
                 		<div class="col-md-12">
                 			<h1 class="text-left text-danger no-margin no-padding"><strong>$1000</strong></h1>
                 		</div>
-                		<div class="col-md-12 no-margin" style="background-color: #F5F5F5; height: 100%">
+                		<div class="col-md-12 no-margin gray-bg-2">
                 			<p><h3 class="text-left">Detalles</h3></p>
                 			<div class="col-md-12"><p><h5>Aldfko skadow adlqom asdmklml 12 sadkmiru coirnal ajsdhjker weldkdlfn keinf alsdifn qldiap alsdkdn asdlk</h5></p></div>
 
                 		</div>
-                		<div class="col-md-12 no-margin" style="background-color: #F5F5F5; height: 100%">
+                		<div class="col-md-12 no-margin gray-bg-2">
                 			<p><h3 class="text-left text-info">Av. Rivadavia 233, San Martin</h3></p>
                 		</div>
                 	</div>
