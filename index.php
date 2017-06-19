@@ -24,7 +24,7 @@
 				<?php while($fila=mysqli_fetch_assoc($resultado)) { /*$cantidad*/?>
 
 				<li class="results-item grid">
-					<a href="#">
+					<a href="producto_view.php">
 						<div class="item-image item item--grid">
 							<div class="item__image">
 								<?php /*echo "imagenes/",$fila['prd_foto1'];*/ ?>
