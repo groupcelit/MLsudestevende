@@ -7,7 +7,7 @@
  */
 ?>
 <aside class="filters grid" role="complementary">
-			<div class="sidebar-offcanvas hidden-print white-bg" id="sidebar" role="navigation">
+			<div class="sidebar-offcanvas hidden-print white-bg b-shadow" id="sidebar" role="navigation">
 				<div class="sidebar-nav">
 					<h3 class="colored-bg white">VEHÍCULOS</h3>
 					<ul class="nav">

@@ -111,17 +111,7 @@ a:hover {
 	margin: 4px 0px;
 	padding: 3px;
 	}*/
-.botones, input[type="submit"],input[type="button"], .volver{
-	cursor:pointer;
-	background-color:#046b8c;
-	border: 1px solid #023a4d;
-	color:#FFF;
-	width:180px;
-	margin:10px;
-	}
-.botones:hover,input[type="submit"]:hover, input[type="submit"]:hover, .volver:hover{
-	background-color:#0592c0;
-}
+
 textarea{height:145px;resize:none;}
 
 .panelesU{

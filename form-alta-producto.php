@@ -14,48 +14,65 @@
 		<?php  include "menu.php"; ?>
 	</div>
 	<div id="main">
-		<h1><?php echo $titulo ; ?></h1>
+		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
-		<form action="alta-producto.php" method="post" enctype="multipart/form-data"> <!-- enctype para poder enviar las imagenes -->
-			<table id="paneles">
-				<tr>
-					<td>Nombre</td>
-					<td><input type="text" name="prd_nombre"></td>
-				</tr>
-				<tr>
-					<td>Descripcion</td>
-					<td><textarea name="prd_descripcion" rows="6"></textarea></td>
-				</tr>				
-				<tr>
-					<td>Precio</td>
-					<td><input type="text" name="prd_precio"></td>
-				</tr>			
-				<tr>
-					<td>Categoria</td>
-					<td>
-						<select name="cat_id">
-									<?php while($fila=mysqli_fetch_assoc($resultado)) { ?>
-										<option value="<?php echo $fila["cat_id"] ?>"> <?php echo $fila["cat_nombre"]?> </option>		
-									<?php } ?>	
+		<section id="shop" class="results grid">
+			<div class="col-md-12 clear-main">
+				<div class="form white-bg b-shadow">
+					<form action="alta-producto.php" method="post" enctype="multipart/form-data" class="form-horizontal form">
+					<div class="form-group">
+						<label for="estado" class="control-label col-sm-2">Estado </label>
+						<div class="btn-group col-sm-8" data-toggle="buttons">
+							<label class="btn btn-primary active">
+								<input type="radio" name="options" id="estado" autocomplete="off" checked> Nuevo
+							</label>
+							<label class="btn btn-primary">
+								<input type="radio" name="options" id="estado" autocomplete="off"> Usado
+							</label>
+						</div>
+					</div>
 
-						</select>
-					</td>						
-				</tr>
-				<tr>
-					<td>Imagen miniatura</td>
-					<td><input type="file" name="prd_foto1"></td> <!--type="file" es el boton para subir archivos--> 
-				</tr>	
-				<tr>
-					<td>Imagen ampliada</td>
-					<td><input type="file" name="prd_foto2"></td> <!--type="file" es el boton para subir archivos--> 
-				</tr>
-				<tr>
-					<td colspan="2" class="centrar">
-						<input type="submit" value="Agregar producto">
-					</td>
-				</tr> 									
-			</table>
-		</form>
+					<div class="form-group">
+						<label for="nombre_id" class="control-label col-sm-2">Nombre</label>
+						<div class="col-sm-8"> <!-- This is a new div -->
+							<input type="text" class="form-control" id="prducto_id" name="prd_nombre" placeholder=" Esto es una prueba ">
+						</div>
+					</div>
+
+					<div class="form-group"> <!-- Full Name -->
+						<label for="price" class="control-label col-sm-2">Precio</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="price" name="prd_precio" placeholder="$ 500">
+						</div>
+					</div>
+
+					<div class="form-group"> <!-- Full Name -->
+						<label for="categoria" class="control-label col-sm-2">Categoria</label>
+						<div class="col-sm-8">
+							<select class="form-control" name="cat_id">
+							<?php while($fila=mysqli_fetch_assoc($resultado)) { ?>
+								<option value="<?php echo $fila["cat_id"] ?>"> <?php echo $fila["cat_nombre"]?> </option>
+							<?php } ?>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group"> <!-- Full Name -->
+						<label for="descripcion" class="control-label col-sm-2">Descripcion</label>
+						<div class="col-sm-8">
+							<textarea type="text" class="form-control" id="descripcion_id" name="prd_descripcion" placeholder=" Es una heladera muy grande" rows="5"></textarea>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-8 col-sm-offset-2"> <!--New div, offset because there is no label -->
+							<button type="submit" class="btn btn-primary">Guardar</button>
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
+		</section>
 	</div>
 	<?php  include "pie.php"  ?>
 </body>

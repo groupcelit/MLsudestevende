@@ -217,7 +217,7 @@
 /* Buttons */
 
 	.btn{
-		padding:5px 8px;
+		padding:10px;
 		letter-spacing:0.7px;
 		display: inline-block;
 		vertical-align: middle;
@@ -1944,8 +1944,8 @@
 .nav input:focus:-ms-input-placeholder{color: white;}
 		.search {
 			/*padding:10px;*/
-			display:block;
 			height: 30px;
+
 			margin:12px;
 			width:300px;
 			font-size: 13px;
@@ -6527,7 +6527,22 @@
 	}
 
 /* White Contact Form For type 1 */
-
+	.form{
+		padding: 15px 10px;
+	}
+	.form.login{
+		max-width: 500px;
+		margin: 0px auto;
+	}
+	.form.login .form-group{
+		display: grid;
+	}
+	.form .login-button{
+		margin-top: 5px;
+	}
+	.form span.input-group-addon{
+		font-size: 17px;
+	}
 	.contact.white-layout .contact_form{
 		background:rgba(240,240,240,0.6);
 		color:#c6c6c6;
@@ -8797,7 +8812,10 @@
 .colored-bg{
 	background-color:#3680ff
 }
-
+.clear-main{
+	padding-left: 0px;
+	padding-right: 22px;
+}
 /* Scroll */
 /*body::-webkit-scrollbar
 {

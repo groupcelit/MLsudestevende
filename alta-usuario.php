@@ -6,7 +6,7 @@
 	$usuclave=$_POST["usu_clave"];
 	$usunombre=$_POST["usu_nombre"];
 	$usuemail=$_POST["usu_email"];
-	$sql="INSERT INTO USUARIOS VALUES (NULL, '".$usulogin."','".$usuclave."','".$usunombre."','".$usuemail."')";
+	$sql="INSERT INTO usuarios VALUES (NULL, '".$usulogin."','".$usuclave."','".$usunombre."','".$usuemail."')";
 	mysqli_query($link,$sql) or die(mysqli_error($link));
 	$chequeo=mysqli_affected_rows($link);//devuelve cantidad de registros afectados
 	mysqli_close($link);
