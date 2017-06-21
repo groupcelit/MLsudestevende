@@ -6,7 +6,7 @@
 	$sql="SELECT cat_id, cat_nombre FROM categorias";
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 
-	$sql2="SELECT prd_nombre, prd_descripcion, prd_precio, cat_id, prd_foto1 FROM productos WHERE prd_id=".$prdid;
+	$sql2="SELECT prd_nombre, prd_descripcion, prd_precio, cat_id, prd_foto1 FROM anuncios WHERE prd_id=".$prdid;
 	$resultado2=mysqli_query($link,$sql2) or die(mysqli_error($link));
 	$fila2=mysqli_fetch_assoc($resultado2);
 	mysqli_close($link);

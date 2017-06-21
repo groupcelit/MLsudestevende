@@ -1,6 +1,6 @@
 <?php 
 		require "conexion.php";
-		$sql = "SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos";
+		$sql = "SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM anuncios";
 
 		$resultado = mysqli_query ($link, $sql)
 			or die(mysqli_error($link));

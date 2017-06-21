@@ -2,7 +2,7 @@
 	require "autenticar.php";
 	$titulo = "Formulario de baja de producto";
 	require "conexion.php";
-	$anun_id=$_GET['id'];
+        $anun_id=$_GET['id'];
    	$sql="SELECT nombre, descripcion, precio FROM anuncios WHERE id=".$anun_id;
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	$fila=mysqli_fetch_assoc($resultado);

@@ -479,7 +479,7 @@ MAGNIFIC POPUP (LIGHTBOX PLUGIN)
         mainClass: 'mfp-with-zoom mfp-img-mobile'
     });
 
-    $('.mp-video, mp-map').magnificPopup({
+    $('.mp-video, .mp-map').magnificPopup({
         type:'iframe',
         mainClass: 'mfp-with-zoom mfp-img-mobile'
     });

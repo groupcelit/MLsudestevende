@@ -2,7 +2,7 @@
 	$titulo = "Panel de control - Proyecto integrador";
 	require "autenticar.php";
 	require "conexion.php";
-	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos";
+	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM anuncios";
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	$cantidad=mysqli_num_rows($resultado); //cuenta la cantidad de registros
 ?>
@@ -24,7 +24,7 @@
 				<?php while($fila=mysqli_fetch_assoc($resultado)) { /*$cantidad*/?>
 
 				<li class="results-item grid">
-					<a href="producto_view.php">
+					<a href="productoPrueba">
 						<div class="item-image item item--grid">
 							<div class="item__image">
 								<?php /*echo "imagenes/",$fila['prd_foto1'];*/ ?>
