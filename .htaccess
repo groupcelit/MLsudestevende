@@ -2,5 +2,19 @@ RewriteEngine on
 RewriteRule ^bienvenido index.php
 RewriteRule ^productos panel-productos.php
 RewriteRule ^vender form-alta-producto.php
+RewriteRule ^productoPrueba producto_view.php
 # RewriteRule ^login form-login.php
 RewriteRule ^registrandome form-alta-usuario.php
+
+<FilesMatch ".(js|css|html|htm|php|xml)$">
+SetOutputFilter DEFLATE
+</FilesMatch>
+
+<FilesMatch "\.(html|htm|php)$">
+Header set Cache-Control "max-age=86400, public, must-revalidate"
+</FilesMatch>
+
+ErrorDocument 403 /views/error403.html
+ErrorDocument 404 /views/error404.html
+#RewriteRule 404.html
+Options -Indexes

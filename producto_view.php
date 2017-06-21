@@ -43,7 +43,7 @@
 		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
 		<section id="shop" class="results grid">
-			<div class="row col-md-12">
+			<div class="row col-md-12 white-bg form b-shadow">
 				<div class="col-md-12">
                 	<h1 class="text text-left">Macintosh 1987</h1>
                 </div>

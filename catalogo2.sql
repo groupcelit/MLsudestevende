@@ -25,22 +25,18 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias` (
-  `cat_id` int(2) NOT NULL AUTO_INCREMENT,
-  `cat_nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  PRIMARY KEY (`cat_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+  CREATE TABLE IF NOT EXISTS `categorias` (`cat_id` int(2) NOT NULL AUTO_INCREMENT, `cat_nombre` varchar(30) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,PRIMARY KEY (`cat_id`)
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
 
 --
 -- Volcar la base de datos para la tabla `categorias`
 --
 
-INSERT INTO `categorias` (`cat_id`, `cat_nombre`) VALUES
-(1, 'Teléfonos Celulares'),
-(2, 'Televisores'),
-(3, 'Sistemas de Audio y Video'),
-(4, 'GPS'),
-(5, 'Tablet');
+INSERT INTO `categorias` (`id`, `nombre`,`codigo`,`creado_en`,`modificado_en`) VALUES
+(1, 'Vehiculos','','2017-06-06 23:10:00','2017-06-06 23:10:00'),
+(2, 'Tecnologia','','2017-06-06 23:10:00','2017-06-06 23:10:00'),
+(3, 'Inmboliaria','','2017-06-06 23:10:00','2017-06-06 23:10:00'),
+(4, 'Varios','','2017-06-06 23:10:00','2017-06-06 23:10:00');
 
 -- --------------------------------------------------------
 
@@ -101,3 +97,27 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 
 INSERT INTO `usuarios` (`usu_id`, `usu_login`, `usu_clave`, `usu_nombre`, `usu_email`) VALUES
 (1, 'admin', 'admin', 'Administrador del Sistema', 'admin@sistema.com');
+
+
+
+
+/*Persona*/
+INSERT INTO `person_data` (`id`, `apellidos`, `nombres`, `fecha_nacimiento`, `direccion`, `email`,`celular`,`celular_codigo`,`borrado_logico`,`creado_en`,`modificado_en`) VALUES
+(1,'admin ape', 'admin nom',null,'direccion','email@email.com','594881','3489',0,'2017-06-06 23:10:00','2017-06-06 23:10:00');
+
+/*Usuario*/
+INSERT INTO `usuarios` (`id`, `person_data_id`, `username`, `password`, `premium`, `codigo`,`creado_en`,`modificado_en`) VALUES
+(1, 1, 'admin', 'admin',0,'admin','','');
+
+/*Anuncios*/
+INSERT INTO `anuncios` (`id`,`usuario_id`, `nombre`, `descripcion`, `codigo`, `precio`, `descuento`, `stock`, `nuevo`, `destacado`,`subcategoria_id`,`creado_en`, `modificado_en`,`borrado_logico`) VALUES
+(1,1, 'Iphone 4s 16gb', 'Teléfono celular Apple iPhone 4S de 16GB. Wifi, 3g, Gps, cámara de 8mp, pantalla HD (retina display) de 3.5 pulgadas.\r\nLibre de fábrica.\r\nIOS 5, procesador A5 dual core, doble cámara, sistema de control por voz Siri.'
+,'', 4400,'',1,1,'',1, '2017-06-06 23:10:00', '2017-06-06 23:10:00','0')
+
+/*SubCategorias*/
+INSERT INTO `sub_categorias` (`id`, `nombre`,`codigo`,`creado_en`,`categoria_id`,`modificado_en`) VALUES
+(1, 'autos','','2017-06-06 23:10:00',1,'2017-06-06 23:10:00');
+
+/*fotos*/
+INSERT INTO `fotos` (`id`, `path`, `principal`, `anuncio_id`, `codigo`,`creado_en`,`modificado_en`,`borrado_en`) VALUES
+(1, 'public_images/iphone.png',1, 1,null,'2017-06-06 23:10:00','2017-06-06 23:10:00', '2017-06-06 23:10:00');
