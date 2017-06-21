@@ -35,6 +35,7 @@
 <script type="text/javascript" src="assets/js/rev_slider/jquery.themepunch.tools.min.js"></script>
 <script type="text/javascript" src="assets/js/rev_slider/rev_plugins.js"></script>
 <script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/principal.js"></script>
 <!--<script type="text/javascript" src="assets/js/contact-form.js"></script>
 --><!--<script type="text/javascript" src="assets/js/tweecool.min.js"></script>
 <script type="text/javascript" src="assets/js/tweecool.js"></script>-->
