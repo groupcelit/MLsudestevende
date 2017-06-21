@@ -1,6 +1,6 @@
 <?php
 	require "conexion.php";
-	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos";
+	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM anuncios";
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	mysqli_close($link);
 ?>
@@ -43,7 +43,7 @@
 		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
 		<section id="shop" class="results grid">
-			<div class="row col-md-12">
+			<div class="row col-md-12 white-bg form b-shadow">
 				<div class="col-md-12">
                 	<h1 class="text text-left">Macintosh 1987</h1>
                 </div>
