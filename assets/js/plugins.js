@@ -716,7 +716,17 @@ CALCULATE HOME INNER HEIGHT
     $('.vertical-center').each(function(){
         var itemH = $(this).outerHeight();
         $(this).css({"margin-top": - itemH / 2 + 'px'});
+
     });
+
+   function toggleIcon(e) {
+    $(e.target)
+        .prev('.panel-heading')
+        .find(".more-less")
+        .toggleClass(' glyphicon-chevron-up glyphicon-minus');
+}
+$('.panel-group').on('shown.bs.collapse', toggleIcon);
+$('.panel-group').on('hidden.bs.collapse', toggleIcon);
 
 // End Window Load Function
 });
@@ -877,4 +887,5 @@ BLOG DATES FOR MOBILE
         var newPosition = $(this).find('.post-header');
         $(this).find('.dates').clone().insertAfter(newPosition).addClass('for-mobile');
     });
+
 
