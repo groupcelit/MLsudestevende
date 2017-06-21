@@ -2,9 +2,12 @@
 	$titulo = "Panel de control - Proyecto integrador";
 	require "autenticar.php";
 	require "conexion.php";
-	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM anuncios";
-	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
-	$cantidad=mysqli_num_rows($resultado); //cuenta la cantidad de registros
+	$sql="SELECT a.nombre, a.descripcion, a.precio ,f.path
+		  FROM anuncios AS a
+		  INNER JOIN fotos AS f on a.id=f.anuncio_id
+		  WHERE f.principal = 1";
+	$resultado =mysqli_query($link,$sql) or die(mysqli_error($link));
+	$cantidad  =mysqli_num_rows($resultado); //cuenta la cantidad de registros
 ?>
 <?php include "encabezado.php"; ?>
 </head>
@@ -28,11 +31,12 @@
 						<div class="item-image item item--grid">
 							<div class="item__image">
 								<?php /*echo "imagenes/",$fila['prd_foto1'];*/ ?>
-								<img src="images/medio.png" alt="iphone"></div>
+								<img src="<?php echo $fila['path']?>" alt="iphone"></div>
 
 							<div class="item_details t-center">
-								<div class="price ">$ <?php echo $fila['prd_precio']; ?></div>
-								<div class="shop_item_header "><?php echo $fila['prd_nombre']; ?></div>
+								<div class="price ">$ <?php echo $fila['precio']; ?></div>
+								<div class="shop_item_header "><?php echo $fila['nombre']; ?></div>
+								<?php /*var_dump($fila); */?>
 								<!--div class="shop_item_description"><?php /*echo substr($fila['prd_descripcion'],0,40).'...'; */?></div>-->
 							</div>
 						</div>
