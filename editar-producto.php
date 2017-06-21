@@ -3,7 +3,7 @@
 	$titulo = "Panel de control - Modificación de producto";
 	//Rutina para subir imágenes al servidor si fueron enviadas
 	$ruta="imagenes/";
-	$sqlFoto1 = $sqlFoto2 = "";
+	/*$sqlFoto1 = $sqlFoto2 = "";
 	if ($_FILES['prd_foto1']['error']==0){
 		$prd_foto1TMP=$_FILES['prd_foto1']['tmp_name'];
 		$prd_foto1=$_FILES['prd_foto1']['name'];
@@ -15,23 +15,23 @@
 		$prd_foto2=$_FILES['prd_foto2']['name'];
 		move_uploaded_file($prd_foto2TMP, $ruta.$prd_foto2);
 		$sqlFoto2 = ", prd_foto2 = '".$prd_foto2."'";
-	}
+	}*/
 	//Rutina para modificar datos en la tabla productos
-	$prd_nombre=$_POST["prd_nombre"];
-	$prd_descripcion=$_POST["prd_descripcion"];
-	$prd_precio=$_POST["prd_precio"];
-	$cat_id=$_POST["cat_id"];
-	$prd_id=$_POST["prd_id"];
+	$anun_nombre=$_POST["nombre"];
+	$anun_descripcion=$_POST["descripcion"];
+	$anun_precio=$_POST["precio"];
+	$subcat_id=$_POST["subcategoria_id"];
+	$anun_id=$_POST["id"];
 	require "conexion.php";
-   $sql = "UPDATE productos
+   $sql = "UPDATE anuncios
                     SET 
-                      prd_nombre = '".$prd_nombre."',
-                      prd_descripcion = '".$prd_descripcion."',
-                      prd_precio = ".$prd_precio.",
-                      cat_id = ".$cat_id;
-        $sql = $sql . $sqlFoto1;
-        $sql = $sql . $sqlFoto2;
-        $sql = $sql . " WHERE prd_id = ".$prd_id;
+                      nombre = '".$anun_nombre."',
+                      descripcion = '".$anun_descripcion."',
+                      precio = ".$anun_precio.",
+                      subcategoria_id = ".$subcat_id;
+        /*$sql = $sql . $sqlFoto1;
+        $sql = $sql . $sqlFoto2;*/
+        $sql = $sql . " WHERE id = ".$anun_id;
     mysqli_query($link,$sql);
 	$chequeo=mysqli_affected_rows($link);//devuelve cantidad de registros afectados
 	mysqli_close($link);
@@ -53,19 +53,19 @@
 				</tr>
 				<tr>
 					<td class="lista">Nombre</td>
-					<td class="lista"><?php echo $prd_nombre; ?></td>
+					<td class="lista"><?php echo $anun_nombre; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Descripción</td>
-					<td class="lista"><?php echo $prd_descripcion; ?></td>
+					<td class="lista"><?php echo $anun_descripcion; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Precio</td>
-					<td class="lista"><?php echo $prd_precio; ?></td>
+					<td class="lista"><?php echo $anun_precio; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Miniatura</td>
-					<td class="lista"><img src='<?php echo $ruta.$prd_foto1; ?>'></td>
+					<!-- <td class="lista"><img src='<?php /*echo $ruta.$prd_foto1;*/ ?>'></td> -->
 				</tr>
 
 			</table>

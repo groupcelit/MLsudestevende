@@ -53,11 +53,11 @@ ini_set('display_errors', '1');
 
 
 
-	$prd_nombre=$_POST["prd_nombre"];
-	$prd_descripcion=$_POST["prd_descripcion"];
-	$prd_precio=$_POST["prd_precio"];
-	$cat_id=$_POST["cat_id"];
-	$prd_alta=date("Y-m-d");
+	$anun_nombre=$_POST["nombre"];
+	$anun_descripcion=$_POST["descripcion"];
+	$anun_precio=$_POST["precio"];
+	$subcategoria_id=$_POST["subcategoria_id"];
+	$anun_creado_en=date("Y-m-d");
 	
 
 	$host="celit2017.cuzdoaddgasz.sa-east-1.rds.amazonaws.com";
@@ -71,7 +71,7 @@ ini_set('display_errors', '1');
 			mysqli_select_db ($con,$db)
 			or die ("pro_select_db"); 
 
-	mysqli_query("INSERT INTO productos (prd_id,prd_nombre,prd_descripcion,prd_precio,cat_id,prd_alta,prd_foto1,prd_foto2) VALUES (NULL,'".$prd_nombre."','".$prd_descripcion."',".$prd_precio.",".$cat_id.",'".$prd_alta."','".$prd_foto1."','".$prd_foto2."')",$con) or die ("pro_insert_db");
+	mysqli_query("INSERT INTO anuncios (prd_id,nombre,descripcion,precio,subcategoria_id,creado_en,prd_foto1,prd_foto2) VALUES (NULL,NULL,'".$anun_nombre."','".$anun_descripcion."',NULL,".$anun_precio.",NULL,NULL,NULL,NULL,".$subcategoria_id.",'".$anun_creado_en."',NULL,NULL)",$con) or die ("pro_insert_db");
 
 	
 	
@@ -93,15 +93,15 @@ ini_set('display_errors', '1');
 				</tr>
 				<tr>
 					<td class="lista">Nombre</td>
-					<td class="lista"><?php echo $prd_nombre; ?></td>
+					<td class="lista"><?php echo $anun_nombre; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Descripción</td>
-					<td class="lista"><?php echo $prd_descripcion; ?></td>
+					<td class="lista"><?php echo $anun_descripcion; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Precio</td>
-					<td class="lista"><?php echo $prd_precio; ?></td>
+					<td class="lista"><?php echo $anun_precio; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Miniatura</td>

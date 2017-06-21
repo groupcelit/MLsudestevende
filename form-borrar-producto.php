@@ -2,8 +2,8 @@
 	require "autenticar.php";
 	$titulo = "Formulario de baja de producto";
 	require "conexion.php";
-	$prdid=$_GET['prd_id'];
-   	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos WHERE prd_id=".$prdid;
+	$anun_id=$_GET['id'];
+   	$sql="SELECT nombre, descripcion, precio FROM anuncios WHERE id=".$anun_id;
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	$fila=mysqli_fetch_assoc($resultado);
 	mysqli_close($link);
@@ -22,24 +22,24 @@
 			<table id="paneles">
 				<tr>
 					<th>Nombre</th>
-					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['prd_nombre'] ?>'></td>
+					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['nombre'] ?>'></td>
 				</tr>
 				<tr>
 					<th>Descripcion</th>
-					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['prd_descripcion'] ?>'></td>
+					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['descripcion'] ?>'></td>
 				</tr>				
 				<tr>
 					<th>Precio</th>
-					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['prd_precio'] ?>'></td>
+					<td class="lista"><input type="text" name="prd_nombre" value='<?php echo $fila['precio'] ?>'></td>
 				</tr>			
 				
 				<tr>
 					<th>Imagen</th>
-					<td class="lista"> <img src='imagenes/<?php echo $fila['prd_foto1']; ?>'> </td> <!--type="file" es el boton para subir archivos--> 
+					<!-- <td class="lista"> <img src='imagenes/<?php /*echo $fila['prd_foto1'];*/ ?>'> </td>  --><!--type="file" es el boton para subir archivos--> 
 				</tr>	
 				<tr>
 					<td colspan="2" class="centrar">
-						<input type="hidden" name="prd_id" value='<?php echo $prdid ?>' >
+						<input type="hidden" name="prd_id" value='<?php echo $anun_id ?>' >
 						<input type="submit" value="Confirmar baja">
 					</td>
 				</tr> 									

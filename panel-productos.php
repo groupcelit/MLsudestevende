@@ -2,7 +2,7 @@
 	require "autenticar.php";
 	$titulo = "Panel de control - Panel productos";
 	require "conexion.php";
-	$sql="SELECT prd_id, prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos";
+	$sql="SELECT id, nombre, descripcion, precio FROM anuncios";
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	$cantidad=mysqli_num_rows($resultado); //cuenta la cantidad de registros
 ?>
@@ -26,12 +26,12 @@
 			</tr>
 			<?php while($fila=mysqli_fetch_assoc($resultado)) { ?>
 			<tr>
-				<td class="lista"> <?php echo $fila['prd_nombre'] ?> </td>
-				<td class="lista"> <?php echo $fila['prd_descripcion'] ?> </td>
-				<td class="lista"> <?php echo $fila['prd_precio'] ?> </td>
-				<td class="lista"> <img src='<?php echo "imagenes/",$fila['prd_foto1'] ?>' </td>
-				<td class="lista"> <a href="form-editar-producto.php?prd_id=<?php echo $fila['prd_id']?>"><img src=<?php echo "imgs/editar3.png" ?> </a> </td>
-				<td class="lista"> <a href="form-borrar-producto.php?prd_id=<?php echo $fila['prd_id']?>"><img src=<?php echo "imgs/borrar.png"  ?> </a> </td>
+				<td class="lista"> <?php echo $fila['nombre'] ?> </td>
+				<td class="lista"> <?php echo $fila['descripcion'] ?> </td>
+				<td class="lista"> <?php echo $fila['precio'] ?> </td>
+				<td class="lista"> <!-- <img src='<?php /*echo "imagenes/",$fila['prd_foto1']*/ ?>'> --></td>
+				<td class="lista"> <a href="form-editar-producto.php?id=<?php echo $fila['id']?>"><img src=<?php echo "imgs/editar3.png" ?> </a> </td>
+				<td class="lista"> <a href="form-borrar-producto.php?id=<?php echo $fila['id']?>"><img src=<?php echo "imgs/borrar.png"  ?> </a> </td>
 			</tr>
 			<?php } ?>
 			<tr>

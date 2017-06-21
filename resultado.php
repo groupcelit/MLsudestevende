@@ -1,9 +1,9 @@
 <?php
 	$titulo = "Panel de control - Resultado de búsqueda";
 	$termino=$_GET["termino"];//capturo dato de formulario
-	$catid=$_GET["cat_id"];//capturo dato de formulario
+	$subcat_id=$_GET["subcatecoria_id"];//capturo dato de formulario
 	require "conexion.php";
-	$sql="SELECT prd_nombre, prd_descripcion, prd_precio, prd_foto1 FROM productos WHERE prd_nombre LIKE '%".$termino."%' AND cat_id=".$catid;
+	$sql="SELECT nombre, descripcion, precio FROM anuncios WHERE nombre LIKE '%".$termino."%' AND subcategoria_id=".$subcat_id;
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	$cantidad=mysqli_num_rows($resultado); //cuenta la cantidad de registros
 ?>
@@ -28,8 +28,8 @@
 								<img src="images/iphone.png" alt="iphone"></div>
 
 							<div class="item_details t-center">
-								<div class="price ">$<?php echo $fila['prd_precio']; ?></div>
-								<div class="shop_item_header "><?php echo $fila['prd_nombre']; ?></div>
+								<div class="price ">$<?php echo $fila['precio']; ?></div>
+								<div class="shop_item_header "><?php echo $fila['nombre']; ?></div>
 								<!--div class="shop_item_description"><?php /*echo substr($fila['prd_descripcion'],0,40).'...'; */?></div>-->
 							</div>
 						</div>

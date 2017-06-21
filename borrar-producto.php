@@ -1,9 +1,9 @@
 <?php
 	require "autenticar.php";
 	$titulo = "Panel de control - Baja de producto";
-	$prdid=$_POST["prd_id"];
+	$prdid=$_POST["id"];
 	require "conexion.php";
-	$sql="DELETE FROM productos WHERE prd_id=".$prdid;
+	$sql="DELETE FROM anuncios WHERE id=".$prdid;
 	mysqli_query($link,$sql) or die(mysqli_error($link));
 	$chequeo=mysqli_affected_rows($link);//devuelve cantidad de registros afectados
 	mysqli_close($link);
