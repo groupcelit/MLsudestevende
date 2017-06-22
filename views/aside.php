@@ -9,84 +9,110 @@
 <aside class="filters grid" role="complementary">
 			<div class="sidebar-offcanvas hidden-print white-bg b-shadow" id="sidebar" role="navigation">
 				<div class="sidebar-nav">
-				<!--aca empieza el acordeon-->
-					
-					<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-  <div class="panel panel-default  ">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >
-          <h3 class="colored-bg white"> VEHÍCULOS <i class="more-less glyphicon glyphicon-minus"></i> </h3>
-          
-        </a>
-      </h4>
 
-    </div>
-    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-      <div class="panel-body">
-        <ul class="nav">
-            <li><a href="/accesorios-del-automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
-            <li><a href="/automoviles"><i class="fa fa-car"></i> Automóviles</a></li>
-            <li><a href="/camionetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
-            <li><a href="/grandes-transportes"><i class=" fa fa-truck"></i> Grandes transportes</a></li>
-            <li><a href="/motos-y-cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
-            <li><a href="/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
-          </ul>
+
+
+
+
+
+ <!--aca empieza el acordeon-->
+          
+ <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default  ">
+                <div class="panel-heading" role="tab" id="headingFive">
+                  <h4 class="panel-title">
+                      <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" >
+                          <h3 class="colored-bg white"> VEHÍCULOS <i class="more-less glyphicon glyphicon-minus"></i> </h3>
+                      </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+                    <div class="panel-body">
+                        <ul class="nav">
+                        <li><a href="/accesorios-del-automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
+                        <li><a href="/automoviles"><i class="fa fa-car"></i> Automóviles</a></li>
+                        <li><a href="/camionetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
+                        <li><a href="/grandes-transportes"><i class=" fa fa-truck"></i> Grandes transportes</a></li>
+                        <li><a href="/motos-y-cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
+                        <li><a href="/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
+                      </ul>
+                    </div>
+                 </div>  
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingTwo">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-          <h3 class="colored-bg white">INMUEBLES <i class="more-less glyphicon glyphicon-minus"></i></h3>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
-      <div class="panel-body">
-    <ul class="nav">
-            <li><a href="/campos-y-terrenos"><i class="fa fa-area-chart "></i> Campos y Terrenos</a></li>
-            <li><a href="/casas"><i class="fa fa-home"></i> Casas</a></li>
-            <li><a href="/departamentos"><i class="fa fa-building "></i> Departamentos</a></li>
-            <li><a href="/fondos-de-comercio"><i class="fa fa-key"></i> Fondos de Comercio</a></li>
-            <li><a href="/locales-galpones-cocheras"><i class="fa fa-building-o"></i> Locales / Galpones / Cocheras</a></li>
-            <li><a href="/quintas"><i class="fa fa-lhome"></i> Quintas</a></li>
-          </ul>
+</div>
+
+<!--aca termina un acordeon-->
+
+
+ <!--aca empieza el acordeon-->
+          
+ <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default  ">
+                <div class="panel-heading" role="tab" id="headingTwo">
+                  <h4 class="panel-title">
+                      <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
+                         <h3 class="colored-bg white">INMUEBLES <i class="more-less glyphicon glyphicon-minus"></i></h3>
+                      </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+                    <div class="panel-body">
+                        <ul class="nav">
+                          <li><a href="/campos-y-terrenos"><i class="fa fa-area-chart "></i> Campos y Terrenos</a></li>
+                          <li><a href="/casas"><i class="fa fa-home"></i> Casas</a></li>
+                          <li><a href="/departamentos"><i class="fa fa-building "></i> Departamentos</a></li>
+                          <li><a href="/fondos-de-comercio"><i class="fa fa-key"></i> Fondos de Comercio</a></li>
+                          <li><a href="/locales-galpones-cocheras"><i class="fa fa-building-o"></i> Locales / Galpones / Cocheras</a></li>
+                          <li><a href="/quintas"><i class="fa fa-lhome"></i> Quintas</a></li>
+                        </ul>
+                    </div>
+                 </div>  
       </div>
-    </div>
-  </div>
-  <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingThree">
-      <h4 class="panel-title">
-        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-          <h3 class="colored-bg white">TECNOLOGÍA <i class="more-less glyphicon glyphicon-minus"></i></h3>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
-      <div class="panel-body">
-        
-          <ul class="nav">
-            <li><a href="/audio-y-video"><i class="fa fa-video-camera"></i> Audio y Video</a></li>
-            <li><a href="/fotografia"><i class="fa fa-camera"></i> Fotografía</a></li>
-            <li><a href="/informatica"><i class="fa fa-laptop"></i> Informática</a></li>
-            <li><a href="/celulares"><i class="fa fa-mobile"></i> Celulares</a></li>
-          </ul>
+</div>
+
+<!--aca termina un acordeon-->
+
+
+ <!--aca empieza el acordeon-->
+          
+ <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default  ">
+                <div class="panel-heading" role="tab" id="headingThree">
+                  <h4 class="panel-title">
+                      <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" >
+                        <h3 class="colored-bg white">TECNOLOGÍA <i class="more-less glyphicon glyphicon-minus"></i></h3>
+                      </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingThree">
+                    <div class="panel-body">
+                         <ul class="nav">
+                          <li><a href="/audio-y-video"><i class="fa fa-video-camera"></i> Audio y Video</a></li>
+                          <li><a href="/fotografia"><i class="fa fa-camera"></i> Fotografía</a></li>
+                          <li><a href="/informatica"><i class="fa fa-laptop"></i> Informática</a></li>
+                          <li><a href="/celulares"><i class="fa fa-mobile"></i> Celulares</a></li>
+                        </ul>
+                    </div>
+                 </div>  
       </div>
-    </div>
-  </div>
-   <div class="panel panel-default">
-    <div class="panel-heading" role="tab" id="headingOne">
-      <h4 class="panel-title">
-        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-          <h3 class="colored-bg white">VARIOS <i class="more-less glyphicon glyphicon-minus"></i></h3>
-        </a>
-      </h4>
-    </div>
-    <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
-      <div class="panel-body">
-        <ul class="nav">
+</div>
+
+<!--aca termina un acordeon-->
+
+ <!--aca empieza el acordeon-->
+          
+ <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        <div class="panel panel-default  ">
+                <div class="panel-heading" role="tab" id="headingFour">
+                  <h4 class="panel-title">
+                      <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" >
+                         <h3 class="colored-bg white">VARIOS <i class="more-less glyphicon glyphicon-minus"></i></h3>
+                      </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFour">
+                    <div class="panel-body">
+                        <ul class="nav">
             <li><a href="/agropecuarios"><i class="icon-rubro-agropecuario-1"></i> Agropecuarios</a></li>
             <li><a href="/amoblamientos"><i class=" fa fa-bed"></i> Amoblamientos</a></li>
             <li><a href="/animacion-de-fiestas"><i class="fa fa-birthday-cake"></i> Animación de Fiestas</a></li>
@@ -106,19 +132,22 @@
             <li><a href="/solidaridad-donaciones"><i class="fa fa-comments-o" ></i> Solidaridad / Donaciones</a></li>
             <li><a href="/turismo"><i class="fa fa-tree "></i> Turismo</a></li>
           </ul>
+                    </div>
+                 </div>  
       </div>
-    </div>
-  </div>
 </div>
-					
+
+<!--aca termina un acordeon-->
 
 
+					
 
-					
-					
+					  
+                 
+
 					
 					
 				</div><!--/.well -->
 			</div>
-		</aside>
+</aside>
 
