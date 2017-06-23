@@ -3,7 +3,10 @@
 $usulogin=$_POST["usu_login"];
 $usuclave=$_POST["usu_clave"];
 require "conexion.php";
-$sql="SELECT usu_nombre FROM usuarios WHERE usu_login='".$usulogin."' AND usu_clave='".$usuclave."'";
+$sql="SELECT username
+	  FROM usuarios AS u
+	  WHERE username='".$usulogin."'
+	  AND password='".$usuclave."'";
 $resultado= mysqli_query($link,$sql);
 $cantidad= mysqli_num_rows($resultado);
 if ($cantidad==0){
@@ -15,7 +18,7 @@ if ($cantidad==0){
 	//Redirección a admin
 	header("location:bienvenido");
 	$fila = mysqli_fetch_assoc($resultado);
-	$_SESSION['usu_nombre'] = $fila['usu_nombre'];
+	$_SESSION['username'] = $usulogin;
 }
 
 ?>
