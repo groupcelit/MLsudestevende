@@ -1,37 +1,13 @@
 <?php
 	require "conexion.php";
-	$sql="SELECT nombre, descripcion, precio FROM anuncios";
+	$sql="SELECT a.nombre AS nombre_anuncio,
+				 a.descripcion AS anuncio_descripcion,
+				 a.precio AS anuncio_precio
+ 		  FROM anuncios AS a";
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	mysqli_close($link);
 ?>
 <?php include "encabezado.php"; ?>
-<style type="text/css">
-	.carousel-product-img {
-		height: 325px !important;
-		width: 100%;
-		max-width: none !important;
-	}
-
-	.item img {
-	    -webkit-transition: all 1s ease; /* Safari and Chrome */
-	    -moz-transition: all 1s ease; /* Firefox */
-	    -ms-transition: all 1s ease; /* IE 9 */
-	    -o-transition: all 1s ease; /* Opera */
-	    transition: all 1s ease;
-	}
-
-	.item:hover img {
-	    -webkit-transform:scale(1.25); /* Safari and Chrome */
-	    -moz-transform:scale(1.25); /* Firefox */
-	    -ms-transform:scale(1.25); /* IE 9 */
-	    -o-transform:scale(1.25); /* Opera */
-	     transform:scale(1.25);
-	}
-
-	p {
-		word-wrap: break-word;
-	}
-</style>
 </head>
 <body>
 <!--	<div id="top"><img src="imagenes/top.png" alt="encabezado" width="980" height="80"></div>
@@ -42,77 +18,132 @@
 
 		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
-		<section id="shop" class="results grid">
-			<div class="row col-md-12 white-bg form b-shadow">
+
+		<div class="container">
+
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="#lightbox" data-toggle="modal">Open Lightbox</a></li>
+				<li><a href="#lightbox" data-toggle="modal" data-slide-to="1">2nd Image</a></li>
+				<li><a href="#lightbox" data-toggle="modal" data-slide-to="2">3rd Image</a></li>
+				<li><a href="#lightbox" data-toggle="modal" data-slide-to="15">Open non existing Image</a></li>
+			</ul>
+
+			<div class="modal fade and carousel slide" id="lightbox">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-body">
+							<ol class="carousel-indicators">
+								<li data-target="#lightbox" data-slide-to="0" class="active"></li>
+								<li data-target="#lightbox" data-slide-to="1"></li>
+								<li data-target="#lightbox" data-slide-to="2"></li>
+							</ol>
+							<div class="carousel-inner">
+								<div class="item active">
+									<img src="http://placehold.it/900x500/777/" alt="First slide">
+								</div>
+								<div class="item">
+									<img src="http://placehold.it/900x500/666/" alt="Second slide">
+								</div>
+								<div class="item">
+									<img src="http://placehold.it/900x500/555/" alt="Third slide">
+									<div class="carousel-caption"><p>even with captions...</p></div>
+								</div>
+							</div><!-- /.carousel-inner -->
+							<a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
+								<span class="glyphicon glyphicon-chevron-left"></span>
+							</a>
+							<a class="right carousel-control" href="#lightbox" role="button" data-slide="next">
+								<span class="glyphicon glyphicon-chevron-right"></span>
+							</a>
+						</div><!-- /.modal-body -->
+					</div><!-- /.modal-content -->
+				</div><!-- /.modal-dialog -->
+			</div><!-- /.modal -->
+
+		</div><!-- /.container -->
+
+
+
+		<section id="view_anuncio" class="results grid clear-main">
+			<div class="col-md-12 white-bg form b-shadow">
 				<div class="col-md-12">
-                	<h1 class="text text-left">Macintosh 1987</h1>
+                	<h1 class="text text-left text-primary">Macintosh 1987</h1>
                 </div>
 				<div class="col-md-6">
-					<div id="carousel-product-view" class="carousel slide" data-ride="carousel">
-						
-						<div class="carousel-inner" role="listbox">
-							<div class="item active">
-							  <img class="carousel-product-img" src="images/bg-01.jpg" alt="...">
-							  <div class="carousel-caption">
-							    
-							  </div>
-							</div>
-							<div class="item">
-							  <img class="carousel-product-img" src="images/bg_about.jpg" alt="...">
-							  <div class="carousel-caption">
-							    
-							  </div>
-							</div>
-							<div class="item">
-							  <img class="carousel-product-img" src="images/background22.jpg" alt="...">
-							  <div class="carousel-caption">
-							    
-							  </div>
+					<div class="col-xs-12 no-padding" id="slider">
+						<!-- Top part of the slider -->
+						<!--<div class="row">-->
+						<div id="carousel-bounding-box">
+							<div class="carousel slide" id="myCarousel">
+								<!-- Carousel items -->
+								<div class="carousel-inner">
+									<div class="active item" data-slide-number="0">
+										<img class="carousel-product-img" src="images/bg-01.jpg" alt="...">
+									</div>
+									<div class="item" data-slide-number="1">
+										<img class="carousel-product-img" src="images/bg_about.jpg" alt="...">
+									</div>
+									<div class="item" data-slide-number="2">
+										<img class="carousel-product-img" src="images/background22.jpg" alt="...">
+									</div>
+								</div>
+								<!-- Carousel nav -->
+								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+									<span class="glyphicon glyphicon-chevron-left"></span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+									<span class="glyphicon glyphicon-chevron-right"></span>
+								</a>
 							</div>
 						</div>
-						<a class="left carousel-control" href="#carousel-product-view" role="button" data-slide="prev">
-						    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-						    <span class="sr-only">Previous</span>
-						</a>
-						<a class="right carousel-control" href="#carousel-product-view" role="button" data-slide="next">
-						    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-							<span class="sr-only">Next</span>
-						</a>
+						<!--</div>-->
 					</div>
-					<div class="row">
-                        <div class="col-xs-4 col-sm-2">
-                            <a name="thumbnail" href="#" class="img-thumbnail thumb"><img src="images/bg-01.jpg" alt="...">
-								<i class="icon-zoomin hide"></i>
-							</a>
-                        </div>
-						<div class="col-xs-4 col-sm-2">
-							<a name="thumbnail" href="#" class="img-thumbnail thumb"><img src="images/bg_about.jpg" alt="...">
-								<i class="icon-zoomin hide"></i>
-							</a>
-	                    </div>
-	                    <div class="col-xs-4 col-sm-2">
-	                    	<a onclick="mover(this)" name="thumbnail" href="#" class="img-thumbnail thumb"><img src="images/background22.jpg" alt="...">
-	                        	<i class="icon-zoomin hide"></i>
-	                        </a>
-	                    </div>
+					<div class="col-xs-12" id="slider-thumbs">
+						<!-- Bottom switcher of slider -->
+						<ul class="hide-bullets">
+							<li class="col-xs-2 no-padding">
+								<a class="thumbnail" id="carousel-selector-0" data-target="#lightbox">
+									<img  class="mini" src="images/bg-01.jpg" alt="...">
+								</a>
+							</li>
+							<li class="col-xs-2 no-padding">
+								<a class="thumbnail" id="carousel-selector-1" data-target="#lightbox">
+									<img class="mini" src="images/bg_about.jpg" alt="...">
+								</a>
+							</li>
+							<li class="col-xs-2 no-padding">
+								<a class="thumbnail" id="carousel-selector-2" data-target="#lightbox">
+									<img class="mini" src="images/background22.jpg" alt="...">
+								</a>
+							</li>
+						</ul>
 					</div>
                 </div>
                 <div class="col-md-6">
-                	<div class="row">
+                	<div>
                 		<div class="col-md-12">
                 			<h1 class="text-left text-danger no-margin no-padding"><strong>$1000</strong></h1>
                 		</div>
-                		<div class="col-md-12 no-margin gray-bg-2">
+                		<div class="col-md-12 no-margin gray-bg-2 span-with-bg">
                 			<p><h3 class="text-left">Detalles</h3></p>
-                			<div class="col-md-12"><p><h5>Aldfko skadow adlqom asdmklml 12 sadkmiru coirnal ajsdhjker weldkdlfn keinf alsdifn qldiap alsdkdn asdlk</h5></p></div>
+                			<div class="col-md-12 span-with-bg">
+								<p>
+									<h5>Lorem ipsum dolor sit amet, ut vel dico ignota, ad essent apeirian his. Te eam eius commodo honestatis, duo solum possim ne. Qui impetus persius molestiae ne. Ut eam ancillae pertinacia, te cibo ignota contentiones his. Urbanitas vituperata repudiandae te pri.</h5>
+								</p>
+								<br>
+								<p>
+									<h3 class="text-left text-info">Av. Rivadavia 233, San Martin</h3>
+								</p>
+							</div>
 
-                		</div>
-                		<div class="col-md-12 no-margin gray-bg-2">
-                			<p><h3 class="text-left text-info">Av. Rivadavia 233, San Martin</h3></p>
                 		</div>
                 	</div>
                 </div>
-                <div class="col-md-12 text-right"><p><h2>Publicado por: Alan Diaz</h2></p></div>
+                <div class="col-md-12 text-right">
+					<p>
+						<h4><small>Publicado por: Alan Diaz</small></h4>
+					</p>
+				</div>
                 <!-- <div class="col-md-12">
                 	<div class="col-md-12">
                 		<div class="col-md-12 no-margin no-padding" style="background-color: #FFFFFF">
@@ -139,8 +170,7 @@
 	$('.carousel').carousel()
 	var elements = document.getElementsByName("thumbnail");
 	//algo hay que hacer aca porque no funciona y en consola de navegador si (elements[i].getAttribute("name"))
-
-	for (var i = 0; i < elements.length; i++) {	
+	for (var i = 0; i < elements.length; i++) {
 		elements[i].addEventListener("click", function(self) {
 		  	var numero = parseInt(elements[i].getAttribute("name"));
 			$('.carousel').carousel(numero);
