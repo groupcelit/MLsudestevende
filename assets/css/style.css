@@ -1711,7 +1711,7 @@
 	}
 
 	.nav-menu ul{
-		display: block;
+		/*display: block;*/
 		width: auto;
 		height: 100%;
 		position: relative;
@@ -1759,7 +1759,7 @@
 		border-radius: 0;
 		padding:0;
 		position: absolute;
-		display: none;
+		//*display: none;*//
 		width: auto !important;
 		white-space:nowrap;
 		border:none;
@@ -8954,3 +8954,23 @@ body::-webkit-scrollbar-thumb
 	background-color: #009688;
 Jairoooo
 }*/
+
+
+/*boton usuario*/
+.dropdown .botonusuario{
+	background-color: transparent !important;
+	text-decoration: none !important;
+
+}
+.dropdown .botonusuario:hover{
+	background-color: transparent !important;
+	text-decoration: none !important;
+}
+
+.dropdown.libtn:hover{
+	text-decoration: none !important;
+}
+
+.dropdown.libtn{
+	text-decoration: none !important;
+}

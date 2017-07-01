@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Venta de productos cerca de ti | Sudestevende</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		
 	<link rel="stylesheet" href="panel.css" />
 	<!--<link rel="stylesheet" href="assets/assets/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="assets/css/reset.css" />
@@ -21,12 +22,14 @@
 	<link rel="stylesheet" href="assets/css/settings-ie8.css" />
 	<link rel="stylesheet" href="assets/css/settings.css" />
 	<link rel="stylesheet" href="assets/css/style.css" />
+
 	<link rel="stylesheet" href="assets/css/ml.css" />
 	<link rel="stylesheet" href="assets/css/backgrounds.css" />
 	<link rel="stylesheet" href="assets/css/responsive.css" />
 	<link id="changeable_tone" rel="stylesheet" href="assets/css/page_tones/dark.css" />
 	<link  rel="stylesheet" href="assets/css/skill.css" />
 	<link rel="shortcut icon" href="assets/icons/favicon.ico" type="image/x-icon">
+
 	<meta name="theme-color" content="#3680ff">
 </head>
 <body class="parallax">
@@ -40,29 +43,45 @@
 						<div class="text">
 							<p class="no-margin no-padding extrabold">sudestevende</p>
 						</div>
-					</div>
-
-				</a>
-			</div>
-			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
-			<div class="nav-menu f-right">
-				<ul class="nav semibold">
-					     <li>
-							 <div class="f-left">
+						<!-- aca pongo el buscador para que no aparezca en el menu dezplegable hay que acomodarlo-->
+						<div class="f-left">
+						
 								<form action="resultado.php" method="get" class="" >
 									<div class="form-group">
-										<i class="glyphicons glyphicon glyphicon-search"></i>
+										
 										<input class="search colored transition" type="text" name="Search" placeholder=" Realiza tu busqueda!">
+
 									</div>
 									<!--<select name="cat_id">
 										<option value=0>- Categorias -</option>
 									</select>-->
 
 								</form>
+
 							</div>
-						 </li>
+							<i class="glyphicons glyphicon glyphicon-search"></i>
+					</div>
+
+				</a>
+
+			</div>
+
+			
+			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
+			<div class="nav-menu f-right">
+				<ul class="nav semibold">
+					    
 					<?php if (isset($_SESSION['login'])) { ?>
-						<li><a class="colored" href="logout.php">Salir</a></li>
+						<li  class="dropdown libtn">
+									
+							<a href="#" class="dropdown-toggle botonusuario" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <?php $user=$_SESSION ["usu_login"];
+ 								echo($user); ?><span class="caret"></span></a>
+				                  <ul class="dropdown-menu">
+				                    <li><a href="#">Mi cuenta</a></li>
+				                    <li><a href="logout.php">Salir</a></li>
+				                 </ul>
+						</li>
+						
 					<?php } else { ?>
 						<li><a href="registrandome" class="scroll">Regístrate</a></li>
 						<li><a href="form-login.php" class="scroll">Ingresa</a></li>
@@ -75,3 +94,5 @@
 	</div>
 </nav>
 	
+
+								  
