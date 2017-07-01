@@ -1,13 +1,3 @@
-<?php
-/*function url(){
-	return sprintf(
-		"%s://%s%s",
-		isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] != 'off' ? 'https' : 'http',
-		$_SERVER['SERVER_NAME'],
-		''
-	);
-}*/
-?>
 <!DOCTYPE HTML>
 <html lang="es">
 <head>
@@ -71,11 +61,12 @@
 								</form>
 							</div>
 						 </li>
+					
 					<?php if (isset($_SESSION['login'])) { ?>
 						<li><a class="colored" href="logout.php">Salir</a></li>
 					<?php } else { ?>
 						<li><a href="registrandome" class="scroll">Regístrate</a></li>
-						<li><a href="form-login.php" class="scroll">Ingresa</a></li>
+						<li><a href="ingresar" class="scroll">Ingresa</a></li>
 					<?php } ?>
 
 					<li><a href="vender" class="scroll">Vender</a></li>

@@ -60,8 +60,16 @@ $app->singleton(
 */
 
  $app->middleware([
-    App\Http\Middleware\ExampleMiddleware::class
+    App\Http\Middleware\ExampleMiddleware::class,
+   // Illuminate\Cookie\Middleware\EncryptCookies::class,
+   // Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+    Illuminate\Session\Middleware\StartSession::class,
+   // Illuminate\View\Middleware\ShareErrorsFromSession::class
+   // Laravel\Lumen\Http\Middleware\VerifyCsrfToken::class,
+
+
  ]);
+
 
 // $app->routeMiddleware([
 //     'auth' => App\Http\Middleware\Authenticate::class,

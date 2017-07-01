@@ -14,13 +14,48 @@ use Illuminate\Http\Request;
 
 
 $app->get('/lumen-version', function () use ($app) {
-   return $app->version();
-});
+    /*$id = $app['encrypter']->decrypt($_COOKIE[$app['config']['session.cookie']]);
+    $app['session']->driver()->setId($id);
+    $app['session']->driver()->start();*/
+    session_name('private');
+    session_start();
+    $private_id = session_id();
+    session_write_close();
 
-$app->get('/', function ()  {
-    $anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
-    return view('home', ['anuncios' => $anuncios]);
+  // return $app->version();
+    return $private_id;
 });
+/*Todo VISTAS*/
+    /*Principal*/
+    $app->get('/bienvenido', function ()  {
+        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('home', ['anuncios' => $anuncios]);
+    });
+    $app->get('/', function ()  {
+        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('home', ['anuncios' => $anuncios]);
+    });
+
+    /*auth*/
+    $app->get('/ingresar', function ()  {
+        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('auth.form_login');
+    });
+   /* $app->get('/salir', function ()  {
+        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('auth.form_alta_usuario');
+    });*/
+    $app->get('/registrandome', function ()  {
+        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('auth.form_alta_usuario');
+    });
+
+    /*publicaciones*/
+    $app->get('/vender', function ()  {
+        $categorias=app('App\Http\Controllers\CategoriasController')->getCategorias();
+        return view('publicaciones.form_alta_producto',['categorias' => $categorias]);
+    });
+
 
 $app->get('/usuarios', function () use ($app) {
    $results = DB::select("SELECT * FROM anuncios LIMIT 20");
@@ -29,16 +64,21 @@ $app->get('/usuarios', function () use ($app) {
    //return $app->version();
 });
 
-/*TODO USUARIO-PERSONA*/
-    /*CREAR USUARIO-PERSONA*/
-    $app->post('/usuarios/new_user','UsuariosController@saveUsuario');
+/*Todo CONTROLLER*/
+    /*USUARIO-PERSONA*/
+        /*Crear usuario-persona*/
+        $app->post('/usuarios/new_user','UsuariosController@saveUsuario');
 
-    /*Actualizar USUARIO-PERSONA*/
-    $app->put('/usuarios/update_user/{id}','UsuariosController@saveUsuario');
+        /*Actualizar usuario-persona*/
+        $app->put('/usuarios/update_user/{id}','UsuariosController@saveUsuario');
 
-/*TODO ANUNCIOS*/
-    /*MOSTRAR LISTA DE ANUNCIOS*/
-    $app->get('/anuncios/show','AnunciosController@getShow');
+        /*Logearse*/
+        $app->post('/usuarios/login','UsuariosController@postLogin');
+
+    /*ANUNCIOS*/
+        /*MOSTRAR LISTA DE ANUNCIOS*/
+        $app->get('/anuncios/show','AnunciosController@getShow');
+
 
 
 //CREATE Anuncios
@@ -57,6 +97,15 @@ $app->post('/anuncios/new_anuncio', function (Request $request) use ($app) {
    //return $app->version();
 });
 
+$app->extend("session",function($obj)use($app){
+    $app->configure("session");
+    return $obj;
+});
+$app->alias("session",\Illuminate\Session\SessionManager::class);
+$app->register(\Illuminate\Session\SessionServiceProvider::class);
+$app->middleware([
+    \Illuminate\Session\Middleware\StartSession::class
+]);
 
 
 /*$app->post('/usuarios', function () {

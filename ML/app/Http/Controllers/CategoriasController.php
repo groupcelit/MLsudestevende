@@ -7,12 +7,11 @@
  */
 namespace App\Http\Controllers;
 /*Recursos a usar*/
-use App\Models\Anuncios;
+use App\Models\Categorias;
 /*Recursos necesarios*/
 use Illuminate\Http\Request;
-use Illuminate\Database\Eloquent\Model;
 
-class AnunciosController extends Controller
+class CategoriasController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,7 +23,7 @@ class AnunciosController extends Controller
 
 
     }*/
-    public function getShow(){
+   /* public function getShow(){
         $consulta="SELECT a.nombre as nombre,
                           a.descripcion as descripcion ,
                           a.path as path_anuncio,
@@ -36,9 +35,9 @@ class AnunciosController extends Controller
                    LIMIT 20";
         $results= \DB::select($consulta);
         return $results;
-    }
-    
-    public function update(Request $request , $id=null){
+    }*/
+
+    /*public function update(Request $request , $id=null){
         if ( $id > 0) {
             $anuncios = Anuncios::find($id);
             $anuncios->modificado_en = date('Y-m-d H:i:s');
@@ -66,20 +65,13 @@ class AnunciosController extends Controller
         $result['usuario']   =   $anuncios;
         $result['persona']   =   $persona ;
         return response()->json($result);
-        /*if($anuncios->save()){
-            return response()->json($new_anuncio);
-        }else{
-            return response()->json("error");
-        }*/
+    }*/
 
-        /*return ['id' => $id ,
-                'title' => $request->input('title')
-        ];*/
-    } 
-    
-    
-    public function getSubCategorias(){
+
+    public function getCategorias(){
+       $categorias= Categorias::where('borrado_logico', '=', 0)->get();
         
+       return $categorias;
     }
     //
 }

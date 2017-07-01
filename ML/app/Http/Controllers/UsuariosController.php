@@ -11,7 +11,7 @@ use App\Models\Usuarios;
 use App\Models\Persondata;
 /*Recursos necesarios*/
 use Illuminate\Http\Request;
-/*use Illuminate\Database\Eloquent\Model;*/
+use Illuminate\Database\Eloquent\Model;
 
 class UsuariosController extends Controller
 {
@@ -103,4 +103,34 @@ class UsuariosController extends Controller
         return $person_data;
     }
     //
+    /*public function postLogin(Request $request){
+        return $_SESSION;
+    }*/
+
+    public function postLogin(Request $request){
+        $consulta='SELECT id ,
+                          username
+                   FROM usuarios                 
+                   WHERE username="'.$request->input('usuario_username').'"
+                   AND password="'.$request->input('usuario_password').'"
+                   LIMIT 1';
+         /* echo $consulta;*/
+        $results= \DB::select($consulta);
+
+        if(isset($results[0]->id) > 0){
+            session_start(); //Si no está esta directiva no se puede hacer nada
+            $_SESSION['login']=1;
+            //Redirección a admin
+            header("location:bienvenido");
+            $_SESSION['key']=$results[0]->id;
+            $_SESSION['username'] = $results[0]->username;
+            $_SESSION['cookie']=session_id();
+            $return['exito']=true;
+            $return['result']=$_SESSION;
+        }else{
+            $return['exito']=false;
+        }
+        return $return;
+
+    }
 }
