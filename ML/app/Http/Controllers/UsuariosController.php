@@ -50,12 +50,9 @@ class UsuariosController extends Controller
            $usuarios->password = $request->input('usuario_password');
        }
 
-       $usuarios->save();
-
-       
         if($usuarios->save()){
           //$result['usuario']   =   $usuarios;
-          $result['persona']   =   $persona ;
+          $result['persona']   =  $persona ;
           $return['exito'] = true;
           $return['result'] = $result;
         }else{
@@ -136,4 +133,18 @@ class UsuariosController extends Controller
         return $return;
 
     }
+
+    public function destroySession(){
+        session_start();
+        session_unset();
+        session_destroy();
+    }
+    
+    /*public function getSession(Request $request){
+        if ($request->session()->has('key')) {
+            return true;
+        }else{
+            return false;
+        }
+    }   */
 }

@@ -14,7 +14,7 @@
 		<section id="shop" class="results grid">
 			<div class="col-md-12 clear-main">
 				<div class="form white-bg b-shadow">
-					<form id="form_anuncio" action="alta-producto.php" method="post" enctype="multipart/form-data" class="form-horizontal form">
+					<form id="alta_anuncio_form" method="post" enctype="multipart/form-data" class="form-horizontal form ">
 						<div class="form-group">
 							<div class="col-md-12 no-padding">
 								<label for="estado" class="control-label col-sm-2">Estado </label>
@@ -56,14 +56,9 @@
 							<label for="categoria" class="control-label col-sm-2">Categoria</label>
 							<div class="col-sm-8">
 								<select class="form-control" name="cat_id">
-									<?php
-									echo '<pre>';
-										var_dump($categorias);
-									echo '</pre>';
-									?>
-								<?php /*while($fila=mysqli_fetch_assoc($categorias)) { */?><!--
-									<option value="<?php /*echo $fila["id"] */?>"> <?php /*echo $fila["nombre"]*/?> </option>
-								--><?php /*} */?>
+								<?php foreach ($categorias as $categoria){ ?>
+									<option value="<?=$categoria->id?>"> <?=$categoria->nombre?> </option>
+								<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -72,9 +67,9 @@
 							<label for="subcategoria" class="control-label col-sm-2">Sub categoria</label>
 							<div class="col-sm-8">
 								<select class="form-control" name="sub_cat_id">
-									<?php /*while($fila=mysqli_fetch_assoc($subcategorias)) { */?><!--
-										<option value="<?php /*echo $fila["id"] */?>"> <?php /*echo $fila["nombre"]*/?> </option>
-									--><?php /*} */?>
+								<?php foreach($sub_categorias as $sub_categoria) { ?>
+									  <option value="<?=$sub_categoria->id?>"> <?=$sub_categoria->nombre?> </option>
+								<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -105,7 +100,7 @@
 
 						<div class="form-group">
 							<div class="col-sm-8 col-sm-offset-2"> <!--New div, offset because there is no label -->
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button onclick="anuncio.enviar()" type="button" class="btn btn-primary">Guardar</button>
 							</div>
 						</div>
 					</form>
@@ -114,5 +109,50 @@
 		</section>
 	</div>
 	@include ("pie")
+	<script>
+		var anuncio = anuncio || (function () {
+					var parametros = {};
+
+					return {
+
+						enviar:function () {
+							/*disparemos eventos*/
+							anuncio.valid();
+						},
+
+						valid: function () {
+							/*aqui hacemos las validaciones*/
+							anuncio.logeo();
+						},
+
+						logeo: function () {
+							var data = $("#alta_anuncio_form").serializeObject();
+							alert(data);
+							$.ajax({
+								data : data,
+								url : 'usuarios/login',
+								type : 'POST',
+								contentType : 'application/x-www-form-urlencoded',
+								beforeSend: function() {
+									console.log('cargando');
+								},
+								success: function(response) {
+									if (response.exito) {
+										window.location.replace('bienvenido')
+									} else {
+										alert("crea una cuenta :3");
+									}
+
+								}
+							});
+
+						}
+
+					}
+				}());
+		var login_form = $("#alta_anuncio_form");
+		//checks whether the pressed key is "Enter"
+		login_form.bind("keydown",function(e){ if (e.keyCode === 13) {anuncio.enviar()}});
+	</script>
 </body>
 </html>

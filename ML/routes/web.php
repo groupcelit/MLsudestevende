@@ -17,13 +17,10 @@ $app->get('/lumen-version', function () use ($app) {
     /*$id = $app['encrypter']->decrypt($_COOKIE[$app['config']['session.cookie']]);
     $app['session']->driver()->setId($id);
     $app['session']->driver()->start();*/
-    session_name('private');
-    session_start();
-    $private_id = session_id();
-    session_write_close();
-
-  // return $app->version();
-    return $private_id;
+     // return $app->version();
+  /*  $usuario=app('App\Http\Controllers\UsuariosController')->getSession();*/
+    echo '<pre>';
+    return url();
 });
 /*Todo VISTAS*/
     /*Principal*/
@@ -41,10 +38,10 @@ $app->get('/lumen-version', function () use ($app) {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_login');
     });
-   /* $app->get('/salir', function ()  {
-        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
-        return view('auth.form_alta_usuario');
-    });*/
+    $app->get('/salir', function ()  {
+        app('App\Http\Controllers\UsuariosController')->destroySession();
+        return redirect('/');
+    });
     $app->get('/registrandome', function ()  {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_alta_usuario');
@@ -55,18 +52,24 @@ $app->get('/lumen-version', function () use ($app) {
     });
 
     /*publicaciones*/
-    $app->get('/vender', function ()  {
-        $categorias=app('App\Http\Controllers\CategoriasController')->getCategorias();
-        return view('publicaciones.form_alta_producto',['categorias' => $categorias]);
-    });
+
+        $app->get('/vender', function ()  {
+           /* $validate=app('App\Http\Controllers\UsuariosController')->getSession(session('key'));
+            if ($validate) {*/
+                $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
+                $sub_categorias = app('App\Http\Controllers\SubCategoriasController')->getSubCategorias($categorias[0]);
+                return view('publicaciones.form_alta_producto', ['categorias' => $categorias,'sub_categorias'=>$sub_categorias]);
+           /* }else{
+                redirect('/');
+            }*/
+        });
 
 
-$app->get('/usuarios', function () use ($app) {
+/*$app->get('/usuarios', function () use ($app) {
    $results = DB::select("SELECT * FROM anuncios LIMIT 20");
    echo '<pre>';
    return var_dump($results);
-   //return $app->version();
-});
+});*/
 
 /*Todo CONTROLLER*/
     /*USUARIO-PERSONA*/
@@ -78,28 +81,13 @@ $app->get('/usuarios', function () use ($app) {
 
         /*Logearse*/
         $app->post('/usuarios/login','UsuariosController@postLogin');
+        /*salir*/
 
     /*ANUNCIOS*/
         /*MOSTRAR LISTA DE ANUNCIOS*/
         $app->get('/anuncios/show','AnunciosController@getShow');
-
-
-
-//CREATE Anuncios
-$app->post('/anuncios/new_anuncio', function (Request $request) use ($app) {
-     /* $new_anuncio=New Anuncios();
-      $new_anuncio->usuario_id=$request->input('name');;
-      $new_anuncio->createdEn=date('Y-m-d H:i:s');*/
-    
-   
-   /*if($new_anuncio->save()){
-      return response()->json($new_anuncio);
-   }else{
-      return response()->json("error");
-   }*/
-
-   //return $app->version();
-});
+        //Crear Anuncios
+        $app->post('/anuncios/new_anuncio', 'AnunciosController@setAnuncio');
 
 $app->extend("session",function($obj)use($app){
     $app->configure("session");

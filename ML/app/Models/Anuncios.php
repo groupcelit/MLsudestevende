@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property int id
  * @property int usuario_id
  * @property string nombre
+ * @property string path
  * @property string descripcion
  * @property string codigo
  * @property int precio
@@ -26,5 +27,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 
 class Anuncios extends Model{
+    public $timestamps=false;
     protected $guarded = ['id'];
 }
