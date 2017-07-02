@@ -52,15 +52,18 @@ class UsuariosController extends Controller
 
        $usuarios->save();
 
-       $result['usuario']   =   $usuarios;
-       $result['persona']   =   $persona ;
-        return response()->json($result);
-        /*if($usuarios->save()){
-            return response()->json($new_anuncio);
+       
+        if($usuarios->save()){
+          //$result['usuario']   =   $usuarios;
+          $result['persona']   =   $persona ;
+          $return['exito'] = true;
+          $return['result'] = $result;
         }else{
-            return response()->json("error");
-        }*/
+            $return['exito'] = false;
+            $return['result'] = null;
+        }
         
+        return response()->json($return);
         /*return ['id' => $id ,
                 'title' => $request->input('title')
         ];*/

@@ -49,6 +49,10 @@ $app->get('/lumen-version', function () use ($app) {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_alta_usuario');
     });
+    $app->get('/editandome', function ()  {
+        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('auth.form_editar_usuario');
+    });
 
     /*publicaciones*/
     $app->get('/vender', function ()  {
