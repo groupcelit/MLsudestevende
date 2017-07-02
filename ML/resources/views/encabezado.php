@@ -47,23 +47,14 @@
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
 			<div class="nav-menu f-right">
 				<ul class="nav semibold">
-					     <li>
-							 <div class="f-left">
-								<form action="resultado.php" method="get" class="" >
-									<div class="form-group">
-										<i class="glyphicons glyphicon glyphicon-search"></i>
-										<input class="search colored transition" type="text" name="Search" placeholder=" Realiza tu busqueda!">
-									</div>
-									<!--<select name="cat_id">
-										<option value=0>- Categorias -</option>
-									</select>-->
-
-								</form>
-							</div>
-						 </li>
-					
 					<?php if (isset($_SESSION['login'])) { ?>
-						<li><a class="colored" href="logout.php">Salir</a></li>
+						<li  class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION ["username"]?><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">Mi cuenta</a></li>
+								<li><a href="salir">Salir</a></li>
+							</ul>
+						</li>
 					<?php } else { ?>
 						<li><a href="registrandome" class="scroll">Regístrate</a></li>
 						<li><a href="ingresar" class="scroll">Ingresa</a></li>
