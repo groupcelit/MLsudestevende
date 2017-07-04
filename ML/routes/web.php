@@ -50,18 +50,23 @@ $app->get('/lumen-version', function () use ($app) {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_editar_usuario');
     });
+    $app->get('/misanuncios', function ()  {
+        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        return view('auth.form_editar_usuario');
+    });
+
+    $app->get('/template','AnunciosController@setTemplate');
 
     /*publicaciones*/
 
         $app->get('/vender', function ()  {
-           /* $validate=app('App\Http\Controllers\UsuariosController')->getSession(session('key'));
-            if ($validate) {*/
+            if(isset($_SESSION['key']) && $_SESSION['key']>0) {
                 $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
                 $sub_categorias = app('App\Http\Controllers\SubCategoriasController')->getSubCategorias($categorias[0]);
-                return view('publicaciones.form_alta_producto', ['categorias' => $categorias,'sub_categorias'=>$sub_categorias]);
-           /* }else{
-                redirect('/');
-            }*/
+                return view('publicaciones.form_alta_producto', ['categorias' => $categorias, 'sub_categorias' => $sub_categorias]);
+             }else{
+                return view('auth.form_login');
+            }
         });
 
 
@@ -88,6 +93,10 @@ $app->get('/lumen-version', function () use ($app) {
         $app->get('/anuncios/show','AnunciosController@getShow');
         //Crear Anuncios
         $app->post('/anuncios/new_anuncio', 'AnunciosController@setAnuncio');
+        $app->post('/anuncios/enviar', 'AnunciosController@setAnuncio');
+    /*CATEGORIAS*/
+        $app->get('/categorias/getCategorias','CategoriasController@getShow');
+
 
 $app->extend("session",function($obj)use($app){
     $app->configure("session");

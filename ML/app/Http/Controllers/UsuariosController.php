@@ -118,10 +118,7 @@ class UsuariosController extends Controller
         $results= \DB::select($consulta);
 
         if(isset($results[0]->id) > 0){
-            session_start(); //Si no está esta directiva no se puede hacer nada
             $_SESSION['login']=1;
-            //Redirección a admin
-            header("location:bienvenido");
             $_SESSION['key']=$results[0]->id;
             $_SESSION['username'] = $results[0]->username;
             $_SESSION['cookie']=session_id();
@@ -135,7 +132,6 @@ class UsuariosController extends Controller
     }
 
     public function destroySession(){
-        session_start();
         session_unset();
         session_destroy();
     }

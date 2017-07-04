@@ -1,7 +1,3 @@
-<?php
-	require "autenticar.php";
-?>
-
 @include('encabezado')
 <style type="text/css">
 	input::-webkit-outer-spin-button,

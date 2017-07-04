@@ -60,28 +60,16 @@ class AnunciosController extends Controller
         return $results;
     }
 
-    public function setAnuncio(Request $request,$id_usuario){
+    public function setAnuncio(Request $request){
+        /*$request->file(); archivo*/
         $fecha_actual  = date("Y-m-d H:i:s");
         $categoria_id  = $request->input('categoria_id');
-        $sub_cateogria_id = $request->input('sub_categoria_id');
-
-        //Aca comienza la prueba de subida de imagenes
-/*
-        $prd_nombre=$_POST["prd_nombre"];
-        $prd_descripcion=$_POST["prd_descripcion"];
-        $prd_precio=$_POST["prd_precio"];
-        $estado=$_POST['estado'];
-        $stock=$_POST["stock"];
-        $sub_cat_id=$_POST["sub_cat_id"];
-        ;*/
-
-        /*mysqli_query("INSERT INTO anuncios (nombre,descripcion,codigo,precio,descuento,stock,nuevo,destacado,subcategoria_id,creado_en,modificado_en)
-                           VALUES ('".$prd_nombre."','".$prd_descripcion."',null,".$prd_precio.",null,1,1,0,'".$sub_cat_id."','".$fecha_actual."',null)",$con) or die ("pro_insert_db");*/
-
+        $subcategoria_id = $request->input('subcategoria_id');
+   
         $anuncio=new Anuncios();
-        $anuncio->subcategoria_id = $sub_cateogria_id;
+        $anuncio->subcategoria_id = $subcategoria_id;
         $anuncio->descripcion   = $request->input('descripcion');
-        $anuncio->usuario_id   = $id_usuario ;
+        $anuncio->usuario_id   = $_SESSION['key'];
         $anuncio->creado_en   = $fecha_actual;
         $anuncio->nombre    = $request->input('nombre');
         $anuncio->precio    = $request->input('precio');
@@ -91,9 +79,16 @@ class AnunciosController extends Controller
         $anuncio->save();
 
         $url_amigable= $this->urls_amigables($anuncio->nombre);
-        $nombre_publicacion='publicaciones/'.$categoria_id.'/'.$sub_cateogria_id.'/'.$anuncio->id.'-'.$url_amigable;
+        $nombre_publicacion='publicaciones/'.$categoria_id.'-'.$subcategoria_id.'-'.$anuncio->id.'-'.$url_amigable;
         $anuncio->path=$nombre_publicacion;
         $anuncio->save();
+
+
+        $nombre_archivo=$nombre_publicacion.'.php';
+        $archivo_a_subir = fopen($nombre_archivo, "a");
+        $contenido=@include('encabezado');
+        fwrite($archivo_a_subir,$contenido);
+        fclose($archivo_a_subir);
         /*echo 'Más información de depuración:';*/
         /*print_r($_FILES);*/
         /*	print "</pre>";*/
@@ -103,33 +98,31 @@ class AnunciosController extends Controller
 //	var_dump($_FILES);
         /*	echo '<pre>';*/
         //move_uploaded_file($_FILES['img']['tmp_name'], $dir_subida)
-        foreach ($_FILES['img']['tmp_name'] as $key => $name_files){
+        foreach ($request->file('img') as $key => $img){
             if ($key==0){$principal=1;}else{$principal=0;}
             $foto= new Fotos();
             $foto->principal=$principal;
             $foto->creado_en=$fecha_actual;
-            $foto->$anuncio->id;
+            $foto->anuncio_id=$anuncio->id;
             $foto->save();
             $nombre_foto='public_images/'.$foto->id.'-'.$url_amigable;
-            $foto->path=$nombre_foto;        
+            $foto->path=$nombre_foto;
            
-            $archivo ='public_images/'.$foto->id.'-'.$url_amigable;
-            $dir_subida = url().'/'.$archivo;
-            move_uploaded_file($name_files, $dir_subida);
+            $archivo =$foto->id.'-'.$url_amigable;
+            $img->move('public_images/',$archivo);
+            $foto->save();
         }
 
-        $nombre_archivo=$nombre_publicacion.'.php';
+        return redirect('/misanuncios');
+    }
+
+    public function setTemplate($data=null){
+        
+        $nombre_archivo='publicaciones/prueba13.php';
         $archivo_a_subir = fopen($nombre_archivo, "a");
-        $contenido="<?php include 'encabezado.php'; ?>
-			</head>
-			<body>
-				<div id='nav'>
-					<?php  include 'menu.php'; ?>
-				</div>
-			";
-        fwrite($archivo_a_subir,$contenido);
+        fwrite($archivo_a_subir,view('encabezado', ['name' => 'hola mundo']));
         fclose($archivo_a_subir);
-        return $anuncio;
+
     }
 
 }

@@ -9,6 +9,7 @@ namespace App\Http\Controllers;
 /*Recursos a usar*/
 use App\Models\Categorias;
 /*Recursos necesarios*/
+use App\Models\SubCategorias;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,25 @@ class CategoriasController extends Controller
         return $categorias;
         
        //$categorias= Categorias::where('borrado_logico', '=', 0)->get();    
+    }
+    
+    public function getShow(){
+        $categorias = Categorias::all()->toArray();
+
+        foreach ($categorias as $categoria){
+            $consulta="SELECT id,
+                          nombre
+                   FROM sub_categorias AS sc                  
+                   WHERE sc.borrado_logico=0
+                   AND sc.categoria_id =".$categoria['id'];
+            $subcategorias= \DB::select($consulta);
+            //$subcategorias = SubCategorias::where('categoria_id','=',$categoria['id']);
+            echo '<pre>';
+            var_dump($subcategorias);
+            //return $categoria;
+        }
+
+
     }
     
 }

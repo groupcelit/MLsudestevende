@@ -1,5 +1,16 @@
 $(window).load(function(){
 
+    function formAObjeto(tmpform) {
+        var values = tmpform.serialize(),
+            attributes = {};
+        values.replace(/([^&]+)=([^&]*)/g, function (match, name, value) {
+           // attributes[name] = $('#dir_form [name="'+name+'"]').val();
+            attributes[name] = $('form [name="'+name+'"]').val();
+        });
+
+        return attributes;
+    }
+
     $.fn.serializeObject = function(){
         var o = {};
         var a = this.serializeArray();

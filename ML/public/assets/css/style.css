@@ -8850,7 +8850,7 @@
 
 /*Formularios*/
 
-#form_anuncio .file{
+#alta_anuncio_form .file{
 	visibility: hidden;
 	position: absolute;
 }

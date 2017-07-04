@@ -1,7 +1,4 @@
-<?php
-	$titulo = "Panel de control - Proyecto integrador";
-	require "autenticar.php";
-?>
+
 @include('encabezado')
 
 </head>
@@ -12,15 +9,6 @@
 	</div>
 	<section class="home container"></section>
 	<div  id="main">
-
-		<!--<h1><?php /*echo $titulo ; */?></h1>-->
-		<!-- inicio del desarrollo -->
-			<?php
-			/*echo '<pre>';
-			var_dump($anuncios[0]);
-			echo '</pre>';*/
-			?>
-
 		@include('menu.aside')
 		<section id="shop" class="results grid">
 			<ol class="box section search-results grid">

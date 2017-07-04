@@ -15,7 +15,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingFive">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" >
-								  <h3 class=" white"> VEHÍCULOS <i class="more-less glyphicon glyphicon-minus pull-right"></i> </h3>
+								  <h3 class=" white no-padding no-margin"> VEHÍCULOS <i class="more-less glyphicon glyphicon-minus pull-right"></i> </h3>
 							  </a>
 						  </div>
 						</div>
@@ -42,7 +42,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingTwo">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
-								 <h3 class=" white">INMUEBLES <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								 <h3 class=" white no-padding no-margin">INMUEBLES <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>
@@ -69,7 +69,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingThree">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" >
-								<h3 class=" white">TECNOLOGÍA <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								<h3 class=" white no-padding no-margin">TECNOLOGÍA <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>
@@ -93,7 +93,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingFour">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" >
-								 <h3 class=" white">VARIOS <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								 <h3 class="white no-padding no-margin">VARIOS <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>

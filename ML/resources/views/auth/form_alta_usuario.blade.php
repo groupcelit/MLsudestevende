@@ -1,14 +1,9 @@
-<?php
-	require "autenticar.php";	
-?>
 @include('encabezado')
 </head>
 <body>
-
 	<div id="nav">
         @include('menu')
 	</div>
-
 	<div id="main">
         @include('menu.aside')
         <section  id="shop" class="results grid">
