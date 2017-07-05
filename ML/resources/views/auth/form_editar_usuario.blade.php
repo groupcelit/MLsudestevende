@@ -20,7 +20,7 @@
 		
 		<section id="shop" class="results grid">
 			<div class="clear-main">
-				<h1>Editar Perfil</h1>
+				<h1>Mi Cuenta</h1>
 				<div class="form white-bg b-shadow">
 					<form class="form edit form-horizontal" id="edit-user-form">
 						<div class="form-group">
@@ -28,7 +28,7 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-									<input id="persona_nombres" name="persona_nombres" type="text" class="form-control" required value="">
+									<input id="persona_nombres" name="persona_nombres" type="text" class="form-control" required value="<?=$person_data->nombres?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -38,7 +38,7 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-user" aria-hidden="true"></i></span>
-									<input id="persona_apellidos" name="persona_apellidos" type="text" class="form-control" required value="">
+									<input id="persona_apellidos" name="persona_apellidos" type="text" class="form-control" required value="<?=$person_data->apellidos?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -48,7 +48,7 @@
 							<div class="col-sm-8">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
-									<input id="persona_fecha_nacimiento" name="persona_fecha_nacimiento" type="date" class="form-control" required value="">
+									<input id="persona_fecha_nacimiento" name="persona_fecha_nacimiento" type="date" class="form-control" required value="<?=$person_data->fecha_nacimiento?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -58,7 +58,7 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
-									<input id="persona_direccion" name="persona_direccion" type="text" class="form-control" required value="">
+									<input id="persona_direccion" name="persona_direccion" type="text" class="form-control" required value="<?=$person_data->direccion?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -68,7 +68,7 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-									<input id="persona_email" name="persona_email" type="email" class="form-control" required value="">
+									<input id="persona_email" name="persona_email" type="email" class="form-control" required value="<?=$person_data->email?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -78,14 +78,14 @@
 							<div class="col-sm-3">
 								<div class="input-group">
 									<span class="input-group-addon">0</span>
-									<input id="persona_celular_codigo" name="persona_celular_codigo" maxlength="5" type="number" class="form-control" required value="">
+									<input id="persona_celular_codigo" name="persona_celular_codigo" maxlength="5" type="number" class="form-control" required value="<?=$person_data->celular_codigo?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
 							<div class="col-sm-6">
 								<div class="input-group">
 									<span class="input-group-addon">15</span>
-									<input id="persona_celular" name="persona_celular" type="number" class="form-control" required value="">
+									<input id="persona_celular" name="persona_celular" type="number" class="form-control" required value="<?=$person_data->celular?>">
 								</div>
 								<div class="error_msg"></div>
 							</div>
@@ -99,24 +99,24 @@
 								</div>
 							</div>
 						</div> -->
-						<div class="col-xs-12">
-							<button type="button" id=save name="edit-user-submit" onclick="usuarios.guardar(this,<?=$_SESSION['key']?>)" style="float: right" class="btn btn-info">Guardar</button>
-							<div class="loading"></div>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<button type="button" id="savebutton" name="edit-user-submit" onclick="usuarios.guardar(this)" class="btn btn-primary">Guardar</button>
+							</div>
 						</div>
-						
 					</form>
 				</div>
-				<h2>Cambiar Contraseña</h2>
+				<!-- <h2>Cambiar Contraseña</h2>
 				<div class="form white-bg b-shadow">
 					<form id="edit-password-form" class="form edit form-horizontal" >
 						<div class="form-group">
-							<label for="passinput" class="col-sm-10">Nueva Contraseña</label>
+							<label for="usuario_password" class="col-sm-10">Nueva Contraseña</label>
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input  id="usuario_password" name="usuario_password" type="password" class="form-control">
+									<input  id="usuario_password" name="usuario_password" type="password" class="form-control" required>
 								</div>
-								<div class="error_msg"></div>
+								<div class="error_msg_password"></div>
 							</div>
 						</div>
 						<div class="form-group">
@@ -124,16 +124,16 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="passverifyinput">
+									<input type="password" class="form-control" id="passverifyinput" required>
 								</div>
-								<div class="error_msg"></div>
+								<div class="error_msg_password"></div>
 							</div>
 						</div>
 						<div class="col-xs-12">
 							<button type="button" style="float: right" class="btn btn-info" onclick="usuarios.guardar(this,<?=$_SESSION['key']?>)">Guardar</button>
 						</div>
 					</form>
-				</div>
+				</div> -->
 			</div>
 		</section>
 	</div>
@@ -141,12 +141,5 @@
 	@include('pie')
 
 	<script type="text/javascript" src="assets/js/usuarios.js"></script>
-	<script type="text/javascript">
-		$(window).load(function() {
-			var persona = usuarios.updateUser(<?=$_SESSION['key']?>);
-		});
-	</script>
-
-?>
-<body>
+</body>
 <html>

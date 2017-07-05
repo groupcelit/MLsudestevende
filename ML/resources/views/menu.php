@@ -1,4 +1,4 @@
-<?php if (isset($_SESSION['login'])) {
+<?php if (isset($_SESSION['login'])&&$_SESSION['keyword']=="admin_celit") {
 	?>
 	<ul>
 		<li><a class="colored" href="admin.php">Administracion</a></li>

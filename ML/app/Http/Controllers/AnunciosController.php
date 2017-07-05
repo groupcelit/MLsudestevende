@@ -72,19 +72,31 @@ class AnunciosController extends Controller
         return $anuncio;
     }
     
-    public function getShow(){
+    public function getShow($bool){
+        $limit = " LIMIT 20";
+        $consultaid = "";
+
+        if (isset($_SESSION['KEY']) && $_SESSION['KEY']>0 && $bool) {
+                $consultaid = "AND
+                            a.usuario_id =".$id;
+                $limit = "";
+        }
+        
+        
         $consulta="SELECT a.nombre as nombre,
-                          a.descripcion as descripcion,
+                          a.id as id,
+                          a.descripcion as descripcion ,
                           a.path as path_anuncio,
                           a.precio as precio,
+                          a.stock as stock,
                           f.path as path_foto
                    FROM anuncios AS a
                    INNER JOIN fotos AS f ON f.anuncio_id=a.id
-                   WHERE f.principal=1
-                   LIMIT 20";
+                   WHERE f.principal=1 ".$consultaid.$limit;
         $results= \DB::select($consulta);
         return $results;
     }
+
 
     public function setTemplate($nombre_archivo,$anuncio_id){
         $anuncio=$this->getAnuncioById($anuncio_id);
@@ -98,12 +110,25 @@ class AnunciosController extends Controller
         /*$request->file(); archivo*/
         $fecha_actual  = date("Y-m-d H:i:s");
         $categoria_id  = $request->input('categoria_id');
-        $subcategoria_id = $request->input('subcategoria_id');
-   
+        $sub_cateogria_id = $request->input('sub_categoria_id');
+
+        //Aca comienza la prueba de subida de imagenes
+/*
+        $prd_nombre=$_POST["prd_nombre"];
+        $prd_descripcion=$_POST["prd_descripcion"];
+        $prd_precio=$_POST["prd_precio"];
+        $estado=$_POST['estado'];
+        $stock=$_POST["stock"];
+        $sub_cat_id=$_POST["sub_cat_id"];
+        ;*/
+
+        /*mysqli_query("INSERT INTO anuncios (nombre,descripcion,codigo,precio,descuento,stock,nuevo,destacado,subcategoria_id,creado_en,modificado_en)
+                           VALUES ('".$prd_nombre."','".$prd_descripcion."',null,".$prd_precio.",null,1,1,0,'".$sub_cat_id."','".$fecha_actual."',null)",$con) or die ("pro_insert_db");*/
+
         $anuncio=new Anuncios();
-        $anuncio->subcategoria_id = $subcategoria_id;
+        $anuncio->subcategoria_id = $sub_cateogria_id;
         $anuncio->descripcion   = $request->input('descripcion');
-        $anuncio->usuario_id   = $_SESSION['key'];
+        $anuncio->usuario_id   = $id_usuario ;
         $anuncio->creado_en   = $fecha_actual;
         $anuncio->nombre    = $request->input('nombre');
         $anuncio->precio    = $request->input('precio');
@@ -113,23 +138,24 @@ class AnunciosController extends Controller
         $anuncio->save();
 
         $url_amigable= $this->urls_amigables($anuncio->nombre);
-        $nombre_publicacion='publicaciones/'.$categoria_id.'-'.$subcategoria_id.'-'.$anuncio->id.'-'.$url_amigable;
+        $nombre_publicacion='publicaciones/'.$categoria_id.'/'.$sub_cateogria_id.'/'.$anuncio->id.'-'.$url_amigable;
         $anuncio->path=$nombre_publicacion;
         $anuncio->save();
 
         foreach ($request->file('img') as $key => $img){
+
             if ($key==0){$principal=1;}else{$principal=0;}
             $foto= new Fotos();
             $foto->principal=$principal;
             $foto->creado_en=$fecha_actual;
-            $foto->anuncio_id=$anuncio->id;
+            $foto->$anuncio->id;
             $foto->save();
             $nombre_foto='public_images/'.$foto->id.'-'.$url_amigable;
-            $foto->path=$nombre_foto;
+            $foto->path=$nombre_foto;        
            
-            $archivo =$foto->id.'-'.$url_amigable;
-            $img->move('public_images/',$archivo);
-            $foto->save();
+            $archivo ='public_images/'.$foto->id.'-'.$url_amigable;
+            $dir_subida = url().'/'.$archivo;
+            move_uploaded_file($name_files, $dir_subida);
         }
 
         $nombre_archivo=$nombre_publicacion.'.php';
@@ -137,6 +163,5 @@ class AnunciosController extends Controller
 
         return redirect('/misanuncios');
     }
-
 
 }

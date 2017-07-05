@@ -25,11 +25,11 @@ $app->get('/lumen-version', function () use ($app) {
 /*Todo VISTAS*/
     /*Principal*/
     $app->get('/bienvenido', function ()  {
-        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
         return view('home', ['anuncios' => $anuncios]);
     });
     $app->get('/', function ()  {
-        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
+        $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
         return view('home', ['anuncios' => $anuncios]);
     });
 
@@ -47,8 +47,12 @@ $app->get('/lumen-version', function () use ($app) {
         return view('auth.form_alta_usuario');
     });
     $app->get('/editandome', function ()  {
-        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
-        return view('auth.form_editar_usuario');
+        if(isset($_SESSION['key']) && $_SESSION['key']>0) {
+            $person_data=app('App\Http\Controllers\UsuariosController')->getDataPersona();
+            return view('auth.form_editar_usuario', ['person_data' => $person_data]);
+        }else{
+            return view('auth.form_login');
+        }
     });
     $app->get('/misanuncios', function ()  {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
@@ -69,6 +73,14 @@ $app->get('/lumen-version', function () use ($app) {
             }
         });
 
+        $app->get('/mis_anuncios', function ()  {
+            if(isset($_SESSION['key']) && $_SESSION['key']>0) {
+                $anuncios = app('App\Http\Controllers\AnunciosController')->getShow(true);
+                return view('publicaciones.anuncios_usuario', ['anuncios' => $anuncios]);
+             }else{
+                return view('auth.form_login');
+            }  
+        });
 
 /*$app->get('/usuarios', function () use ($app) {
    $results = DB::select("SELECT * FROM anuncios LIMIT 20");
@@ -82,7 +94,7 @@ $app->get('/lumen-version', function () use ($app) {
         $app->post('/usuarios/new_user','UsuariosController@saveUsuario');
 
         /*Actualizar usuario-persona*/
-        $app->put('/usuarios/update_user/{id}','UsuariosController@saveUsuario');
+        $app->put('/usuarios/update_user','UsuariosController@saveUsuario');
 
         /*Logearse*/
         $app->post('/usuarios/login','UsuariosController@postLogin');

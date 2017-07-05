@@ -1,4 +1,12 @@
 @include('encabezado')
+<style type="text/css">
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        /* display: none; <- Crashes Chrome on hover */
+        -webkit-appearance: none;
+        margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+    }   
+</style>
 </head>
 <body>
 	<div id="nav">
@@ -11,23 +19,22 @@
                 <div class="form white-bg b-shadow">
                     <div class="form login">
                         <h5 class="t-center">Crea un nuevo usuario en Sudestevende</h5>
-                        <form class="form-horizontal" action="alta-usuario.php" method="post">
+                        <form id="create-user-form" class="form-horizontal" method="post">
                             <div class="form-group">
-                                <label for="name" class="col-sm-10">Nombre</label>
+                                <label for="name" class="col-sm-10">Nombres</label>
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="usu_nombre" id="nombre"  placeholder="Cual es tu nombre?"/>
+                                        <input type="text" class="form-control" name="persona_nombres" id="persona_nombres"  placeholder="Cual es tu nombre?"/>
                                     </div>
                                 </div>
                             </div>
-
                             <div class="form-group">
-                                <label for="email" class="col-sm-10">Email</label>
+                                <label for="name" class="col-sm-10">Apellidos</label>
                                 <div class="col-sm-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="usu_email" id="email"  placeholder="Cual es tu email?"/>
+                                        <span class="input-group-addon"><i class="fa fa-user fa" aria-hidden="true"></i></span>
+                                        <input type="text" class="form-control" name="persona_apellidos" id="persona_apellidos"  placeholder="Cual es tu apellido?"/>
                                     </div>
                                 </div>
                             </div>
@@ -37,33 +44,83 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="usu_login" id="user"  placeholder="Nombre de usuario"/>
+                                        <input type="text" class="form-control" name="usuario_username" id="usuario_username"  placeholder="Nombre de usuario"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="password" class="col-sm-10">Contraseña</label>
+                                <label for="email" class="col-sm-10">Email</label>
                                 <div class="col-sm-12">
                                     <div class="input-group">
-                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="usu_clave" id="clave"  placeholder="Ingresa una Contraseña"/>
+                                        <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                        <input type="email" class="form-control" name="persona_email" id="persona_email"  placeholder="Cual es tu email?"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group">
-                                <label for="confirm" class="col-sm-10">Confirmar contraseña</label>
+                                <label for="persona_fecha_nacimiento" class="col-sm-10">Fecha de Nacimiento</label>
+                                <div class="col-sm-8">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-birthday-cake" aria-hidden="true"></i></span>
+                                        <input id="persona_fecha_nacimiento" name="persona_fecha_nacimiento" type="date" class="form-control" required>
+                                    </div>
+                                    <div class="error_msg"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="persona_direccion" class="col-sm-10">Dirección</label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-home" aria-hidden="true"></i></span>
+                                        <input id="persona_direccion" name="persona_direccion" type="text" class="form-control" required placeholder="Cual es tu dirección?">
+                                    </div>
+                                    <div class="error_msg"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="persona_celular_codigo" class="col-sm-12">Telefono</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">0</span>
+                                        <input id="persona_celular_codigo" name="persona_celular_codigo" maxlength="5" type="number" class="form-control" required>
+                                    </div>
+                                    <div class="error_msg"></div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">15</span>
+                                        <input id="persona_celular" name="persona_celular" type="number" class="form-control" required >
+                                    </div>
+                                    <div class="error_msg"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usuario_password" class="col-sm-10">Contraseña</label>
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="usu_clave_confirm" id="confirm_clave"  placeholder="Confirma tu Contraseña"/>
+                                        <input type="password" class="form-control" name="usuario_password" id="usuario_password"  placeholder="Ingresa una Contraseña"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="usuario_password_confirm" class="col-sm-10">Confirmar contraseña</label>
+                                <div class="col-sm-12">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
+                                        <input type="password" class="form-control" name="usuario_password_confirm" id="usuario_password_confirm"  placeholder="Confirma tu Contraseña"/>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group ">
-                                <input class="btn btn-primary btn-lg btn-block login-button" type="submit" value="Agregar usuario">
+                                <input id="savebutton" class="btn btn-primary btn-lg btn-block login-button" type="button" value="Registrar" onclick="usuarios.guardar(this)">
                             </div>
                         </form>
                     </div>
@@ -71,34 +128,9 @@
 		    </div>
         </section>
 	</div>
-		<!-- inicio del desarrollo -->
-		<!--<form action="alta-usuario.php" method="post">
-			<table id="paneles">
-				<tr>
-					<td>Usuario<td>
-					<td><input type="text" name="usu_login"><td>
-				<tr>
-				<tr>
-					<td>Clave<td>
-					<td><input type="password" name="usu_clave"><td>
-				<tr>
-				<tr>
-					<td>Nombre<td>
-					<td><input type="text" name="usu_nombre"><td>
-				<tr>
-				<tr>
-					<td>Email<td>
-					<td><input type="text" name="usu_email"><td>
-				<tr>
-				<tr>
-					<td colspan="2" class="centrar">
-						<input type="submit" value="Agregar usuario">
-					<td>
-				<tr>
-			</table>
-		</form>-->
-
     @include('pie')
+    <script type="text/javascript" src="assets/js/usuarios.js"></script>
+
 </body>
 </html>
 
