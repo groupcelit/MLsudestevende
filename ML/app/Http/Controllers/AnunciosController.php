@@ -56,33 +56,31 @@ class AnunciosController extends Controller
             foreach ($results_fotos as $foto){
                 $anuncio['foto'][]=$foto->path;
             }
-        
-        $q_persona = "SELECT CONCAT(u.apellidos,' ',u.nombres) AS fullname,
-                             u.direccion AS direccion,
-                             u.email AS email,
-                             CONCAT(u.celular_codigo,'-',u.celular) AS numero
-                      FROM  usuario AS u
-                      INNER person_data AS pd ON u.person_data_id=pd.id
+
+        $q_persona = "SELECT CONCAT(pd.apellidos,' ',pd.nombres) AS fullname,
+                             pd.direccion AS direccion,
+                             pd.email AS email,
+                             CONCAT(pd.celular_codigo,'-',pd.celular) AS numero
+                      FROM  usuarios AS u
+                      INNER JOIN person_data AS pd ON pd.id=u.person_data_id
                       WHERE u.id=".$_SESSION['key'];
 
         $results_pd= \DB::select($q_persona);
 
-        $anuncio['persona']=$results_pd;
+        $anuncio['persona']=$results_pd[0];
 
         return $anuncio;
     }
     
     public function getShow($bool){
-        $limit = " LIMIT 20";
-        $consultaid = "";
+        $limit = " LIMIT 40";
+        $and = " ";
 
         if (isset($_SESSION['KEY']) && $_SESSION['KEY']>0 && $bool) {
-                $consultaid = "AND
-                            a.usuario_id =".$id;
-                $limit = "";
+                $and = " AND a.usuario_id = ".$_SESSION['KEY'];
+                $limit = " ";
         }
-        
-        
+
         $consulta="SELECT a.nombre as nombre,
                           a.id as id,
                           a.descripcion as descripcion ,
@@ -92,7 +90,9 @@ class AnunciosController extends Controller
                           f.path as path_foto
                    FROM anuncios AS a
                    INNER JOIN fotos AS f ON f.anuncio_id=a.id
-                   WHERE f.principal=1 ".$consultaid.$limit;
+                   WHERE f.principal=1 
+                   AND a.borrado_logico = 0 ".$and.$limit;
+
         $results= \DB::select($consulta);
         return $results;
     }
@@ -162,6 +162,27 @@ class AnunciosController extends Controller
         $this->setTemplate($nombre_archivo,$anuncio->id);
 
         return redirect('/misanuncios');
+    }
+
+    public function getSearch(Request $request){
+        //get keywords input for search
+        $keyword=  $request->input('search');
+        $consulta='SELECT a.nombre as nombre,
+                          a.descripcion as descripcion,
+                          a.path as path_anuncio,
+                          a.precio as precio,
+                          f.path as path_foto
+                   FROM anuncios AS a
+                   INNER JOIN fotos AS f ON f.anuncio_id=a.id
+                   WHERE f.principal=1
+                   AND a.nombre like "%'.$keyword.'%"
+                   AND a.descripcion like "%'.$keyword.'%"
+                   AND a.borrado_logico = 0
+                   ORDER BY a.nombre ASC
+                   LIMIT 40';
+        $results= \DB::select($consulta);
+        return view('home', ['anuncios' => $results]);
+
     }
 
 }

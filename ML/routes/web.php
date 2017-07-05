@@ -19,11 +19,11 @@ $app->get('/lumen-version', function () use ($app) {
     $app['session']->driver()->start();*/
      // return $app->version();
   /*  $usuario=app('App\Http\Controllers\UsuariosController')->getSession();*/
-    echo '<pre>';
+
     return url();
 });
 /*Todo VISTAS*/
-    /*Principal*/
+    /*Home*/
     $app->get('/bienvenido', function ()  {
         $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
         return view('home', ['anuncios' => $anuncios]);
@@ -33,7 +33,7 @@ $app->get('/lumen-version', function () use ($app) {
         return view('home', ['anuncios' => $anuncios]);
     });
 
-    /*auth*/
+    /*Auth*/
     $app->get('/ingresar', function ()  {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_login');
@@ -42,10 +42,12 @@ $app->get('/lumen-version', function () use ($app) {
         app('App\Http\Controllers\UsuariosController')->destroySession();
         return redirect('/');
     });
+
+    /*Usuario*/
     $app->get('/registrandome', function ()  {
-        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_alta_usuario');
     });
+
     $app->get('/editandome', function ()  {
         if(isset($_SESSION['key']) && $_SESSION['key']>0) {
             $person_data=app('App\Http\Controllers\UsuariosController')->getDataPersona();
@@ -54,15 +56,12 @@ $app->get('/lumen-version', function () use ($app) {
             return view('auth.form_login');
         }
     });
-    $app->get('/misanuncios', function ()  {
-        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
-        return view('auth.form_editar_usuario');
-    });
 
-    $app->get('/template','AnunciosController@setTemplate');
+
+
+   // $app->get('/template','AnunciosController@setTemplate');
 
     /*publicaciones*/
-
         $app->get('/vender', function ()  {
             if(isset($_SESSION['key']) && $_SESSION['key']>0) {
                 $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
@@ -81,6 +80,9 @@ $app->get('/lumen-version', function () use ($app) {
                 return view('auth.form_login');
             }  
         });
+    /*BUSQUEDAS*/
+        $app->get('/search',['uses' => 'AnunciosController@getSearch','as' => 'search']);
+
 
 /*$app->get('/usuarios', function () use ($app) {
    $results = DB::select("SELECT * FROM anuncios LIMIT 20");

@@ -750,6 +750,9 @@
 	.inline-block{
 		display:inline-block;
 	}
+	.inline-flex{
+		display:inline-flex;
+	}
 
 	.table{
 		display: table;
@@ -1946,22 +1949,22 @@
 }
 /* Search Elements
 ===============================*/
-.nav input::-webkit-input-placeholder{color:#999;}
-.nav input:focus::-webkit-input-placeholder{color:white;}
+#navigation input::-webkit-input-placeholder{color:#999;}
+#navigation  input:focus::-webkit-input-placeholder{color:white;}
 
-.nav input::-moz-placeholder{color:#999;}
-.nav input:focus::-moz-placeholder{color:white;}
+#navigation  input::-moz-placeholder{color:#999;}
+#navigation  input:focus::-moz-placeholder{color:white;}
 
-.nav input:-moz-placeholder{color:#999;}
-.nav input:focus:-moz-placeholder{color:white;}
+#navigation  input:-moz-placeholder{color:#999;}
+#navigation  input:focus:-moz-placeholder{color:white;}
 
-.nav input:-ms-input-placeholder{color:#999;}
-.nav input:focus:-ms-input-placeholder{color: white;}
+#navigation  input:-ms-input-placeholder{color:#999;}
+#navigation  input:focus:-ms-input-placeholder{color: white;}
 		.search {
 			/*padding:10px;*/
 			height: 30px;
 
-			margin:12px;
+			/*margin:12px;*/
 			width:300px;
 			font-size: 13px;
 			letter-spacing: 0.09em;
@@ -1980,6 +1983,47 @@
 			border: 1px solid white;
 			color:white;
 			/*font-weight:600;*/
+		}
+		#navigation .input-addon{
+			 padding: 6px 12px;
+			font-size: 14px;
+			font-weight: 400;
+			line-height: 1;
+			color: #555;
+			text-align: center;
+			background-color: #eee;
+			border: 1px solid #ccc;
+			border-radius: 4px;
+			white-space: nowrap;
+			vertical-align: middle;
+		}
+		#navigation .input-addon:first-child {
+			border-right: 0px;
+			border-top-right-radius: 0;
+			border-bottom-right-radius: 0;
+		}
+		#navigation .search:last-child{
+			border-top-left-radius: 0;
+			border-bottom-left-radius: 0;
+		}
+		#navigation span.input-addon {
+			border: 1px solid white;
+			background-color: white;
+			display: inline-table;
+			width: 20px !important;
+		}
+		#navigation .input-group{
+			display: flex;
+		}
+		#navigation .clear-nav{
+			top: 50%;
+			width: auto;
+			height: auto;
+			position: relative;
+			display: table;
+			-webkit-transform: translateY(-50%);
+			-moz-transform: translateY(-50%);
+			transform: translateY(-50%);
 		}
 
 	.search-form{

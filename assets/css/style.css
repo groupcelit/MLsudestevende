@@ -5000,9 +5000,9 @@
 		transition: all 1s ease;
 	}
 	.carousel-product-img{
-		height: 325px !important;
-		width: 100%;
-		max-width: none !important;
+		max-height: 325px ;
+		max-width: none ;
+		margin: auto;
 	}
 /* Load More Button */
 

@@ -806,12 +806,12 @@
 		    transition: all 0.3s;
 		}
 
-		.col-xs-3, .col-md-3{
+		/*.col-xs-3, .col-md-3{
 			width: 100%;
 			margin-left:auto;
 			margin-right: auto;
 			float: none;
-		}
+		}*/
 
 		#home.rev-slider .second_text span{
 			font-size:14px;

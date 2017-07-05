@@ -2,7 +2,7 @@
 	$titulo = "Panel de control - Proyecto integrador";
 	require "autenticar.php";
 	require "conexion.php";
-	$sql="SELECT a.nombre, a.descripcion, a.precio ,f.path
+	$sql="SELECT a.nombre, a.descripcion, a.precio ,f.path as path_image , a.path as path_publicaciones
 		  FROM anuncios AS a
 		  INNER JOIN fotos AS f on a.id=f.anuncio_id
 		  WHERE f.principal = 1";
@@ -27,11 +27,11 @@
 				<?php while($fila=mysqli_fetch_assoc($resultado)) { /*$cantidad*/?>
 
 				<li class="results-item grid">
-					<a href="productoPrueba">
+					<a href="<?php echo $fila['path_publicaciones']?>">
 						<div class="item-image item item--grid">
 							<div class="item__image">
 								<?php /*echo "imagenes/",$fila['prd_foto1'];*/ ?>
-								<img src="<?php echo $fila['path']?>" alt="iphone"></div>
+								<img src="<?php echo $fila['path_image']?>" alt="iphone"></div>
 
 							<div class="item_details t-center">
 								<div class="price ">$ <?php echo $fila['precio']; ?></div>
@@ -44,7 +44,7 @@
 				</li>
 				<?php } ?>
 			</ol>
-		</section>
+		</section>	
 	</div>
 
 	<?php  include "pie.php"  ?>

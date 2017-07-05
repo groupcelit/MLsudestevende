@@ -1,85 +1,112 @@
 <?php
 ini_set('display_errors', '1');
-	$titulo = "Panel de control - Alta de producto";
-	//Rutina para subir imágenes al servidor si fueron enviadas
-	/*$ruta="imagenes/";
-	$prd_foto1="noDisponible1.png";
-	$prd_foto2="noDisponible2.png";
-	if ($_FILES['prd_foto1']['error']==0){
-		$prd_foto1TMP=$_FILES['prd_foto1']['tmp_name'];
-		$prd_foto1=$_FILES['prd_foto1']['name'];
-		move_uploaded_file($prd_foto1TMP, $ruta.$prd_foto1);
-	}
-	if ($_FILES['prd_foto2']['error']==0){
-		$prd_foto2TMP=$_FILES['prd_foto2']['tmp_name'];
-		$prd_foto2=$_FILES['prd_foto2']['name'];
-		move_uploaded_file($prd_foto2TMP, $ruta.$prd_foto2);
-	}*/
-	//Rutina para insertar datos en la tabla productos
+	$titulo = "Subir anuncio en Sudestevende";
+	require "conexion.php";
 
+	/*function urls_amigables($url) {
+	// Tranformamos a minusculas
+		$url = strtolower($url);
+	//Rememplazamos caracteres especiales latinos
+		$find = array('á', 'é', 'í', 'ó', 'ú', 'ñ');
+		$repl = array('a', 'e', 'i', 'o', 'u', 'n');
+		$url = str_replace ($find, $repl, $url);
+	// Añaadimos los guiones
+		$find = array(' ', '&', '\r\n', '\n', '+');
+		$url = str_replace ($find, '-', $url);
+	// Eliminamos y Reemplazamos demás caracteres especiales
+		$find = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<[^>]*>/');
+		$repl = array('', '-', '');
+		$url = preg_replace ($find, $repl, $url);
+		return $url;
+
+	}*/
 
 	//Aca comienza la prueba de subida de imagenes
 
-	
-	
-	$nombreimgmin=$_FILES['prd_foto1']['name'];
-	$nombreimgamp=$_FILES['prd_foto2']['name'];
-	$tipoimgmin=$_FILES['prd_foto1']['type'];
-	$tipoimgamp=$_FILES['prd_foto2']['type'];
-	$tamanioimgmin=$_FILES['prd_foto1']['size'];
-	$tamanioimgamp=$_FILES['prd_foto2']['size'];
+	$prd_nombre=$_POST["prd_nombre"];
+	$prd_descripcion=$_POST["prd_descripcion"];
+	$prd_precio=$_POST["prd_precio"];
+	$estado=$_POST['estado'];
+	$stock=$_POST["stock"];
+	$sub_cat_id=$_POST["sub_cat_id"];
+	$fecha_actual=date("Y-m-d H:i:s");
+	$path='nuevo.php';
 
-	$carpetadestino=$_SERVER['DOCUMENT_ROOT'].'/imgpro';
+/*mysqli_query("INSERT INTO anuncios (nombre,descripcion,codigo,precio,descuento,stock,nuevo,destacado,subcategoria_id,creado_en,modificado_en)
+ 				  VALUES ('".$prd_nombre."','".$prd_descripcion."',null,".$prd_precio.",null,1,1,0,'".$sub_cat_id."','".$fecha_actual."',null)",$con) or die ("pro_insert_db");*/
 
-	/*move_uploaded_file($_FILES['prd_foto1']['tmp_name'], $carpetadestino.$nombreimgmin);
-	move_uploaded_file($_FILES['prd_foto2']['tmp_name'], $carpetadestino.$nombreimgamp);*/
+	$sql="INSERT INTO anuncios VALUES (NULL,1,'".$prd_nombre."','".$prd_descripcion."','nuevo',NULL,'".$prd_precio."',NULL,'".$stock."','".$estado."',0,'".$sub_cat_id."','".$fecha_actual."',NULL,0)";
+	/*echo $sql;*/
 
-
-	
-
-	$prd_foto1=$carpetadestino.$nombreimgmin;
-	$prd_foto2=$carpetadestino.$nombreimgamp;
-
-
-
+	mysqli_query($link,$sql) or die(mysqli_error($link));
+	$id_anuncio=mysqli_insert_id($link);
+	/*echo $id_anuncio;*/
+	$chequeo=mysqli_affected_rows($link);//devuelve cantidad de registros afectados
+	/*echo $chequeo;*/
 
 
 
+	$nombre_publicacion='publicaciones/'.$id_anuncio.'-'.urls_amigables($_POST["prd_nombre"]);
+   	/*echo 'Más información de depuración:';*/
+	/*print_r($_FILES);*/
+	/*	print "</pre>";*/
+
+	/*TODO:Aqui hago la modificacion de los paths/anuncio*Fotos*/
+	$sql="UPDATE anuncios
+		  SET path='".$nombre_publicacion."'
+		  WHERE id ='".$id_anuncio."'";
+	mysqli_query($link,$sql) or die(mysqli_error($link));
 
 
+	/*basename($_FILES['img']['name'])*/
+	//$fichero_subido = $dir_subida.basename($_FILES['img']['name']);
+//	var_dump($_FILES);
+	/*	echo '<pre>';*/
+	//move_uploaded_file($_FILES['img']['tmp_name'], $dir_subida)
+	foreach ($_FILES['img']['tmp_name'] as $key => $name_files){
+		if ($key==0){$principal=1;}else{$principal=0;}
+
+		$sql="INSERT INTO fotos
+ 		      VALUES (NULL,'nuevo','".$principal."','".$id_anuncio."',null,'".$fecha_actual."',NULL,NULL)";
+		mysqli_query($link,$sql) or die(mysqli_error($link));
+		$id_foto=mysqli_insert_id($link);
+		$nombre_foto='public_images/'.$id_anuncio.$id_foto.'-'.urls_amigables($_POST["prd_nombre"]);
+
+		$sql="UPDATE fotos
+		  SET path='".$nombre_foto."'
+		  WHERE id ='".$id_foto."'";
+		mysqli_query($link,$sql) or die(mysqli_error($link));
 
 
+		$archivo ='public_images/'.$id_anuncio.$id_foto.'-'.urls_amigables($_POST["prd_nombre"]);
+		$dir_subida = '/var/www/html/jlaupa/MLsudestevende/'.$archivo;
+		move_uploaded_file($name_files, $dir_subida);
+	}
+	/*if (move_uploaded_file($_FILES['img']['tmp_name'], $dir_subida)) {*/
+		/*echo "El fichero es válido y se subió con éxito.\n";*/
+	/*} else {*/
+		/*echo "¡Posible ataque de subida de ficheros!\n";*/
+	/*}*/
 
 
+$nombre_archivo=$nombre_publicacion.'.php';
+$mensaje = 'exito';
+$archivo_a_subir = fopen($nombre_archivo, "a");
+$contenido="<?php include 'encabezado.php'; ?>
+			</head>
+			<body>
+				<div id='nav'>
+					<?php  include 'menu.php'; ?>
+				</div>
+			";
+fwrite($archivo_a_subir,$contenido);
+fclose($archivo_a_subir);
+mysqli_close($link);
 
-
-	$anun_nombre=$_POST["nombre"];
-	$anun_descripcion=$_POST["descripcion"];
-	$anun_precio=$_POST["precio"];
-	$subcategoria_id=$_POST["subcategoria_id"];
-	$anun_creado_en=date("Y-m-d");
-	
-
-	$host="celit2017.cuzdoaddgasz.sa-east-1.rds.amazonaws.com";
-	$user="celit2017";
-	$pw="Celit_2017";
-	$db="desarrolloml";
-
-	$con = mysqli_connect ($host, $user, $pw)
-			or die ("Pro_server");
-       
-			mysqli_select_db ($con,$db)
-			or die ("pro_select_db"); 
-
-	mysqli_query("INSERT INTO anuncios (prd_id,nombre,descripcion,precio,subcategoria_id,creado_en,prd_foto1,prd_foto2) VALUES (NULL,NULL,'".$anun_nombre."','".$anun_descripcion."',NULL,".$anun_precio.",NULL,NULL,NULL,NULL,".$subcategoria_id.",'".$anun_creado_en."',NULL,NULL)",$con) or die ("pro_insert_db");
-
-	
-	
 ?>
 <?php include "encabezado.php"; ?>
 </head>
 <body>
-	<div id="top"><!--<img src="imagenes/top.png" alt="encabezado" width="980" height="80">--></div>
 	<div id="nav">
 		<?php  include "menu.php"; ?>
 	</div>
@@ -93,19 +120,19 @@ ini_set('display_errors', '1');
 				</tr>
 				<tr>
 					<td class="lista">Nombre</td>
-					<td class="lista"><?php echo $anun_nombre; ?></td>
+					<td class="lista"><?php echo $prd_nombre; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Descripción</td>
-					<td class="lista"><?php echo $anun_descripcion; ?></td>
+					<td class="lista"><?php echo $prd_descripcion; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Precio</td>
-					<td class="lista"><?php echo $anun_precio; ?></td>
+					<td class="lista"><?php echo $prd_precio; ?></td>
 				</tr>
 				<tr>
 					<td class="lista">Miniatura</td>
-					<td class="lista"><img src='<?php echo $ruta.$prd_foto1; ?>'></td>
+					<td class="lista"><img src='<?php echo $archivo; ?>'></td>
 				</tr>
 
 			</table>
@@ -113,15 +140,14 @@ ini_set('display_errors', '1');
 
 		<?php } ?>
 
-		<a href="panel-productos.php"> Volver al panel <?php $ruta=$_SERVER['REQUEST_URI'];
-echo ($carpetadestino); ?> </a>
+	<!--	<a href="panel-productos.php"> Volver al panel <?php /*$ruta=$_SERVER['REQUEST_URI'];
+		echo ($carpetadestino); */?> </a>-->
 		
 		
 		
 	</div>
-	<div id="pie">
-		<?php  include "pie.php"  ?>
-	</div>
+	<?php  include "pie.php"  ?>
+	
 	
 </body>
 </html>

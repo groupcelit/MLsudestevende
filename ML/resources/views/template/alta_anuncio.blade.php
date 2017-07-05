@@ -72,8 +72,9 @@
                             </p>
                             <br>
                             <p>
-                                <h3 class="text-left text-info capitalize"><?=$anuncio['persona']['direccion']?></h3>
+                                <h3 class="text-left text-info capitalize"><?=$anuncio['persona']->direccion?></h3>
                             </p>
+
                         </div>
 
                     </div>
@@ -81,7 +82,7 @@
             </div>
             <div class="col-md-12 text-right">
                 <p>
-                <h4><small>Publicado por: <span class="capitalize"><?=$anuncio['persona']['fullname']?></span></small></h4>
+                <h4><small>Publicado por: <span class="capitalize"><?=$anuncio['persona']->fullname?></span></small></h4>
                 </p>
             </div>
 

@@ -121,3 +121,6 @@ INSERT INTO `sub_categorias` (`id`, `nombre`,`codigo`,`creado_en`,`categoria_id`
 /*fotos*/
 INSERT INTO `fotos` (`id`, `path`, `principal`, `anuncio_id`, `codigo`,`creado_en`,`modificado_en`,`borrado_en`) VALUES
 (1, 'public_images/iphone.png',1, 1,null,'2017-06-06 23:10:00','2017-06-06 23:10:00', '2017-06-06 23:10:00');
+
+/*Este comando se tira como el siguiente id seguir*/
+ALTER TABLE anuncios AUTO_INCREMENT=2;

@@ -35,14 +35,21 @@
 		<div class="nav-inner">
 			<div class="logo f-left">
 				<a href="/bienvenido" class="logo-link scroll">
-					<div style="display:inline-flex">
+					<div class="inline-flex">
 						<!--<img src="images/logo.png"/>-->
 						<div class="text">
 							<p class="no-margin no-padding extrabold">sudestevende</p>
 						</div>
 					</div>
-
 				</a>
+			</div>
+			<div class="clear-nav f-left">
+				<form action="/search" method="GET" role="search" class="" >
+					<div type="text" class="input-group">
+						<span class="input-addon"><i class="glyphicons glyphicon glyphicon-search"></i></span>
+						<input class="search colored transition" type="text" name="search" placeholder=" Realiza tu busqueda!" value="" tabindex="1" max-length="120" autocapitalize="off" autocorrect="off" spellcheck="false" aria-autocomplete="list" aria-haspopup="true" aria-owns="chs-popover-3" autocomplete="off">
+					</div>
+				</form>
 			</div>
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
 			<div class="nav-menu f-right">
