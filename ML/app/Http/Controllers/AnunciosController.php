@@ -45,10 +45,36 @@ class AnunciosController extends Controller
         return $url;
 
     }
+    
+    public function getAnuncioById($id_anuncio){
+        $anuncio  = Anuncios::find($id_anuncio)->toArray();
+        $q_fotos ="SELECT path
+                   FROM  fotos
+                   WHERE anuncio_id=".$id_anuncio;
 
+        $results_fotos= \DB::select($q_fotos);
+            foreach ($results_fotos as $foto){
+                $anuncio['foto'][]=$foto->path;
+            }
+        
+        $q_persona = "SELECT CONCAT(u.apellidos,' ',u.nombres) AS fullname,
+                             u.direccion AS direccion,
+                             u.email AS email,
+                             CONCAT(u.celular_codigo,'-',u.celular) AS numero
+                      FROM  usuario AS u
+                      INNER person_data AS pd ON u.person_data_id=pd.id
+                      WHERE u.id=".$_SESSION['key'];
+
+        $results_pd= \DB::select($q_persona);
+
+        $anuncio['persona']=$results_pd;
+
+        return $anuncio;
+    }
+    
     public function getShow(){
         $consulta="SELECT a.nombre as nombre,
-                          a.descripcion as descripcion ,
+                          a.descripcion as descripcion,
                           a.path as path_anuncio,
                           a.precio as precio,
                           f.path as path_foto
@@ -59,6 +85,14 @@ class AnunciosController extends Controller
         $results= \DB::select($consulta);
         return $results;
     }
+
+    public function setTemplate($nombre_archivo,$anuncio_id){
+        $anuncio=$this->getAnuncioById($anuncio_id);
+        $archivo_a_subir = fopen($nombre_archivo, "a");
+        fwrite($archivo_a_subir,view('template.alta_anuncio', ['anuncio' => $anuncio]));
+        fclose($archivo_a_subir);
+    }
+
 
     public function setAnuncio(Request $request){
         /*$request->file(); archivo*/
@@ -83,21 +117,6 @@ class AnunciosController extends Controller
         $anuncio->path=$nombre_publicacion;
         $anuncio->save();
 
-
-        $nombre_archivo=$nombre_publicacion.'.php';
-        $archivo_a_subir = fopen($nombre_archivo, "a");
-        $contenido=@include('encabezado');
-        fwrite($archivo_a_subir,$contenido);
-        fclose($archivo_a_subir);
-        /*echo 'Más información de depuración:';*/
-        /*print_r($_FILES);*/
-        /*	print "</pre>";*/
-
-             /*basename($_FILES['img']['name'])*/
-        //$fichero_subido = $dir_subida.basename($_FILES['img']['name']);
-//	var_dump($_FILES);
-        /*	echo '<pre>';*/
-        //move_uploaded_file($_FILES['img']['tmp_name'], $dir_subida)
         foreach ($request->file('img') as $key => $img){
             if ($key==0){$principal=1;}else{$principal=0;}
             $foto= new Fotos();
@@ -113,16 +132,11 @@ class AnunciosController extends Controller
             $foto->save();
         }
 
+        $nombre_archivo=$nombre_publicacion.'.php';
+        $this->setTemplate($nombre_archivo,$anuncio->id);
+
         return redirect('/misanuncios');
     }
 
-    public function setTemplate($data=null){
-        
-        $nombre_archivo='publicaciones/prueba13.php';
-        $archivo_a_subir = fopen($nombre_archivo, "a");
-        fwrite($archivo_a_subir,view('encabezado', ['name' => 'hola mundo']));
-        fclose($archivo_a_subir);
-
-    }
 
 }

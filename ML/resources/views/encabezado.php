@@ -34,7 +34,7 @@
 	<div class="navigation first-nav double-nav raleway b-shadow">
 		<div class="nav-inner">
 			<div class="logo f-left">
-				<a href="bienvenido" class="logo-link scroll">
+				<a href="/bienvenido" class="logo-link scroll">
 					<div style="display:inline-flex">
 						<!--<img src="images/logo.png"/>-->
 						<div class="text">
@@ -51,20 +51,20 @@
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION ["username"]?><span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="#">Mi cuenta</a></li>
-								<li><a href="salir">Salir</a></li>
+								<li><a href="/#">Mi cuenta</a></li>
+								<li><a href="/salir">Salir</a></li>
 							</ul>
 						</li>
 					<?php } else { ?>
-						<li><a href="registrandome" class="scroll">Regístrate</a></li>
-						<li><a href="ingresar" class="scroll">Ingresa</a></li>
+						<li><a href="/registrandome" class="scroll">Regístrate</a></li>
+						<li><a href="/ingresar" class="scroll">Ingresa</a></li>
 					<?php } ?>
 
-					<li><a href="vender" class="scroll">Vender</a></li>
+					<li><a href="/vender" class="scroll">Vender</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </nav>
-	
+
 	

@@ -5012,9 +5012,9 @@
 		transition: all 1s ease;
 	}
 	.carousel-product-img{
-		height: 325px !important;
-		width: 100%;
-		max-width: none !important;
+		max-height: 325px ;
+		max-width: 100% ;
+		margin: auto;
 	}
 /* Load More Button */
 
@@ -8042,7 +8042,8 @@
 		font-size:18px;
 	}
 
-	#shop span.strip{
+	#shop span.strip,
+	#view_anuncio span.strip{
 		width: 100%;
 		height: 1px;
 		display: block;

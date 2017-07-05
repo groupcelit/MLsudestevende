@@ -10,7 +10,8 @@
     <section id="view_anuncio" class="results grid clear-main">
         <div class="col-md-12 white-bg form b-shadow">
             <div class="col-md-12">
-                <h1 class="text text-left text-primary">Macintosh 1987</h1>
+                <h1 class="text text-left text-primary"><?=$anuncio['nombre']?></h1>
+                <span class="strip"></span>
             </div>
             <div class="col-md-6">
                 <div class="col-xs-12 no-padding" id="slider">
@@ -20,15 +21,16 @@
                         <div class="carousel slide" id="myCarousel">
                             <!-- Carousel items -->
                             <div class="carousel-inner">
-                                <div class="active item" data-slide-number="0">
-                                    <img class="carousel-product-img" src="images/bg-01.jpg" alt="...">
-                                </div>
-                                <div class="item" data-slide-number="1">
-                                    <img class="carousel-product-img" src="images/bg_about.jpg" alt="...">
-                                </div>
-                                <div class="item" data-slide-number="2">
-                                    <img class="carousel-product-img" src="images/background22.jpg" alt="...">
-                                </div>
+                            <?php
+                                foreach ($anuncio['foto'] as $key => $foto){
+                                    if($key==0){$class="active";}else{$class="";}
+                            ?>
+                                    <div class="<?=$class?> item" data-slide-number="<?=$key?>">
+                                        <img class="carousel-product-img" src="<?=url().'/'.$foto?>" alt="<?=$anuncio['nombre'].$key?>">
+                                    </div>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <!-- Carousel nav -->
                             <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
@@ -44,38 +46,33 @@
                 <div class="col-xs-12" id="slider-thumbs">
                     <!-- Bottom switcher of slider -->
                     <ul class="hide-bullets">
-                        <li class="col-xs-2 no-padding">
-                            <a class="thumbnail" id="carousel-selector-0" data-target="#lightbox">
-                                <img  class="mini" src="images/bg-01.jpg" alt="...">
-                            </a>
-                        </li>
-                        <li class="col-xs-2 no-padding">
-                            <a class="thumbnail" id="carousel-selector-1" data-target="#lightbox">
-                                <img class="mini" src="images/bg_about.jpg" alt="...">
-                            </a>
-                        </li>
-                        <li class="col-xs-2 no-padding">
-                            <a class="thumbnail" id="carousel-selector-2" data-target="#lightbox">
-                                <img class="mini" src="images/background22.jpg" alt="...">
-                            </a>
-                        </li>
+                        <?php
+                            foreach ($anuncio['foto'] as $key => $foto){                        ?>
+                            <li class="col-xs-2 no-padding">
+                                <a class="thumbnail" id="carousel-selector-<?=$key?>" data-target="#lightbox">
+                                    <img  class="mini" src="<?=url().'/'.$foto?>" alt="<?=$anuncio['nombre'].$key?>">
+                                </a>
+                            </li>
+                        <?php
+                        }
+                        ?>
                     </ul>
                 </div>
             </div>
             <div class="col-md-6">
                 <div>
                     <div class="col-md-12">
-                        <h1 class="text-left text-danger no-margin no-padding"><strong>$1000</strong></h1>
+                        <h1 class="text-left text-danger no-margin no-padding"><strong><?=$anuncio['precio']?></strong></h1>
                     </div>
                     <div class="col-md-12 no-margin gray-bg-2 span-with-bg">
                         <p><h3 class="text-left">Detalles</h3></p>
                         <div class="col-md-12 span-with-bg">
                             <p>
-                                <h5>Lorem ipsum dolor sit amet, ut vel dico ignota, ad essent apeirian his. Te eam eius commodo honestatis, duo solum possim ne. Qui impetus persius molestiae ne. Ut eam ancillae pertinacia, te cibo ignota contentiones his. Urbanitas vituperata repudiandae te pri.</h5>
+                                <h5><?=$anuncio['descripcion']?></h5>
                             </p>
                             <br>
                             <p>
-                                <h3 class="text-left text-info">Av. Rivadavia 233, San Martin</h3>
+                                <h3 class="text-left text-info capitalize"><?=$anuncio['persona']['direccion']?></h3>
                             </p>
                         </div>
 
@@ -84,7 +81,7 @@
             </div>
             <div class="col-md-12 text-right">
                 <p>
-                <h4><small>Publicado por: Alan Diaz</small></h4>
+                <h4><small>Publicado por: <span class="capitalize"><?=$anuncio['persona']['fullname']?></span></small></h4>
                 </p>
             </div>
 
