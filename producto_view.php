@@ -7,8 +7,14 @@
 	$resultado=mysqli_query($link,$sql) or die(mysqli_error($link));
 	mysqli_close($link);
 ?>
-<?php include "encabezado.php"; ?>
+
 </head>
+
+
+		
+
+<?php include "encabezado.php"; ?>
+
 <body>
 <!--	<div id="top"><img src="imagenes/top.png" alt="encabezado" width="980" height="80"></div>
 -->	<div id="nav">
@@ -19,48 +25,10 @@
 		<?php  include "views/aside.php"; ?>
 		<!-- inicio del desarrollo -->
 
-		<div class="container">
+		
 
-			<ul class="nav nav-pills nav-stacked">
-				<li><a href="#lightbox" data-toggle="modal">Open Lightbox</a></li>
-				<li><a href="#lightbox" data-toggle="modal" data-slide-to="1">2nd Image</a></li>
-				<li><a href="#lightbox" data-toggle="modal" data-slide-to="2">3rd Image</a></li>
-				<li><a href="#lightbox" data-toggle="modal" data-slide-to="15">Open non existing Image</a></li>
-			</ul>
-
-			<div class="modal fade and carousel slide" id="lightbox">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-body">
-							<ol class="carousel-indicators">
-								<li data-target="#lightbox" data-slide-to="0" class="active"></li>
-								<li data-target="#lightbox" data-slide-to="1"></li>
-								<li data-target="#lightbox" data-slide-to="2"></li>
-							</ol>
-							<div class="carousel-inner">
-								<div class="item active">
-									<img src="http://placehold.it/900x500/777/" alt="First slide">
-								</div>
-								<div class="item">
-									<img src="http://placehold.it/900x500/666/" alt="Second slide">
-								</div>
-								<div class="item">
-									<img src="http://placehold.it/900x500/555/" alt="Third slide">
-									<div class="carousel-caption"><p>even with captions...</p></div>
-								</div>
-							</div><!-- /.carousel-inner -->
-							<a class="left carousel-control" href="#lightbox" role="button" data-slide="prev">
-								<span class="glyphicon glyphicon-chevron-left"></span>
-							</a>
-							<a class="right carousel-control" href="#lightbox" role="button" data-slide="next">
-								<span class="glyphicon glyphicon-chevron-right"></span>
-							</a>
-						</div><!-- /.modal-body -->
-					</div><!-- /.modal-content -->
-				</div><!-- /.modal-dialog -->
-			</div><!-- /.modal -->
-
-		</div><!-- /.container -->
+			
+		
 
 
 
@@ -78,7 +46,7 @@
 								<!-- Carousel items -->
 								<div class="carousel-inner">
 									<div class="active item" data-slide-number="0">
-										<img class="carousel-product-img" src="images/bg-01.jpg" alt="...">
+										<img class="carousel-product-img" src="images/bg-01.jpg"  alt="...">
 									</div>
 									<div class="item" data-slide-number="1">
 										<img class="carousel-product-img" src="images/bg_about.jpg" alt="...">
@@ -102,17 +70,17 @@
 						<!-- Bottom switcher of slider -->
 						<ul class="hide-bullets">
 							<li class="col-xs-2 no-padding">
-								<a class="thumbnail" id="carousel-selector-0" data-target="#lightbox">
+								<a class="thumbnail" id="carousel-selector-0" data-toggle="modal"   data-target="#myModal" href="#">
 									<img  class="mini" src="images/bg-01.jpg" alt="...">
 								</a>
 							</li>
 							<li class="col-xs-2 no-padding">
-								<a class="thumbnail" id="carousel-selector-1" data-target="#lightbox">
+								<a class="thumbnail" id="carousel-selector-1" data-toggle="modal"   data-target="#myModal" href="#">
 									<img class="mini" src="images/bg_about.jpg" alt="...">
 								</a>
 							</li>
 							<li class="col-xs-2 no-padding">
-								<a class="thumbnail" id="carousel-selector-2" data-target="#lightbox">
+								<a class="thumbnail" id="carousel-selector-2" data-toggle="modal"   data-target="#myModal" href="#">
 									<img class="mini" src="images/background22.jpg" alt="...">
 								</a>
 							</li>
@@ -160,10 +128,89 @@
 	                </div>
                 </div> -->
 			</div>	
+
 		</section>
+
+
+
+
 	</div>
 	
 	<?php  include "pie.php"  ?>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog producto" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-body producto">
+        
+
+      	<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+    <div class="item active">
+      <img src="images/bg-01.jpg" alt="...">
+      <div class="carousel-caption">
+        Macintosh 1987 
+      </div>
+    </div>
+
+    <div class="item">
+      <img src="images/bg_about.jpg" alt="...">
+      <div class="carousel-caption">
+        Macintosh 1987
+      </div>
+    </div>
+   
+
+   <div class="item">
+      <img src="images/background22.jpg" alt="...">
+      <div class="carousel-caption">
+        Macintosh 1987
+      </div>
+    </div>
+  </div>
+
+    
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+      </div>
+      <div class="modal-footer producto">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">X</button>
+        
+      </div>
+    </div>
+  </div>
+</div>
+	
+
+
+
+
+
+
+
 
 </body>
 <script type="text/javascript">
@@ -178,4 +225,5 @@
 	}
 
 </script>
+	
 </html>
