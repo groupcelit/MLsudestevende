@@ -58,7 +58,15 @@ $app->get('/lumen-version', function () use ($app) {
         }
     });
 
+    $app->get('/admin_usuarios',function ()  {
+        if(isset(isset($_SESSION['login'])&&$_SESSION['keyword']=="admin_celit") {
+            $usuarios_data=app('App\Http\Controllers\UsuariosController')->getUserDataAdmin();
+            return view('admin.usuarios_list_admin', ['usuarios_data' => $usuarios_data]);
+        } else{
+            return view('home');
+        }
 
+    });
 
     $app->get('/template','AnunciosController@setTestTemplate');
 

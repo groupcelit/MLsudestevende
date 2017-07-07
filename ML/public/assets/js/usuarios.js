@@ -31,6 +31,7 @@ var usuarios = usuarios || (function () {
         		var userForm = document.getElementById("edit-user-form");
         		var passForm = document.getElementById("edit-password-form");
         		var createUserForm = document.getElementById("create-user-form");
+        		var loginUserForm = document.getElementById("login_usuario_form");
         		console.log(createUserForm);
         		if (el.form == userForm) {
         		
@@ -48,6 +49,13 @@ var usuarios = usuarios || (function () {
         			if(usuarios.validarUserCreate(el)) {
         				console.log('validUserCreate() es true');
         				usuarios.createUser(el);
+        				//usuarios.CreateUser(el,id);
+        			}
+        		} else if (el.form == loginUserForm) {
+        			console.log("form login user");
+        			if(usuarios.validarUserLogin(el)) {
+        				console.log('validUserLogin() es true');
+        				usuarios.loginUser(el);
         				//usuarios.CreateUser(el,id);
         			}
         		} else {
@@ -206,6 +214,38 @@ var usuarios = usuarios || (function () {
 
 				return $(formPadre).valid();
         	},
+        	validarUserLogin: function(el) {
+        		var formPadre = el.form;
+
+        		$(formPadre).validate({
+        			rules: {
+        				usuario_username: {
+        					required: true
+        				},
+        				usuario_password: {
+        					required: true
+        				}
+
+        			},
+			        errorPlacement: function(error, element) {
+					    error.insertAfter(element.parentElement);
+					},
+			        highlight: function (element) {
+			            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+			            
+			        },
+			        success: function (element) {
+			            element.addClass('valid')
+			                .closest('.form-group').removeClass('has-error').addClass('has-success');
+			        }
+        		});
+
+        		jQuery.extend(jQuery.validator.messages, {
+				    required: ""
+				});
+
+				return $(formPadre).valid();
+        	},
         	updateUser: function(el) {
         		
         		var data = $(el.form).serializeObject();
@@ -230,7 +270,7 @@ var usuarios = usuarios || (function () {
         	},
         	createUser: function(el) {
         		var data = $(el.form).serializeObject();        		
-        		console.log(data);
+
         		$.ajax({
                     data : data,
                     url : '/usuarios/new_user',
@@ -248,6 +288,31 @@ var usuarios = usuarios || (function () {
 						} else {
 							alert("Hubo un error, intentelo de nuevo");
 							window.location.replace("/registrandome");
+						}
+					}
+                })
+        	},
+        	loginUser: function(el) {
+        		var data = $(el.form).serializeObject();
+
+        		$.ajax({
+                    data : data,
+                    url : 'usuarios/login',
+                    type : 'POST',
+					contentType : 'application/x-www-form-urlencoded',
+					beforeSend: function() {
+						console.log('cargando loginUser');
+					},
+					success: function(response) {
+						if (response.exito) {
+							$("#savebutton").attr('class','btn btn-success');
+							$("#savebutton").attr("value","Ha ingresado correctamente");
+							$("#savebutton").attr("onclick","");
+							setTimeout(function(){ window.location.replace("/"); }, 2000);
+						} else {
+							$("#savebutton").attr('class','btn btn-danger');
+							$("#savebutton").attr("value","Usuario y/o clave incorrectos");
+							setTimeout(function(){ window.location.replace("/ingresar"); }, 2000);
 						}
 					}
                 })

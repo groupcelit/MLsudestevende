@@ -42,7 +42,7 @@
 										<div class="col-md-3 search-results">
 											<div class="item-image item item--grid">
 												<div class="item__image">
-													<img src="/public_images/iphone.png" alt="Sin imagen">
+													<img src="<?=$anuncio->path_foto?>" alt="Sin imagen">
 												</div>
 											</div>
 										</div>
@@ -56,7 +56,7 @@
 										<div class="col-md-4">
 											<div class="item_details t-left">
 												<div class="price "><h3 class="text-left text-info">Stock: <?=$anuncio->stock?></h3></div>
-												<button class="btn btn-primary"><h4 class="bold text-left">Ir a la pagina del producto</h4></button>
+												<a type="button" href="<?=$anuncio->path_anuncio?>" class="btn btn-primary"><h4 class="bold text-left">Ir a la pagina del Anuncio</h4></a>
 												<!--<div class="shop_item_description"><?php /*/*echo substr($fila['prd_descripcion'],0,40).'...'; */?></--div>-->
 											</div>
 										</div>
