@@ -33,6 +33,7 @@ $app->get('/lumen-version', function () use ($app) {
         return view('home', ['anuncios' => $anuncios]);
     });
 
+
     /*Auth*/
     $app->get('/ingresar', function ()  {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
@@ -59,7 +60,7 @@ $app->get('/lumen-version', function () use ($app) {
 
 
 
-   // $app->get('/template','AnunciosController@setTemplate');
+    $app->get('/template','AnunciosController@setTestTemplate');
 
     /*publicaciones*/
         $app->get('/vender', function ()  {
@@ -83,12 +84,12 @@ $app->get('/lumen-version', function () use ($app) {
     /*BUSQUEDAS*/
         $app->get('/search',['uses' => 'AnunciosController@getSearch','as' => 'search']);
 
-
-/*$app->get('/usuarios', function () use ($app) {
-   $results = DB::select("SELECT * FROM anuncios LIMIT 20");
-   echo '<pre>';
-   return var_dump($results);
-});*/
+    
+    /*$app->get('/usuarios', function () use ($app) {
+       $results = DB::select("SELECT * FROM anuncios LIMIT 20");
+       echo '<pre>';
+       return var_dump($results);
+    });*/
 
 /*Todo CONTROLLER*/
     /*USUARIO-PERSONA*/
@@ -108,8 +109,10 @@ $app->get('/lumen-version', function () use ($app) {
         //Crear Anuncios
         $app->post('/anuncios/new_anuncio', 'AnunciosController@setAnuncio');
         $app->post('/anuncios/enviar', 'AnunciosController@setAnuncio');
-    /*CATEGORIAS*/
-        $app->get('/categorias/getCategorias','CategoriasController@getShow');
+        /*aside*/
+        $app->get('/q/{codigo}','AnunciosController@getAnuncioCodigo');
+/*CATEGORIAS*/
+        $app->get('/categorias/getCategorias','CategoriasController@getCategoriasSubcaterias');
 
 
 $app->extend("session",function($obj)use($app){

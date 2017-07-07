@@ -38,21 +38,23 @@ class CategoriasController extends Controller
        //$categorias= Categorias::where('borrado_logico', '=', 0)->get();    
     }
     
-    public function getShow(){
+    public function getCategoriasSubcaterias(){
         $categorias = Categorias::all()->toArray();
-
         foreach ($categorias as $categoria){
-            $consulta="SELECT id,
-                          nombre
+            $consulta="SELECT id ,
+                              nombre ,
+                              codigo
                    FROM sub_categorias AS sc                  
                    WHERE sc.borrado_logico=0
                    AND sc.categoria_id =".$categoria['id'];
             $subcategorias= \DB::select($consulta);
             //$subcategorias = SubCategorias::where('categoria_id','=',$categoria['id']);
-            echo '<pre>';
-            var_dump($subcategorias);
+
+            $categoria['subcategorias']=$subcategorias;
+
             //return $categoria;
         }
+
 
 
     }

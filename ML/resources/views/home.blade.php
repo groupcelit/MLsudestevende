@@ -15,11 +15,11 @@
 				<?php foreach($anuncios as $anuncio) {?>
 
 				<li class="results-item grid">
-					<a href="<?=$anuncio->path_anuncio?>">
+					<a href="/<?=$anuncio->path_anuncio?>">
 						<div class="item-image item item--grid">
 							<div class="item__image">
 								<?php /*/*echo "imagenes/",$fila['prd_foto1'];*/ ?>
-								<img src="<?=$anuncio->path_foto?>" alt="iphone"></div>
+								<img src="/<?=$anuncio->path_foto?>" alt="iphone"></div>
 
 							<div class="item_details t-center">
 								<div class="price ">$ <?=$anuncio->precio?></div>

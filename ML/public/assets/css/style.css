@@ -3913,10 +3913,13 @@
 
 /* Team Modals */
 
+    /*
 	body.dark_layout.modal-backdrop{
 		background-color:#222;
 	}
+    */
 
+    /*
 	.modal-backdrop{
 		background-color:#fff;
 	}
@@ -3924,10 +3927,11 @@
 	.modal-backdrop.in{
 		opacity: 1;
 	}
+    */
 
 /* Modal Dialogs */
 
-	#member-modals .modal-dialog{
+/*	#member-modals .modal-dialog{
 		width: auto;
 		height: auto;
 		max-width: 650px;
@@ -3972,9 +3976,9 @@
 		-webkit-transition: all 0.5s;
 		-moz-transition: all 0.5s;
 		transition: all 0.5s;
-	}
+	}*/
 
-	#member-modals .modal-dialog a.close span{
+/*	#member-modals .modal-dialog a.close span{
 		font-weight: 100;
 	}
 
@@ -3999,7 +4003,7 @@
 		color:#8a8a8a;
 		font-size:14px;
 		margin:0 0 10px;
-	}
+	}*/
 
 /* Testimonials */
 
@@ -8960,6 +8964,7 @@
        * content.
        */
 }
+/*
 .modal.modal-fullscreen .modal-dialog,
 .modal.modal-fullscreen .modal-content {
 	bottom: 0;
@@ -8982,7 +8987,7 @@
 	box-shadow: inherit;
 }
 .modal.modal-fullscreen.force-fullscreen {
-	/* Remove the padding inside the body */
+	!* Remove the padding inside the body *!
 }
 .modal.modal-fullscreen.force-fullscreen .modal-body {
 	padding: 0;
@@ -8999,6 +9004,7 @@
 .modal.modal-fullscreen.force-fullscreen .modal-footer {
 	bottom: 0;
 }
+*/
 
 /* Scroll */
 /*body::-webkit-scrollbar
@@ -9011,3 +9017,15 @@ body::-webkit-scrollbar-thumb
 	background-color: #009688;
 Jairoooo
 }*/
+.modal-dialog.producto  {
+	width: 600px !important;
+	margin: 60px auto 10px auto !important;
+}
+
+.modal-footer.producto{
+	border: 0 !important;
+}
+
+.modal-body.producto{
+	border: 0!important;
+}
