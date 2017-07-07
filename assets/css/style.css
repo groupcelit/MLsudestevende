@@ -3857,7 +3857,7 @@
 
 /* Team Modals */
 
-	body.dark_layout.modal-backdrop{
+	/*body.dark_layout.modal-backdrop{
 		background-color:#222;
 	}
 
@@ -3867,19 +3867,19 @@
 
 	.modal-backdrop.in{
 		opacity: 1;
-	}
+	}*/
 
 /* Modal Dialogs */
 
-	#member-modals .modal-dialog{
+	/*#member-modals .modal-dialog{
 		width: auto;
 		height: auto;
 		max-width: 650px;
 		margin:0 auto;
 		padding-top:120px;
-	}
+	}*/
 
-	#member-modals .modal-dialog .modal-body{
+	/*#member-modals .modal-dialog .modal-body{
 		margin:15px auto 20px;
 		width: 550px;
 		height: auto;
@@ -3924,9 +3924,9 @@
 
 	#member-modals .modal-dialog a.close:hover{
 		color:white;
-	}
+	}*/
 
-	#member-modals .modal-dialog h2.member-header{
+	/*#member-modals .modal-dialog h2.member-header{
 		font-size: 28px;
 		margin: 15px 0 6px;
 		padding: 0;
@@ -3943,7 +3943,7 @@
 		color:#8a8a8a;
 		font-size:14px;
 		margin:0 0 10px;
-	}
+	}*/
 
 /* Testimonials */
 
@@ -4999,11 +4999,11 @@
 		-o-transition: all 1s ease; /* Opera */
 		transition: all 1s ease;
 	}
-	.carousel-product-img{
-		max-height: 325px ;
-		max-width: none ;
-		margin: auto;
-	}
+	/*.carousel-product-img{
+		height: 325px !important;
+		width: 100%;
+		max-width: none !important;
+	}*/
 /* Load More Button */
 
 	.load-more-button{
@@ -5448,10 +5448,10 @@
 
 /* Navigation For Carousel */
 
-	#clients .owl-carousel .owl-wrapper-outer{
+	/*#clients .owl-carousel .owl-wrapper-outer{
 		z-index: 3;
 	}
-
+*/
 	#clients .boxes .owl-controls{
 		z-index: 1;
 	}
@@ -8854,35 +8854,37 @@
 #slider-thumbs .mini{
 	height: 30px;
   }
-.modal.and.carousel {
+/*.modal.and.carousel {
 	position: fixed;
-}
-.carousel-control.left,.carousel-control.right{
+}*/
+/*.carousel-control.left,.carousel-control.right{*/
 	background-image:none;
-	margin-top:10%;
+	margin-top:auto;
 	width:5%;
-}
+	
+}*/
 
+/**/
 
 
 /*asdasdasdasd*/
-.carousel.carousel-fit {
+/*.carousel.carousel-fit {
 	position: relative;
 	/* When sliding, use the maximum height we have */
 	/* Center horizontally the content of the slides */
 	/* To be centered, the images of the slides need to be inline */
-	/* Maximize the captions in the wrapper */
+	/* Maximize the captions in the wrapper
 }
-.carousel.carousel-fit.slide {
+/*.carousel.carousel-fit.slide {
 	/* Hide the content outside the carousel when sliding */
-	overflow: hidden;
-}
-.carousel.carousel-fit .carousel-inner > .next,
+	/*overflow: hidden;
+}*/
+/*.carousel.carousel-fit .carousel-inner > .next,
 .carousel.carousel-fit .carousel-inner > .prev {
 	bottom: 0;
-}
-.carousel.carousel-fit .carousel-inner > .item {
-	text-align: center;
+}*/
+/*.carousel.carousel-fit .carousel-inner > .item {*/
+	/*text-align: center;
 }
 .carousel.carousel-fit .carousel-inner > .item > img {
 	display: inline-block;
@@ -8901,7 +8903,7 @@
        * /!\ By using this feature, you force the header and footer to be placed
        * in an absolute position. You must handle by yourself the margin of the
        * content.
-       */
+       
 }
 .modal.modal-fullscreen .modal-dialog,
 .modal.modal-fullscreen .modal-content {
@@ -8925,7 +8927,7 @@
 	box-shadow: inherit;
 }
 .modal.modal-fullscreen.force-fullscreen {
-	/* Remove the padding inside the body */
+	/* Remove the padding inside the body 
 }
 .modal.modal-fullscreen.force-fullscreen .modal-body {
 	padding: 0;
@@ -8941,7 +8943,7 @@
 }
 .modal.modal-fullscreen.force-fullscreen .modal-footer {
 	bottom: 0;
-}
+} */
 
 /* Scroll */
 /*body::-webkit-scrollbar
@@ -8973,4 +8975,23 @@ Jairoooo
 
 .dropdown.libtn{
 	text-decoration: none !important;
+}
+
+
+
+ 
+
+
+
+.modal-dialog.producto  {
+    width: 600px !important;
+    margin: 60px auto 10px auto !important;
+}
+	
+.modal-footer.producto{
+	border: 0 !important;
+}	
+
+.modal-body.producto{
+	border: 0!important;
 }
