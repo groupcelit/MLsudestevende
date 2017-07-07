@@ -34,45 +34,44 @@
 	<div class="navigation first-nav double-nav raleway b-shadow">
 		<div class="nav-inner">
 			<div class="logo f-left">
-				<a href="bienvenido" class="logo-link scroll">
-					<div style="display:inline-flex">
+				<a href="/bienvenido" class="logo-link scroll">
+					<div class="inline-flex">
 						<!--<img src="images/logo.png"/>-->
 						<div class="text">
 							<p class="no-margin no-padding extrabold">sudestevende</p>
 						</div>
 					</div>
-
 				</a>
+			</div>
+			<div class="clear-nav f-left">
+				<form action="/search" method="GET" role="search" class="" >
+					<div type="text" class="input-group">
+						<span class="input-addon"><i class="glyphicons glyphicon glyphicon-search"></i></span>
+						<input class="search colored transition" type="text" name="search" placeholder=" Realiza tu busqueda!" value="" tabindex="1" max-length="120" autocapitalize="off" autocorrect="off" spellcheck="false" aria-autocomplete="list" aria-haspopup="true" aria-owns="chs-popover-3" autocomplete="off">
+					</div>
+				</form>
 			</div>
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
 			<div class="nav-menu f-right">
 				<ul class="nav semibold">
-					     <li>
-							 <div class="f-left">
-								<form action="resultado.php" method="get" class="" >
-									<div class="form-group">
-										<i class="glyphicons glyphicon glyphicon-search"></i>
-										<input class="search colored transition" type="text" name="Search" placeholder=" Realiza tu busqueda!">
-									</div>
-									<!--<select name="cat_id">
-										<option value=0>- Categorias -</option>
-									</select>-->
-
-								</form>
-							</div>
-						 </li>
-					
 					<?php if (isset($_SESSION['login'])) { ?>
-						<li><a class="colored" href="logout.php">Salir</a></li>
+						<li  class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION ["username"]?><span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="/#">Mi cuenta</a></li>
+								<li><a href="/salir">Salir</a></li>
+							</ul>
+						</li>
 					<?php } else { ?>
-						<li><a href="registrandome" class="scroll">Regístrate</a></li>
-						<li><a href="ingresar" class="scroll">Ingresa</a></li>
+						<li><a href="/registrandome" class="scroll">Regístrate</a></li>
+						<li><a href="/ingresar" class="scroll">Ingresa</a></li>
 					<?php } ?>
 
-					<li><a href="vender" class="scroll">Vender</a></li>
+					<li><a href="/vender" class="scroll">Vender</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 </nav>
+
 	

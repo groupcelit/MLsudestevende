@@ -10,7 +10,7 @@ $(document).on('change', '.file', function(){
 });
 
 /*Agrego nueva fila de imagen boton*/
-$(document).on('click', '#form_anuncio .add_image', function(){
+$(document).on('click', '#alta_anuncio_form .add_image', function(){
     var html='';
     html="<div class='col-sm-8 col-sm-offset-2'>" +
             "<input type='file' name='img[]' class='file'>" +

@@ -26,8 +26,13 @@ class UsuariosController extends Controller
 
     }*/
 
-    public function saveUsuario(Request $request , $id=null){
-
+    public function saveUsuario(Request $request){
+      if (isset($_SESSION['key']) && $_SESSION['key']>0) {
+        $id = $_SESSION['key'];
+      } else {
+        $id = null;
+      }
+      
        if ( $id > 0) {
            $usuarios = Usuarios::find($id);
            $usuarios->modificado_en = date('Y-m-d H:i:s');
@@ -50,17 +55,17 @@ class UsuariosController extends Controller
            $usuarios->password = $request->input('usuario_password');
        }
 
-       $usuarios->save();
-
-       $result['usuario']   =   $usuarios;
-       $result['persona']   =   $persona ;
-        return response()->json($result);
-        /*if($usuarios->save()){
-            return response()->json($new_anuncio);
+        if($usuarios->save()){
+          //$result['usuario']   =   $usuarios;
+          $result['persona']   =  $persona ;
+          $return['exito'] = true;
+          $return['result'] = $result;
         }else{
-            return response()->json("error");
-        }*/
+            $return['exito'] = false;
+            $return['result'] = null;
+        }
         
+        return response()->json($return);
         /*return ['id' => $id ,
                 'title' => $request->input('title')
         ];*/
@@ -102,6 +107,23 @@ class UsuariosController extends Controller
 
         return $person_data;
     }
+
+    public function getDataPersona() {
+      $q_persona = "SELECT pd.apellidos AS apellidos,
+                          pd.nombres AS nombres,
+                             pd.direccion AS direccion,
+                             pd.email AS email,
+                             pd.celular_codigo as celular_codigo,
+                             pd.celular AS celular,
+                             pd.fecha_nacimiento AS fecha_nacimiento
+                      FROM  usuarios AS u
+                      INNER JOIN person_data AS pd ON pd.id=u.person_data_id
+                      WHERE u.id=".$_SESSION['key'];
+
+        $results_pd= \DB::select($q_persona);
+
+        return $results_pd[0];
+    }
     //
     /*public function postLogin(Request $request){
         return $_SESSION;
@@ -109,7 +131,8 @@ class UsuariosController extends Controller
 
     public function postLogin(Request $request){
         $consulta='SELECT id ,
-                          username
+                          username,
+                          codigo
                    FROM usuarios                 
                    WHERE username="'.$request->input('usuario_username').'"
                    AND password="'.$request->input('usuario_password').'"
@@ -118,12 +141,10 @@ class UsuariosController extends Controller
         $results= \DB::select($consulta);
 
         if(isset($results[0]->id) > 0){
-            session_start(); //Si no está esta directiva no se puede hacer nada
             $_SESSION['login']=1;
-            //Redirección a admin
-            header("location:bienvenido");
             $_SESSION['key']=$results[0]->id;
             $_SESSION['username'] = $results[0]->username;
+            $_SESSION['keyword'] = $results[0]->codigo;
             $_SESSION['cookie']=session_id();
             $return['exito']=true;
             $return['result']=$_SESSION;
@@ -133,4 +154,17 @@ class UsuariosController extends Controller
         return $return;
 
     }
+
+    public function destroySession(){
+        session_unset();
+        session_destroy();
+    }
+    
+    /*public function getSession(Request $request){
+        if ($request->session()->has('key')) {
+            return true;
+        }else{
+            return false;
+        }
+    }   */
 }

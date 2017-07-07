@@ -9,6 +9,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 /**
+ 
  * @property string nombre
  * @property string codigo
  * @property \DateTime creado_en
@@ -17,6 +18,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 
 class Categorias extends Model{
+    public $timestamps=false;
+
+   /* public function sub_categorias(){
+        return $this->belongsTo('App\Models\SubCategorias', 'foreign_key');
+    }*/
+
     protected $guarded = ['id'];
 }
 

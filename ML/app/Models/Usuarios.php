@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool borrado_logico
  */
 class Usuarios extends Model{
-     public $timestamps = false;
+     public $timestamps=false;
      protected $guarded = ['id'];
 
 }

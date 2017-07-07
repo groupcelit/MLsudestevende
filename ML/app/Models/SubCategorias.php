@@ -18,6 +18,7 @@
      */
 
 class SubCategorias extends Model{
+    public $timestamps=false;
     protected $guarded = ['id'];
 }
     

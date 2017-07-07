@@ -1,6 +1,3 @@
-<?php
-	$titulo = "Login";
-?>
 @include('encabezado')
 </head>
 <body>
@@ -53,34 +50,7 @@
 			</div>
 		</section>
 	</div>
-
-
-	<!--<div id="main">
-		<h1><?php /*echo $titulo ; */?></h1>-->
-		<!-- inicio del desarrollo -->
-		<!--<form action="login.php" method="post">
-			<table id="paneles">
-				<tr>
-					<td>Usuario:</td>
-					<td><input type="text" name="usu_login"></td>
-				</tr>
-				<tr>
-					<td>Clave:</td>
-					<td><input type="password" name="usu_clave"></td>
-				</tr>
-				<tr>
-					<td colspan="2" class="centrar">
-						<input type="submit" value="Enviar">
-					</td>
-				</tr> 
-			</table>	
-		</form>-->
-
-
-	<!--</div>-->
-
 	@include('pie')
-
 	<script>
 		var usuario = usuario || (function () {
 					var parametros = {};
