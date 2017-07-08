@@ -91,7 +91,8 @@ class AnunciosController extends Controller
                    FROM anuncios AS a
                    INNER JOIN fotos AS f ON f.anuncio_id=a.id
                    WHERE f.principal=1 
-                   AND a.borrado_logico = 0 ".$and.$limit;
+                   AND a.borrado_logico = 0  ".$and."
+                   ORDER BY a.creado_en DESC ".$limit;
 
         $results= \DB::select($consulta);
         return $results;
