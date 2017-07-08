@@ -1,4 +1,4 @@
-@include('encabezado')
+<!-- Aqui tendria que ir el encabezado como include -->
 </head>
 <body>
 <!--	<div id="top"><img src="imagenes/top.png" alt="encabezado" width="980" height="80"></div>

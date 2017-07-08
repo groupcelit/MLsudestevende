@@ -54,7 +54,7 @@
 			<a class="mobile-nav-button"><i class="fa fa-bars"></i></a>
 			<div class="nav-menu f-right">
 				<ul class="nav semibold">
-					<?php if (isset($_SESSION['login'])) { ?>
+					<?php if (isset($_SESSION['key']) && $_SESSION['key']>0) { ?>
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION ["username"]?><span class="caret"></span></a>
 							<ul class="dropdown-menu">

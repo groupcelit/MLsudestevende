@@ -13,15 +13,10 @@ use Illuminate\Http\Request;
 */
 
 
-$app->get('/lumen-version', function () use ($app) {
-    /*$id = $app['encrypter']->decrypt($_COOKIE[$app['config']['session.cookie']]);
-    $app['session']->driver()->setId($id);
-    $app['session']->driver()->start();*/
-     // return $app->version();
-  /*  $usuario=app('App\Http\Controllers\UsuariosController')->getSession();*/
-
-    return url();
-});
+/*$app->get('/lumen-version', function () use ($app) {
+    // devuelve el path storage_path('contenido_anuncios/anuncio.blade.php');
+    return File::get('last.txt');
+});*/
 /*Todo VISTAS*/
     /*Home*/
     $app->get('/bienvenido', function ()  {
@@ -32,12 +27,13 @@ $app->get('/lumen-version', function () use ($app) {
         $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
         return view('home', ['anuncios' => $anuncios]);
     });
+
     $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
-    foreach ($anuncios as $anuncio){
+    /*foreach ($anuncios as $anuncio){
         $app->get('/'.$anuncio->path_anuncio, function ()  {
            return view('encabezado');
         });
-    }
+    }*/
 
 /*Auth*/
     $app->get('/ingresar', function ()  {
