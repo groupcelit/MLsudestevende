@@ -18,15 +18,15 @@
                     <!-- Top part of the slider -->
                     <!--<div class="row">-->
                     <div id="carousel-bounding-box">
-                        <div class="carousel slide" id="myCarousel">
+                        <div class="carousel slide" id="myCarousel" >
                             <!-- Carousel items -->
-                            <div class="carousel-inner">
+                            <div class="carousel-inner flex-content" data-toggle="modal" data-target="#myModal" data-interval="false">
                             <?php
                                 foreach ($anuncio['foto'] as $key => $foto){
                                     if($key==0){$class="active";}else{$class="";}
                             ?>
-                                    <div class="<?=$class?> item" data-slide-number="<?=$key?>">
-                                        <img class="carousel-product-img" src="<?=url().'/'.$foto?>" alt="<?=$anuncio['nombre'].$key?>">
+                                    <div class=" <?=$class?> item" data-slide-number="<?=$key?>">
+                                        <img class="carousel-product-img " src="<?=url().'/'.$foto?>" alt="<?=$anuncio['nombre'].$key?>">
                                     </div>
                                     <?php
                                 }
@@ -49,7 +49,7 @@
                         <?php
                             foreach ($anuncio['foto'] as $key => $foto){                        ?>
                             <li class="col-xs-2 no-padding">
-                                <a class="thumbnail" id="carousel-selector-<?=$key?>" data-target="#lightbox">
+                                <a class="thumbnail" id="carousel-selector-<?=$key?>" number="<?=$key?>" >
                                     <img  class="mini" src="<?=url().'/'.$foto?>" alt="<?=$anuncio['nombre'].$key?>">
                                 </a>
                             </li>
@@ -85,22 +85,48 @@
                 <h4><small>Publicado por: <span class="capitalize"><?=$anuncio['persona']->fullname?></span></small></h4>
                 </p>
             </div>
-
         </div>
     </section>
 </div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog producto" role="document">
+        <div class="modal-footer producto">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+        </div>
+        <div class="modal-content flex-content">
+            <div class="modal-body producto">
+                <div id="product-carousel-modal" class="carousel slide" data-ride="carousel" data-interval="false">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                    <?php
+                    foreach ($anuncio['foto'] as $key => $foto){
+                            if($key==0){$class="active";}else{$class="";}
+                    ?>
+                        <div class="<?=$class?> item" data-slide-number="<?=$key?>">
+                            <img src="<?=url().'/'.$foto?>">
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#product-carousel-modal" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#product-carousel-modal" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+
 @include('pie')
 </body>
-<script type="text/javascript">
-    $('.carousel').carousel()
-    var elements = document.getElementsByName("thumbnail");
-    //algo hay que hacer aca porque no funciona y en consola de navegador si (elements[i].getAttribute("name"))
-    for (var i = 0; i < elements.length; i++) {
-        elements[i].addEventListener("click", function(self) {
-            var numero = parseInt(elements[i].getAttribute("name"));
-            $('.carousel').carousel(numero);
-        });
-    }
 
-</script>
 </html>

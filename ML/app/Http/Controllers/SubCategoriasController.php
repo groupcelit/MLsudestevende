@@ -23,12 +23,14 @@ class SubCategoriasController extends Controller
 
 
     }*/
-    public function getSubCategorias($categoria){
+    public function getSubCategorias(Request $request){
+        $categoria=$request->input('categoria_id');
+
         $consulta="SELECT id,
                           nombre
                    FROM sub_categorias AS sc                 
                    WHERE sc.borrado_logico=0
-                   AND categoria_id ='".$categoria->id."'";
+                   AND categoria_id ='".$categoria."'";
         $sub_categorias= \DB::select($consulta);
 
         return $sub_categorias;

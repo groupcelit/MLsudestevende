@@ -1683,7 +1683,8 @@
 	.navigation .logo .text{
 		line-height: 1.1em;
 		font-size: 1.1em;
-		margin: auto 5px;
+		/*margin: auto 5px;*/
+		margin-right: 45px;
 		letter-spacing: 0.3125rem
 	}
 	.navigation .logo{
@@ -1963,9 +1964,9 @@
 		.search {
 			/*padding:10px;*/
 			height: 30px;
-
+			text-indent: 1em;
 			/*margin:12px;*/
-			width:300px;
+			width:400px;
 			font-size: 13px;
 			letter-spacing: 0.09em;
 			font-weight: 500;
@@ -7857,8 +7858,16 @@
 
 /* Shop */
 
-	#shop, #view_anuncio{
+	#shop, #view_anuncio,#mis_avisos{
 		margin:80px auto 50px;
+	}
+	#mis_avisos{
+		min-height: 530px;
+		display: -webkit-flex;
+		display: flex;
+		-webkit-flex-flow: row;
+		flex-flow: row;
+
 	}
 
 /* Shop Box */
@@ -8889,8 +8898,8 @@
 	opacity: 1;
 }
 
-.colored-bg{
-	background-color:#3680ff
+.colored-bg,.search:focus{
+	background-color:#3680ff !important
 }
 .clear-main{
 	padding-left: 0px;
@@ -8923,7 +8932,9 @@
 	margin-top:10%;
 	width:5%;
 }
-
+#carousel-bounding-box .carousel-inner{
+	min-height: 350px;
+}
 
 
 /*asdasdasdasd*/
@@ -9017,8 +9028,30 @@ body::-webkit-scrollbar-thumb
 	background-color: #009688;
 Jairoooo
 }*/
+.flex-content{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.center-content {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+}
+.item img{
+	margin:auto;
+}
+.modal-content,.modal-content img{
+	background-color:transparent !important;
+	min-height: 350px;
+	max-height: 500px;
+	box-shadow: none ;
+	border: none;
+
+}
 .modal-dialog.producto  {
-	width: 600px !important;
+	min-width: 600px;
 	margin: 60px auto 10px auto !important;
 }
 

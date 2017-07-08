@@ -18,8 +18,8 @@
 	</div>
 	<div  id="main">
 		@include('menu.aside_usuario')
-		<section id="shop" class="results grid">
-			<div class="clear-main">
+		<section id="mis_avisos" class="results grid">
+			<div class="clear-main col-md-12">
 				<div class="container">
 					<h1>Mis Anuncios</h1>
 					<p>Haga click en el anuncio deseado para ver mas detalles</p>
@@ -28,10 +28,10 @@
 						<div class="panel panel-info">
 							<div class="panel-heading padding-0" role="tab" style="height: 35px" id="headingOne">
 								<a class="col-md-12 colored" data-toggle="collapse" href="#<?=$anuncio->id?>">
-									<div class="col-md-4">
+									<div class="col-xs-11 no-padding">
 										<h4 class="panel-title"><?=$anuncio->nombre?></h4>
 									</div>
-									<div class="col-md-offset-7 col-md-1">
+									<div class="col-xs-1 no-padding">
 										<i class="fa fa-plus" align="right" aria-hidden="true"></i>
 									</div>
 								</a>
@@ -73,9 +73,6 @@
 		</div>
 		
 	</div>
-	
 	@include('pie')
-
-	
 <body>
 <html>

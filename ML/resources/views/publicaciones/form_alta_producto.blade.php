@@ -52,7 +52,7 @@
 						<div class="form-group">
 							<label for="categoria" class="control-label col-sm-2">Categoria</label>
 							<div class="col-sm-8">
-								<select class="form-control" name="categoria_id">
+								<select onchange="anuncio.getSubCategorias()" class="form-control" name="categoria_id">
 								<?php foreach ($categorias as $categoria){ ?>
 									<option value="<?=$categoria->id?>"> <?=$categoria->nombre?> </option>
 								<?php } ?>
@@ -64,9 +64,6 @@
 							<label for="subcategoria" class="control-label col-sm-2">Sub categoria</label>
 							<div class="col-sm-8">
 								<select class="form-control" name="subcategoria_id">
-								<?php foreach($sub_categorias as $sub_categoria) { ?>
-									  <option value="<?=$sub_categoria->id?>"><?=$sub_categoria->nombre?> </option>
-								<?php } ?>
 								</select>
 							</div>
 						</div>
@@ -172,6 +169,20 @@
 								}
 							});
 
+						},
+						getSubCategorias: function(){
+							data=$('[name=categoria_id]').serializeObject();
+								$.ajax({
+									data :data,
+									url : '/subcategorias/getSubCategorias',
+									type : 'POST',
+									success: function(response) {
+										$('[name=subcategoria_id] option').remove();
+										$.each(response,function(e,data){
+											$('[name=subcategoria_id]').append('<option value='+data.id+'>'+data.nombre+'</option>');
+										})
+									}
+								})
 						}
 
 					}
@@ -226,6 +237,12 @@
 			$("form#form-institucion-datos-basicos").ajaxSubmit(options);
 		}
 		*/
+
+
+
+		$(window).load(function(){
+			anuncio.getSubCategorias();
+		});
 	</script>
 </body>
 </html>

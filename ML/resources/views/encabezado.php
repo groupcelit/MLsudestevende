@@ -37,7 +37,7 @@
 				<a href="/bienvenido" class="logo-link scroll">
 					<div class="inline-flex">
 						<!--<img src="images/logo.png"/>-->
-						<div class="text">
+						<div class="text hidden-xs">
 							<p class="no-margin no-padding extrabold">sudestevende</p>
 						</div>
 					</div>
@@ -58,7 +58,7 @@
 						<li  class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?=$_SESSION ["username"]?><span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="/#">Mi cuenta</a></li>
+								<li><a href="/mis_anuncios">Mi cuenta</a></li>
 								<li><a href="/salir">Salir</a></li>
 							</ul>
 						</li>

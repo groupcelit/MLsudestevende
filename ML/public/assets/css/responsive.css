@@ -3,7 +3,7 @@
 
 	@media only screen and (min-width: 1920px){
 
-		
+
 	}
 
 /* MAX 1440px For Paddings */
@@ -145,7 +145,7 @@
 		.content .texts{
 			padding:40px;
 		}
-		
+
 		.boxes.boxes-type-5 > div{
 			width: 33.3%;
 		}
@@ -352,7 +352,7 @@
 		.sidebar{
 			width: 100%;
 		}
-		
+
 	}
 
 /* MAX 800px */
@@ -590,7 +590,7 @@
 		#layersliderFS .ls-slide a:last-child{
 			left:48% !important;
 		}
-		
+
 	}
 
 	@media only screen and (max-width: 736px){
@@ -773,7 +773,7 @@
 		#layersliderFS .ls-slide a:last-child{
 			left:48% !important;
 		}
-		
+
 	}
 
 /* MAX 480px */
@@ -1041,6 +1041,9 @@
 		#layersliderFS .ls-slide a:last-child{
 			left:48% !important;
 		}
+		.search{
+			width: 240px;
+		}
 
 	}
 
@@ -1088,7 +1091,7 @@
 		.header.header-style-1 {
 		    margin-top: -284px;
 		}
-	}	
+	}
 
 	@media only screen and (min-width: 200px) and (max-width: 1000px){
 		.white-nav .first-nav .nav-menu ul li a:hover {

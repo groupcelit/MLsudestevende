@@ -32,9 +32,14 @@ $app->get('/lumen-version', function () use ($app) {
         $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
         return view('home', ['anuncios' => $anuncios]);
     });
+    $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
+    foreach ($anuncios as $anuncio){
+        $app->get('/'.$anuncio->path_anuncio, function ()  {
+           return view('encabezado');
+        });
+    }
 
-
-    /*Auth*/
+/*Auth*/
     $app->get('/ingresar', function ()  {
         //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_login');
@@ -59,7 +64,7 @@ $app->get('/lumen-version', function () use ($app) {
     });
 
     $app->get('/admin_usuarios',function ()  {
-        if(isset(isset($_SESSION['login'])&&$_SESSION['keyword']=="admin_celit") {
+        if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $usuarios_data=app('App\Http\Controllers\UsuariosController')->getUserDataAdmin();
             return view('admin.usuarios_list_admin', ['usuarios_data' => $usuarios_data]);
         } else{
@@ -74,8 +79,8 @@ $app->get('/lumen-version', function () use ($app) {
         $app->get('/vender', function ()  {
             if(isset($_SESSION['key']) && $_SESSION['key']>0) {
                 $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
-                $sub_categorias = app('App\Http\Controllers\SubCategoriasController')->getSubCategorias($categorias[0]);
-                return view('publicaciones.form_alta_producto', ['categorias' => $categorias, 'sub_categorias' => $sub_categorias]);
+                
+                return view('publicaciones.form_alta_producto', ['categorias' => $categorias]);
              }else{
                 return view('auth.form_login');
             }
@@ -119,8 +124,8 @@ $app->get('/lumen-version', function () use ($app) {
         $app->post('/anuncios/enviar', 'AnunciosController@setAnuncio');
         /*aside*/
         $app->get('/q/{codigo}','AnunciosController@getAnuncioCodigo');
-/*CATEGORIAS*/
-        $app->get('/categorias/getCategorias','CategoriasController@getCategoriasSubcaterias');
+/*CATEGORIAS*/         
+        $app->post('/subcategorias/getSubCategorias','SubCategoriasController@getSubCategorias');
 
 
 $app->extend("session",function($obj)use($app){
