@@ -76,8 +76,9 @@ class AnunciosController extends Controller
         $limit = " LIMIT 40";
         $and = " ";
 
-        if (isset($_SESSION['KEY']) && $_SESSION['KEY']>0 && $bool) {
-                $and = " AND a.usuario_id = ".$_SESSION['KEY'];
+        if (isset($_SESSION['key']) && $_SESSION['key']>0 && $bool) {
+
+                $and = " AND a.usuario_id = ".$_SESSION['key'];
                 $limit = " ";
         }
 
