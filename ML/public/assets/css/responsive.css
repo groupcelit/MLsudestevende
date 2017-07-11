@@ -1075,18 +1075,14 @@
 		    height: 50%;
 		}
 
-		#sobremi{
-			margin-top: 100px;
-		}
-
-		#navigation .navigation.first-nav {
+		/*#navigation .navigation.first-nav {
 		    background-color: rgba(20, 20, 20, 0.74);
 		}
 
 		#navigation .navigation.first-nav:hover {
 		    background-color: rgba(20, 20, 20, 0.74);
 		}
-
+*/
 		#pagetop.transparent-pagetop {
 		    background-color: rgba(20, 20, 20, 0.74);
 		}
@@ -1117,25 +1113,6 @@
     		color: #fff;
 		}
 
-		.second-nav.white-nav ul li a {
-		    color: #000;
-		}
-
-		.nav-inner div.nav-menu ul.nav li a:hover {
-		    background:#39f;
-		    color:#000;
-		}
-
-		.second-nav .nav-menu ul li.active a{
-			color:#000;
-		}
-
-		.second-nav{
-			/* Changeable Height */
-			height: 70px;
-			box-shadow:2px 2px 2px rgba(0,0,0,0.05);
-			/*position: fixed !important;*/
-		}
 	}
 
 	@media only screen and (min-width: 200px) and (max-width: 800px){

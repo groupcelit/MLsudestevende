@@ -31,7 +31,7 @@
 </head>
 <body class="parallax">
 	<nav id="navigation" class="white-nav">
-	<div class="navigation first-nav double-nav raleway b-shadow">
+	<div class="navigation first-nav raleway b-shadow">
 		<div class="nav-inner">
 			<div class="logo f-left">
 				<a href="/bienvenido" class="logo-link scroll">

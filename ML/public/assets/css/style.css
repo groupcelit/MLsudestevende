@@ -6626,9 +6626,9 @@
 		max-width: 500px;
 		margin: 0px auto;
 	}
-	.form.login .form-group{
+	/*.form.login .form-group{
 		display: grid;
-	}
+	}*/
 	.form .login-button{
 		margin-top: 5px;
 	}
