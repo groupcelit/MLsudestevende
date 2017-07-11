@@ -1,5 +1,4 @@
 var usuarios = usuarios || (function () {
-        var parametros = {};
         //agrego funcion para validar edad
         jQuery.validator.addMethod("mayorA", 
 			function(value, element, params) {
@@ -301,18 +300,24 @@ var usuarios = usuarios || (function () {
                     type : 'POST',
 					contentType : 'application/x-www-form-urlencoded',
 					beforeSend: function() {
-						console.log('cargando loginUser');
+						$("#savebutton").attr('class','btn btn-warning');
+						$("#savebutton").attr("value","Cargando");
 					},
 					success: function(response) {
 						if (response.exito) {
 							$("#savebutton").attr('class','btn btn-success');
 							$("#savebutton").attr("value","Ha ingresado correctamente");
 							$("#savebutton").attr("onclick","");
-							setTimeout(function(){ window.location.replace("/"); }, 2000);
+							setTimeout(function(){ window.location.replace("/"); }, 1500);
 						} else {
 							$("#savebutton").attr('class','btn btn-danger');
 							$("#savebutton").attr("value","Usuario y/o clave incorrectos");
-							setTimeout(function(){ window.location.replace("/ingresar"); }, 2000);
+							setTimeout(function(){ 
+								$("#savebutton").attr('class','btn btn-primary');
+								$("#savebutton").attr("value","Ingresar");
+								$("#usuario_username").val("");
+								$("#usuario_password").val("");
+							}, 1500);
 						}
 					}
                 })

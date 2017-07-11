@@ -76,14 +76,16 @@ class AnunciosController extends Controller
         $limit = " LIMIT 40";
         $and = " ";
 
+
         if (isset($_SESSION['key']) && $_SESSION['key']> 0 && $bool) {
-            
+
                 $and = " AND a.usuario_id = ".$_SESSION['key'];
                 $limit = " ";
         }
 
         $consulta="SELECT a.nombre as nombre,
                           a.id as id,
+                          a.usuario_id as u_id,
                           a.descripcion as descripcion ,
                           a.path as path_anuncio,
                           a.precio as precio,
@@ -98,7 +100,6 @@ class AnunciosController extends Controller
         $results= \DB::select($consulta);
         return $results;
     }
-
 
     public function setTemplate($nombre_archivo,$anuncio_id){
         $anuncio=$this->getAnuncioById($anuncio_id);

@@ -26,7 +26,7 @@
 					<?php foreach($anuncios as $anuncio) {?>
 					<div class="panel-group">
 						<div class="panel panel-info">
-							<div class="panel-heading padding-0" role="tab" style="height: 35px" id="headingOne">
+							<div class="panel-heading padding-0" role="tab" style="height: 35px">
 								<a class="col-md-12 colored" data-toggle="collapse" href="#<?=$anuncio->id?>">
 									<div class="col-xs-11 no-padding">
 										<h4 class="panel-title"><?=$anuncio->nombre?></h4>
@@ -56,8 +56,10 @@
 										<div class="col-md-4">
 											<div class="item_details t-left">
 												<div class="price "><h3 class="text-left text-info">Stock: <?=$anuncio->stock?></h3></div>
-												<a type="button" href="<?=$anuncio->path_anuncio?>" class="btn btn-primary"><h4 class="bold text-left">Ir a la pagina del Anuncio</h4></a>
-												<!--<div class="shop_item_description"><?php /*/*echo substr($fila['prd_descripcion'],0,40).'...'; */?></--div>-->
+												<a type="button" href="<?=$anuncio->path_anuncio?>" class="btn btn-primary"><h5 class="bold text-left">Ir al Anuncio</h5></a>
+												<button id="editar_anuncio_button" type="button" class="btn btn-info" onclick="anuncios.getAnuncio(<?=$anuncio->id?>, <?=$anuncio->u_id?>)">
+													<h5 class="bold text-left">Editar Anuncio</h5>
+												</button>
 											</div>
 										</div>
 									</div>
@@ -70,9 +72,8 @@
 			</div>
 				
 		</section>
-		</div>
-		
-	</div>
+	</div>		
 	@include('pie')
-<body>
+	<script type="text/javascript" src="assets/js/anuncios.js"></script>
+</body>
 <html>

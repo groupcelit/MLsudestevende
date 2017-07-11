@@ -155,6 +155,57 @@ class UsuariosController extends Controller
 
     }
 
+    public function getUserDataAdmin() {
+        $consulta='SELECT   u.id AS id,
+                            u.username AS username,
+                            u.premium AS premium,
+                            pd.email AS email
+                      FROM  usuarios AS u
+                      INNER JOIN person_data AS pd ON pd.id=u.person_data_id
+                      WHERE u.borrado_logico = 0';
+        $results_pd= \DB::select($consulta);
+
+        return $results_pd;
+    }
+
+    public function updatePremiumUsuario($id) {
+
+        $usuario = Usuarios::find($id);
+        $usuario->modificado_en = date('Y-m-d H:i:s');
+        
+        if($usuario->premium == 0) {
+          $usuario->premium = 1;
+        }elseif ($usuario->premium == 1) {
+          $usuario->premium = 0;
+        }
+
+        if($usuario->save()){
+          $return['exito'] = true;
+        }else{
+            $return['exito'] = false;
+        }
+        
+        return response()->json($return);                 
+  
+    }
+
+    public function deleteUsuarioAdmin($id) {
+
+      $usuario = Usuarios::find($id);
+      $usuario->modificado_en = date('Y-m-d H:i:s');
+
+      $usuario->borrado_logico = 1;
+
+      if($usuario->save()){
+          $return['exito'] = true;
+        }else{
+            $return['exito'] = false;
+        }
+        
+        return response()->json($return);
+
+    }
+
     public function destroySession(){
         session_unset();
         session_destroy();
