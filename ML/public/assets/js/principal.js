@@ -19,7 +19,7 @@ $(document).on('click', '#alta_anuncio_form .add_image', function(){
                 "<input type='text' class='form-control' disabled placeholder='Selecciona una imagen'>" +
                 "<span class='input-group-btn'>" +
                     "<button class='browse btn btn-primary' type='button'>" +
-                         "<i class='glyphicon glyphicon-search'></i> Browse" +
+                         "<i class='glyphicon glyphicon-search'></i> Buscar" +
                     "</button>" +
                     "<button class='btn btn-success add_image' type='button'>" +
                          "<i class='glyphicon glyphicon-plus' aria-hidden='true'></i>" +

@@ -76,8 +76,8 @@ class AnunciosController extends Controller
         $limit = " LIMIT 40";
         $and = " ";
 
-        if (isset($_SESSION['key']) && $_SESSION['key']>0 && $bool) {
-
+        if (isset($_SESSION['key']) && $_SESSION['key']> 0 && $bool) {
+            
                 $and = " AND a.usuario_id = ".$_SESSION['key'];
                 $limit = " ";
         }
@@ -321,7 +321,7 @@ class AnunciosController extends Controller
         $nombre_archivo=$nombre_publicacion.'.php';
         $this->setTemplate($nombre_archivo,$anuncio->id);
 
-        return redirect('/mis_anuncios');
+        return $anuncio;
     }
 
     public function getSearch(Request $request){
