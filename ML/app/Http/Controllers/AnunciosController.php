@@ -15,6 +15,7 @@ use App\Models\SubCategorias;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
+
 class AnunciosController extends Controller
 {
     /**
@@ -27,24 +28,6 @@ class AnunciosController extends Controller
 
 
     }*/
-
-    public function urls_amigables($url) {
-        // Tranformamos a minusculas
-        $url = strtolower($url);
-        //Rememplazamos caracteres especiales latinos
-        $find = array('á', 'é', 'í', 'ó', 'ú', 'ñ');
-        $repl = array('a', 'e', 'i', 'o', 'u', 'n');
-        $url = str_replace ($find, $repl, $url);
-        // Añaadimos los guiones
-        $find = array(' ', '&', '\r\n', '\n', '+');
-        $url = str_replace ($find, '-', $url);
-        // Eliminamos y Reemplazamos demás caracteres especiales
-        $find = array('/[^a-z0-9\-<>]/', '/[\-]+/', '/<[^>]*>/');
-        $repl = array('', '-', '');
-        $url = preg_replace ($find, $repl, $url);
-        return $url;
-
-    }
     
     public function getAnuncioById($id_anuncio){
         $anuncio  = Anuncios::find($id_anuncio)->toArray();
@@ -102,6 +85,7 @@ class AnunciosController extends Controller
     }
 
     public function setTemplate($nombre_archivo,$anuncio_id){
+        $result='';
         $anuncio=$this->getAnuncioById($anuncio_id);
         $archivo_a_subir = fopen($nombre_archivo, "a");
         $encabezado='<?php session_start(); ?>
@@ -183,9 +167,15 @@ class AnunciosController extends Controller
                         
                             
                                                 ';
-        fwrite($archivo_a_subir,$encabezado);
-        fwrite($archivo_a_subir,view('template.alta_anuncio', ['anuncio' => $anuncio]));
+        if(fwrite($archivo_a_subir,$encabezado)){
+            fwrite($archivo_a_subir,view('template.alta_anuncio', ['anuncio' => $anuncio]));
+            return true;
+        }else{
+            return false;
+        }
         fclose($archivo_a_subir);
+
+    return $result;
     }
 
     public function setTestTemplate(){
@@ -279,7 +269,7 @@ class AnunciosController extends Controller
 
     public function setAnuncio(Request $request){
         /*$request->file(); archivo*/
-        $fecha_actual  = date("Y-m-d H:i:s");
+        $result='';
         $categoria_id  = $request->input('categoria_id');
         $subcategoria_id = $request->input('subcategoria_id');
 
@@ -289,7 +279,7 @@ class AnunciosController extends Controller
             $anuncio->descripcion   = $request->input('descripcion');
         }
         $anuncio->usuario_id   = $_SESSION['key'];
-        $anuncio->creado_en   = $fecha_actual;
+        $anuncio->creado_en   = date("Y-m-d H:i:s");
         $anuncio->nombre    = $request->input('nombre');
         if($request->input('precio')) {
             $anuncio->precio = $request->input('precio');
@@ -304,25 +294,57 @@ class AnunciosController extends Controller
         $anuncio->path=$nombre_publicacion;
         $anuncio->save();
 
-        foreach ($request->file('img') as $key => $img){
+       if($this->setImage($request->file('img'),$url_amigable,$anuncio->id)){
+           $result = array('exito'=> true,
+                           'msg' => 'Imagen grabada'
+                    );
+
+           $nombre_archivo=$nombre_publicacion.'.php';
+           if($this->setTemplate($nombre_archivo,$anuncio->id)){
+               $result = array('exito' => true,
+                               'msg'   => 'Se creo el template'
+                           );
+           }else{
+               $result = array('exito' => false,
+                                'msg'  => 'No se pudo crear el template'
+                           );
+           }
+
+       }else{
+           $result = array( 'exito'=> false,
+                             'msg' => 'No se pudo guardar la imagen'
+           );
+       }
+
+    return $result;
+    }
+
+    public function setImage($imagenes, $url_amigable ,$anuncio_id){
+        foreach ($imagenes as $key => $img){
             if ($key==0){$principal=1;}else{$principal=0;}
+
             $foto= new Fotos();
-            $foto->principal=$principal;
-            $foto->creado_en=$fecha_actual;
-            $foto->anuncio_id=$anuncio->id;
+            $foto->principal    =   $principal;
+            $foto->creado_en    =   date("Y-m-d H:i:s");
+            $foto->anuncio_id   =   $anuncio_id;
             $foto->save();
             $nombre_foto='public_images/'.$foto->id.'-'.$url_amigable;
             $foto->path=$nombre_foto;
 
             $archivo =$foto->id.'-'.$url_amigable;
-            $img->move('public_images/',$archivo);
-            $foto->save();
+            if($img->move('public_images/',$archivo)){
+                if($foto->save()){
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                return false;
+            }
+
+
         }
 
-        $nombre_archivo=$nombre_publicacion.'.php';
-        $this->setTemplate($nombre_archivo,$anuncio->id);
-
-        return $anuncio;
     }
 
     public function getSearch(Request $request){
