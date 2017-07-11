@@ -24,9 +24,9 @@
 								<ul class="nav">
 								<li><a href="/q/accesorios_automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
 								<li><a href="/q/automoviles"><i class="fa fa-car"></i> Automóviles</a></li>
-								<li><a href="/q/caminetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
+								<li><a href="/q/camionetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
 								<li><a href="/q/grandes_transportes"><i class=" fa fa-truck"></i> Grandes transportes</a></li>
-								<li><a href="/q/moto_cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
+								<li><a href="/q/motos_cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
 								<li><a href="/q/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
 							  </ul>
 							</div>
@@ -115,7 +115,7 @@
 									<li><a href="/q/maquinas"><i class="fa fa-wrench"></i> Máquinas y Herramientas</a></li>
 									<li><a href="/q/mascotas_plantas"><i class="fa fa-paw"></i> Mascotas y Plantas</a></li>
 									<li><a href="/q/salud"><i class="fa fa-heart"></i> Salud / Belleza</a></li>
-									<li><a href="/q/servicios-varios"><i class="fa fa-fax "></i> Servicios Varios</a></li>
+									<li><a href="/q/servicios"><i class="fa fa-fax "></i> Servicios Varios</a></li>
 									<li><a href="/q/solidaridad"><i class="fa fa-comments-o" ></i> Solidaridad / Donaciones</a></li>
 									<li><a href="/q/turismo"><i class="fa fa-tree "></i> Turismo</a></li>
 								</ul>

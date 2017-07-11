@@ -11,7 +11,7 @@
 		<section id="shop" class="results grid">
 			<div class="col-md-12 clear-main">
 				<div class="form white-bg b-shadow">
-					<form id="alta_anuncio_form" method="post" enctype="multipart/form-data" class="form-horizontal form" action="anuncios/new_anuncio" >
+					<form id="alta_anuncio_form" method="post" enctype="multipart/form-data" class="form-horizontal form" >
 						<div class="form-group">
 							<div class="col-md-12 no-padding">
 								<label for="estado" class="control-label col-sm-2">Estado </label>
@@ -92,9 +92,13 @@
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div id="msg" class=" hidden" role="alert" align="center">
+
+						</div>
+
+						<div  id="save" class="form-group" >
 							<div class="col-sm-8 col-sm-offset-2"> <!--New div, offset because there is no label -->
-								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button  type="button" onclick="anuncio.enviar()" class="btn btn-primary">Guardar</button>
 							</div>
 						</div>
 					</form>
@@ -106,70 +110,64 @@
 	<script>
 		var anuncio = anuncio || (function () {
 					var parametros = {};
-
+					var click = false;
 					return {
-						inicializarAlta: function() {
-											$('[name=categoria_id]').bind('change',
-													function(){
-														$.ajax({
-															data : data,
-															url : 'anuncios/new_anuncio',
-															type : 'POST',
-															contentType : 'application/x-www-form-urlencoded',
-															beforeSend: function() {
-																console.log('cargando');
-															},
-															success: function(response) {
-																if (response.exito) {
-																	console.log('exito')
-																} else {
-																	alert("crea una cuenta :3");
-																}
 
-															}
-														});
-													}
-											);
-						},
 						enviar:function () {
-							/*disparemos eventos*/
-							anuncio.valid();
+
+							if(anuncio.valid() && !click){
+								click=true;
+								anuncio.save();
+							}
 						},
 
 						valid: function () {
-							/*aqui hacemos las validaciones*/
-							anuncio.logeo();
-						},
+								if($('[type=file]')[0].files[0] != undefined) {
+									$.each($('[type=file]'), function (e, file) {
+										/*2mb*/
+										if (file.files[0].size > 2000000) {
+											$('#msg').removeClass();
+											$('#msg').addClass('alert alert-warning');
+											$('#msg').html('Esta imagen pesa mas de 2mb :C ' + file.files[0].name);
+											$('#msg').focus();
+											return false;
+										}
+									});
+								}else{
+									$('#msg').removeClass();
+									$('#msg').addClass('alert alert-danger');
+									$('#msg').html('Elige una imagen principal te ayudara a vender');
+									$('#msg').focus();
 
-						logeo: function () {
-							/*var datos = $("#alta_anuncio_form").serializeObject();
-							var data={};*/
-							var data = new FormData();
-							var input = $('.files');
-							//Append files infos
-							$.each(input[0].files, function(i, file) {
-								data.append('file-'+i, file);
-							});
-							console.log(data);
-							$.ajax({
-								data : data,
-								url : 'anuncios/new_anuncio',
-								type : 'POST',
-								contentType : 'application/x-www-form-urlencoded',
-								beforeSend: function() {
-									console.log('cargando');
-								},
-								success: function(response) {
-									if (response.exito) {
-										console.log('exito')
-									} else {
-										alert("crea una cuenta :3");
-									}
-
+									return false;
 								}
-							});
+
+						return true;
+						},
+
+						save: function () {
+							var datos = $("#alta_anuncio_form").serializeObject();
+							var options = {
+									data: datos,
+									beforeSend: function (){
+												console.log('enviado datos');
+									},
+								    success: function (response) {
+									console.log(response);
+									click=false;
+									$('#msg').removeClass();
+									$('#msg').addClass('alert alert-success');
+									$('#msg').html('Gracias por publicar');
+									$('#msg').focus();
+									$('#save').remove();
+								}
+							};
+							var url = 'anuncios/new_anuncio';
+							$("#alta_anuncio_form").attr("action",url);
+							$("#alta_anuncio_form").ajaxSubmit(options);
 
 						},
+
 						getSubCategorias: function(){
 							data=$('[name=categoria_id]').serializeObject();
 								$.ajax({
@@ -184,63 +182,13 @@
 									}
 								})
 						}
-
 					}
 				}());
-		var login_form = $("#alta_anuncio_form");
-		//checks whether the pressed key is "Enter"
-		login_form.bind("keydown",function(e){ if (e.keyCode === 13) {anuncio.enviar()}});
-
-
-		/*$(document).ready(inicializarEventosInstitucionForm);
-
-		function inicializarEventosInstitucionForm() {
-
-			activeAccordion();
-			activeAC();
-			activeButtons();
-
-			$('#form_save').attr("href", "#");
-			$("#form_save").click(function(){
-				if($("#form-institucion-datos-basicos").valid()){
-					if (validarFormDireccion()) {
-						saveInstitucion();
-					}
-				}
-				else{
-					notify('Por favor, verifique lo datos requeridos', 'error');
-				};
-
-			});
-
-			$("#institucion-tabs").tabs();
-		}
-
-		function saveInstitucion(){
-			var es_dependencia
-					=   $("input[type=checkbox][name=dependencia]").is(":checked")?1:0;
-			/!*var datos = $("#form-institucion-datos-basicos").serialize() + '&' + $("#dir_form").serialize();
-			 var url = base_url + 'admin/institucion_form/saveInstitucion';
-			 proccess_via_ajax_and_continue(url, datos, reloadFormInstitucion, notifyProcessing );*!/
-			datos=formAObjeto($("#dir_form"));
-			datos.es_dependencia=es_dependencia;
-			var options = {
-				data: datos
-				,   success: function (datosServer) {
-					reloadFormInstitucion(datosServer);
-				}
-			};
-
-			var url = base_url + 'admin/institucion_form/saveInstitucion';
-
-			$("form#form-institucion-datos-basicos").attr("action",url);
-			$("form#form-institucion-datos-basicos").ajaxSubmit(options);
-		}
-		*/
-
-
 
 		$(window).load(function(){
+			var login_form = $("#alta_anuncio_form");
+			//checks whether the pressed key is "Enter"
+			login_form.bind("keydown",function(e){ if (e.keyCode === 13) {anuncio.enviar()}});
 			anuncio.getSubCategorias();
 		});
 	</script>
