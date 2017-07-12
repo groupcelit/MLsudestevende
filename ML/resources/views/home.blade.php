@@ -11,9 +11,8 @@
 	<div  id="main">
 		@include('menu.aside')
 		<section id="shop" class="results grid">
-			<ol class="box section search-results grid">
+			<ol class="box section search-results grid f-left">
 				<?php foreach($anuncios as $anuncio) {?>
-
 				<li class="results-item grid">
 					<a href="/<?=$anuncio->path_anuncio?>">
 						<div class="item-image item item--grid">
@@ -30,9 +29,17 @@
 					</a>
 				</li>
 				<?php } ?>
+
 			</ol>
+
+			<nav align="center" aria-label="Paginado">
+				<?=$anuncios->links();?>
+			</nav>
 		</section>	
 	</div>
 	@include('pie')
+<script>
+
+</script>
 </body>
 </html>

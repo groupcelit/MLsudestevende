@@ -69,6 +69,9 @@
 					</div>
 					<?php } ?>
 				</div>
+				<nav align="center" aria-label="Paginado">
+					<?=$anuncios->links();?>
+				</nav>
 			</div>
 				
 		</section>
