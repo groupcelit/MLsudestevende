@@ -54,6 +54,42 @@ class AnunciosController extends Controller
 
         return $anuncio;
     }
+
+    public function getAnuncioInfoById($id_anuncio){
+        $anuncio  = Anuncios::find($id_anuncio)->toArray();
+
+        $q_fotos ="SELECT path
+                   FROM  fotos
+                   WHERE anuncio_id=".$id_anuncio;
+        $results_fotos= \DB::select($q_fotos);
+            foreach ($results_fotos as $foto){
+                $anuncio['foto'][]=$foto->path;
+            }
+        $q_anuncio = "SELECT a.nombre as nombre,
+                          a.id as id,
+                          a.usuario_id as u_id,
+                          a.descripcion as descripcion ,
+                          a.path as path_anuncio,
+                          a.precio as precio,
+                          a.stock as stock,
+                          a.nuevo as nuevo,
+                          a.subcategoria_id as subcategoria,
+                          cat.id as categoria
+                   FROM anuncios AS a
+                   INNER JOIN sub_categorias AS subcat ON subcat.id = a.subcategoria_id
+                   INNER JOIN categorias AS cat ON cat.id = subcat.categoria_id
+                   WHERE a.id =".$id_anuncio;
+
+        $results_pd= \DB::select($q_anuncio);
+        if (is_null($results_pd)) {
+            $anuncio['exito']  = false;
+        }else {
+            $anuncio['exito']  = true;
+            $anuncio['info']=$results_pd[0];
+        }
+
+        return $anuncio;
+    }
     
     /*public function getShow($bool){
         $limit = " LIMIT 40";
@@ -344,6 +380,58 @@ class AnunciosController extends Controller
        }
 
     return $result;
+    }
+
+    public function editAnuncio(Request $request){
+        $anuncio = Anuncios::find($request->input('anuncio_id'));
+        $anuncio->modificado_en = date('Y-m-d H:i:s');
+
+        $categoria_id  = $request->input('categoria_id');
+        $subcategoria_id = $request->input('subcategoria_id');
+
+        $anuncio->subcategoria_id = $request->input('subcategoria_id');
+        if($request->input('descripcion')){
+            $anuncio->descripcion   = $request->input('descripcion');
+        }
+
+        $anuncio->nombre    = $request->input('nombre');
+        if($request->input('precio')) {
+            $anuncio->precio = $request->input('precio');
+        }
+        $anuncio->stock     = $request->input('stock');
+        $anuncio->nuevo     = $request->input('nuevo');
+
+        $anuncio->save();
+
+        $url_amigable= $this->urls_amigables($anuncio->nombre);
+        $nombre_publicacion='publicaciones/'.$categoria_id.'-'.$subcategoria_id.'-'.$anuncio->id.'-'.$url_amigable;
+        $anuncio->path=$nombre_publicacion;
+        $anuncio->save();
+
+       if($this->setImage($request->file('img'),$url_amigable,$anuncio->id)){
+           $result = array('exito'=> true,
+                           'msg' => 'Imagen grabada'
+                    );
+
+           $nombre_archivo=$nombre_publicacion.'.php';
+           if($this->setTemplate($nombre_archivo,$anuncio->id)){
+               $result = array('exito' => true,
+                               'msg'   => 'Se creo el template'
+                           );
+           }else{
+               $result = array('exito' => false,
+                                'msg'  => 'No se pudo crear el template'
+                           );
+           }
+
+       }else{
+           $result = array( 'exito'=> false,
+                             'msg' => 'No se pudo guardar la imagen'
+           );
+       }
+
+    return $result;
+
     }
 
     public function getShow($bool){

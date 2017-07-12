@@ -57,9 +57,9 @@
 											<div class="item_details t-left">
 												<div class="price "><h3 class="text-left text-info">Stock: <?=$anuncio->stock?></h3></div>
 												<a type="button" href="<?=$anuncio->path_anuncio?>" class="btn btn-primary"><h5 class="bold text-left">Ir al Anuncio</h5></a>
-												<button id="editar_anuncio_button" type="button" class="btn btn-info" onclick="anuncios.getAnuncio(<?=$anuncio->id?>, <?=$anuncio->u_id?>)">
+												<a href="/anuncios/get_anuncio/<?=$anuncio->id?>" id="editar_anuncio_button" type="button" class="btn btn-info">
 													<h5 class="bold text-left">Editar Anuncio</h5>
-												</button>
+												</a>
 											</div>
 										</div>
 									</div>

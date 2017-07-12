@@ -115,17 +115,13 @@ use Illuminate\Http\Request;
             }  
         });
 
-        $app->get('/anuncios/get_anuncio', function (Request $request)  {
+        $app->get('/anuncios/get_anuncio/{id}', function ($id)  {
             if(isset($_SESSION['key']) && $_SESSION['key']>0) {
-                if($_SESSION['key']==$request->input('usuario_id')) {
-                    $anuncio = app('App\Http\Controllers\AnunciosController')->getAnunhcioById($request->input('anuncio_id'));
-                    $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
-                    return view('publicaciones.form_editar_usuario', ['anuncios' => $anuncio,
+                
+                $anuncio = app('App\Http\Controllers\AnunciosController')->getAnuncioInfoById($id);
+                $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
+                return view('publicaciones.form_editar_anuncio', ['anuncio' => $anuncio,
                                                                       'categorias' => $categorias]);
-
-                }else{
-                    return view('auth.form_login');
-                }
              }else{
                 return view('auth.form_login');
             }  
@@ -157,6 +153,7 @@ use Illuminate\Http\Request;
         $app->get('/anuncios/show','AnunciosController@getShow');
         //Crear Anuncios
         $app->post('/anuncios/new_anuncio', 'AnunciosController@setAnuncio');
+        $app->put('/anuncios/edit_anuncio', 'AnunciosController@editAnuncio');
         $app->post('/anuncios/enviar', 'AnunciosController@setAnuncio');
         /*aside*/
         $app->get('/q/{codigo}','AnunciosController@getAnuncioCodigo');
