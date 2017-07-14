@@ -13,10 +13,10 @@ use Illuminate\Http\Request;
 */
 
 
-/*$app->get('/lumen-version', function () use ($app) {
+$app->get('/p/{path}', function ($path) {
     // devuelve el path storage_path('contenido_anuncios/anuncio.blade.php');
-    return File::get('last.txt');
-});*/
+    return view('contenido_anuncios.p.'.$path);
+});
 /*Todo VISTAS*/
     /*Home*/
     $app->get('/bienvenido', function ()  {
