@@ -888,18 +888,6 @@
 		color:white;
 	}
 
-	.list {
-		font-family:sans-serif;
-	    margin:0;
-	    padding:20px 0 0;
-	}
-	.list > li {
-	    display:block;
-	    background-color: #FFF5EE;
-	    padding:10px;
-	    box-shadow: inset 0 1px 0 #fff;
-	}
-
 /* Animates */
 
 	.animated{
@@ -6629,6 +6617,9 @@
 	/*.form.login .form-group{
 		display: grid;
 	}*/
+	.form{
+		overflow:hidden;
+	}
 	.form .login-button{
 		margin-top: 5px;
 	}
@@ -8111,6 +8102,14 @@
 		font-size:18px;
 	}
 
+	#view_anuncio span.line,
+	#view_anuncio span.line{
+		display: block;
+		margin:0px 0px 22px 0;
+	}
+	#view_anuncio span.line .item-conditions{
+		font-size:15px;
+	}
 	#shop span.strip,
 	#view_anuncio span.strip{
 		width: 100%;
