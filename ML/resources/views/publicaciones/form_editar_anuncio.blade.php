@@ -16,12 +16,11 @@
 							<div class="col-md-12 no-padding">
 								<label for="estado" class="control-label col-sm-2">Estado </label>
 								<div class="btn-group col-sm-4" data-toggle="buttons">
-									<label for="estado" class="btn btn-primary active">
-
-										<input type="radio" name="nuevo" id="estado1" value="1" autocomplete="off" <?php if($anuncio['info']->nuevo ==1) {?> checked <?php } ?>> Nuevo
+									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 1){?>active<? } ?>">
+										<input type="radio" name="nuevo" id="estado1" value="1" autocomplete="off" <?php if($anuncio['info']->nuevo == 1) {?> checked <?php } ?>> Nuevo
 									</label>
-									<label for="estado" class="btn btn-primary">
-										<input  type="radio" name="nuevo" id="estado0" value="0" autocomplete="off" <?php if($anuncio['info']->nuevo ==0) {?> checked <?php } ?>> Usado
+									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 0){?>active<? } ?>">
+										<input  type="radio" name="nuevo" id="estado0" value="0" autocomplete="off" <?php if($anuncio['info']->nuevo == 0) {?> checked <?php } ?>> Usado
 									</label>
 								</div>
 
@@ -55,8 +54,11 @@
 							<label for="categoria" class="control-label col-sm-2">Categoria</label>
 							<div class="col-sm-8">
 								<select onchange="anuncio.getSubCategorias()" class="form-control" name="categoria_id">
-								<?php foreach ($categorias as $categoria){ ?>
-									<option value="<?=$categoria->id?>"> <?=$categoria->nombre?> </option>
+								<?php foreach ($categorias as $categoria){
+									$selected='';
+									if($anuncio['info']->categoria == $categoria->id){$selected="selected='selected'";}
+									?>
+									<option value="<?=$categoria->id?>" <?=$selected?>> <?=$categoria->nombre?> </option>
 								<?php } ?>
 								</select>
 							</div>
@@ -181,7 +183,9 @@
 									success: function(response) {
 										$('[name=subcategoria_id] option').remove();
 										$.each(response,function(e,data){
-											$('[name=subcategoria_id]').append('<option value='+data.id+'>'+data.nombre+'</option>');
+											var selected='';
+											if (data.id == <?=$anuncio['info']->subcategoria?>){selected="selected='selected'"}
+											$('[name=subcategoria_id]').append('<option value='+data.id+' '+selected+'>'+data.nombre+'</option>');
 										})
 									}
 								})

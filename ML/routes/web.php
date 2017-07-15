@@ -60,36 +60,37 @@ $app->get('/p/{path}', function ($path) {
     });
 
     $app->get('/admin/usuarios',function ()  {
-
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $usuarios_data=app('App\Http\Controllers\UsuariosController')->getUserDataAdmin();
             return view('admin.usuarios_list_admin', ['usuarios_data' => $usuarios_data]);
         } else{
             return redirect('/');
         }
-
+    });
+    $app->get('/admin/anuncios',function ()  {
+        if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
+            $anuncios=app('App\Http\Controllers\AnunciosController')->getAdminAnuncios();
+            return view('admin.anuncios', ['anuncios' => $anuncios]);
+        } else{
+            return redirect('/');
+        }
     });
 
     $app->put('/usuarios_admin/delete_user_admin',function (Request $request)  {
-
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $consulta = app('App\Http\Controllers\UsuariosController')->deleteUsuarioAdmin($request->input('user'));
             return $consulta;
         } else{
             return redirect('/');
         }
-
     });
-
     $app->put('/usuarios_admin/update_premium',function (Request $request) {
-
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $premium = app('App\Http\Controllers\UsuariosController')->updatePremiumUsuario($request->input('id'));
             return $premium;
         } else{
             return redirect('/');
         }
-
     });
 
 
@@ -115,13 +116,12 @@ $app->get('/p/{path}', function ($path) {
             }  
         });
 
-        $app->get('/anuncios/get_anuncio/{id}', function ($id)  {
-            if(isset($_SESSION['key']) && $_SESSION['key']>0) {
-                
+        $app->get('/anuncios/editar_anuncio/{id}', function ($id)  {
+            if(isset($_SESSION['key']) && $_SESSION['key']>0) {                
                 $anuncio = app('App\Http\Controllers\AnunciosController')->getAnuncioInfoById($id);
                 $categorias = app('App\Http\Controllers\CategoriasController')->getCategorias();
-                return view('publicaciones.form_editar_anuncio', ['anuncio' => $anuncio,
-                                                                      'categorias' => $categorias]);
+                return view('publicaciones.form_editar_anuncio', ['anuncio'    => $anuncio  ,
+                                                                  'categorias' => $categorias]);
              }else{
                 return view('auth.form_login');
             }  
