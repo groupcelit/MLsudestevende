@@ -16,10 +16,10 @@
 							<div class="col-md-12 no-padding">
 								<label for="estado" class="control-label col-sm-2">Estado </label>
 								<div class="btn-group col-sm-4" data-toggle="buttons">
-									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 1){?>active<? } ?>">
+									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 1){?> active <?php } ?>">
 										<input type="radio" name="nuevo" id="estado1" value="1" autocomplete="off" <?php if($anuncio['info']->nuevo == 1) {?> checked <?php } ?>> Nuevo
 									</label>
-									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 0){?>active<? } ?>">
+									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 0){?> active <?php } ?>">
 										<input  type="radio" name="nuevo" id="estado0" value="0" autocomplete="off" <?php if($anuncio['info']->nuevo == 0) {?> checked <?php } ?>> Usado
 									</label>
 								</div>
@@ -184,7 +184,7 @@
 										$('[name=subcategoria_id] option').remove();
 										$.each(response,function(e,data){
 											var selected='';
-											if (data.id == <?=$anuncio['info']->subcategoria?>){selected="selected='selected'"}
+											if (data.id == <?=$anuncio['info']->subcategoria ?>){selected="selected='selected'"}
 											$('[name=subcategoria_id]').append('<option value='+data.id+' '+selected+'>'+data.nombre+'</option>');
 										})
 									}
