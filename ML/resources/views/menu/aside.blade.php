@@ -15,7 +15,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingFive">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="true" aria-controls="collapseFive" >
-								  <h3 class=" white no-padding no-margin"> VEHÍCULOS <i class="more-less glyphicon glyphicon-minus pull-right"></i> </h3>
+								  <h3 class=" white no-padding no-margin"> Veh&iacute;culos <i class="more-less glyphicon glyphicon-minus pull-right"></i> </h3>
 							  </a>
 						  </div>
 						</div>
@@ -42,7 +42,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingTwo">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" >
-								 <h3 class=" white no-padding no-margin">INMUEBLES <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								 <h3 class=" white no-padding no-margin">Inmuebles<i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>
@@ -69,7 +69,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingThree">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree" >
-								<h3 class=" white no-padding no-margin">TECNOLOGÍA <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								<h3 class=" white no-padding no-margin">Tecnolog&iacute;a<i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>
@@ -93,7 +93,7 @@
 						<div class="panel-heading colored-bg" role="tab" id="headingFour">
 						  <div class="panel-title">
 							  <a  role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="true" aria-controls="collapseFour" >
-								 <h3 class="white no-padding no-margin">VARIOS <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
+								 <h3 class="white no-padding no-margin">Varios <i class="more-less glyphicon glyphicon-minus pull-right"></i></h3>
 							  </a>
 						  </div>
 						</div>
@@ -103,7 +103,7 @@
 									<li><a href="/q/agropecuarios"><i class="icon-rubro-agropecuario-1"></i> Agropecuarios</a></li>
 									<li><a href="/q/amoblamientos"><i class=" fa fa-bed"></i> Amoblamientos</a></li>
 									<li><a href="/q/animacion_fiestas"><i class="fa fa-birthday-cake"></i> Animación de Fiestas</a></li>
-									<li><a href="/q/comprasventas-varias"><i class="fa fa-cart-plus"></i> Compras / Ventas Varias</a></li>
+									<li><a href="/q/compras_ventas"><i class="fa fa-cart-plus"></i> Compras / Ventas Varias</a></li>
 									<li><a href="/q/construccion"><i class="fa fa-cogs"></i> Construcción</a></li>
 									<li><a href="/q/cursos_ensenanzas"><i class="fa fa-newspaper-o "></i> Cursos / Enseñanzas</a></li>
 									<li><a href="/q/deportes"><i class="fa fa-futbol-o "></i> Deportes</a></li>

@@ -6,7 +6,7 @@
 		height:100%;
 		padding:0;
 		margin:0;
-		font-family: "raleway", Helvetica Neue, Helvetica, Arial, sans-serif;
+		font-family: 'Open Sans',arial,helvetica,sans-serif;
 		-webkit-font-smoothing: subpixel-antialiased;
 	}
 
@@ -494,7 +494,9 @@
 	}
 
 /* Page Font Classes */
-
+	.lobstertwo{
+		font-family: 'Lobster Two', cursive !important;
+	}
 	.raleway{
 		font-family: 'raleway', sans-serif !important;
 	}
@@ -615,7 +617,9 @@
 		background-color:#fafafa;
 		border:none;
 		color:#777;
+        /*
 		font-family: "raleway", Helvetica Neue, Helvetica, Arial, sans-serif;
+        */
 		padding:10px 7px;
 	}
 
@@ -1571,7 +1575,6 @@
 	}
 
 	.first-nav{
-		background-color: #3680ff;
 		/* First Nav Height */
 		height: 54px;
 		top:0;
@@ -1585,7 +1588,6 @@
 	}
 
 	.first-nav2{
-		background-color: #3680ff;
 		/* First Nav Height */
 		height: 54px;
 		top:0;
@@ -1682,10 +1684,10 @@
 /* Logo */
 	.navigation .logo .text{
 		line-height: 1.1em;
-		font-size: 1.1em;
+		font-size: 1.9em;
 		/*margin: auto 5px;*/
 		margin-right: 45px;
-		letter-spacing: 0.3125rem
+		letter-spacing: 0.169rem
 	}
 	.navigation .logo{
 		width: auto;
@@ -1789,7 +1791,7 @@
 		font-ghtwei: 300;
 		background:transparent;
 		text-transform: capitalize;
-		font-family: 'tahoma', sans-serif !important;
+	/*	font-family: 'tahoma', sans-serif !important;*/
 		-webkit-font-smoothing: antialiased;
 	}
 
@@ -2105,7 +2107,7 @@
 	.nav-menu ul.dropdown-menu .submenu a{
 		font-size:13px !important;
 		-webkit-font-smoothing: antialiased;
-		font-family: 'tahoma', sans-serif !important;
+		/*font-family: 'tahoma', sans-serif !important;*/
 		text-transform: capitalize;
 		font-weight: 400;
 		width: auto;
@@ -2172,7 +2174,7 @@
 		border-color:#e62525;
 		z-index: 2;
 		color:white;
-		font-family: 'raleway', sans-serif !important;
+		/*font-family: 'raleway', sans-serif !important;*/
 	}
 
 	a.label span:before{
@@ -3688,7 +3690,7 @@
 		line-height: 60px;
 		font-size: 26px;
 		color:#000;
-		font-family: FontAwesome;
+		/*font-family: FontAwesome;*/
 	}
 
 	.featured-slider-boxes .owl-buttons div.owl-prev{
@@ -4522,7 +4524,7 @@
 
 	.timelineFlat a.t_line_node{
 		font-size:12px;
-		font-family: 'Lato', sans-serif;
+	/*	font-family: 'Lato', sans-serif;*/
 		line-height: 32px;
 	}
 
@@ -4677,7 +4679,7 @@
 
 	.timelineFlat .item_open h2{
 		font-size:20px;
-		font-family: Tahoma, Verdana, Segoe, sans-serif;
+		/*font-family: Tahoma, Verdana, Segoe, sans-serif;*/
 		color:white;
 		margin: 0 0 20px;
 	}
@@ -6843,7 +6845,7 @@
 
 	.contact .form input#verify{
 		width: auto;
-		font-family: Tahoma, Verdana, Segoe, sans-serif;
+		/*font-family: Tahoma, Verdana, Segoe, sans-serif;*/
 		display: block;
 		float: left;
 		padding:10px 20px;
@@ -6853,7 +6855,7 @@
 
 	.contact .type-2 .form input#verify{
 		width: 100%;
-		font-family: Tahoma, Verdana, Segoe, sans-serif;
+		/*font-family: Tahoma, Verdana, Segoe, sans-serif;*/
 		display: block;
 		float: left;
 		padding:10px 20px;
@@ -7119,7 +7121,7 @@
 		top: 0;
 		left:0;
 		position: relative;
-		font-family: 'FontAwesome';
+		/*font-family: 'FontAwesome';*/
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
 		transition: all 0.3s;
@@ -7151,7 +7153,7 @@
 		top: 0;
 		left:-20px;
 		position: absolute;
-		font-family: 'FontAwesome';
+		/*font-family: 'FontAwesome';*/
 		-webkit-transition: all 0.3s;
 		-moz-transition: all 0.3s;
 		transition: all 0.3s;
@@ -8452,7 +8454,9 @@
 }
 
 .widget ul.categories li:before{
+    /*
 	font-family: 'FontAwesome';
+    */
 	content: "\f105";
 	font-weight: normal;
 	font-style: normal;
@@ -8909,8 +8913,14 @@
 	opacity: 1;
 }
 
-.colored-bg,.search:focus{
+.colored-bg,
+.search:focus,
+.first-nav,
+.first-nav2{
 	background-color:#3680ff !important
+}
+.colored{
+	color:#3680ff !important;
 }
 .clear-main{
 	padding-left: 0px;
@@ -9053,6 +9063,8 @@ Jairoooo
 .item img{
 	margin:auto;
 }
+
+/*Bootstrap CAROUSEL MODAL*/
 .modal-content,.modal-content img{
 	background-color:transparent !important;
 	min-height: 350px;
@@ -9073,3 +9085,12 @@ Jairoooo
 .modal-body.producto{
 	border: 0!important;
 }
+
+/*Aside*/
+	aside h3{
+		letter-spacing: 0.019em;
+		font-size:1.2em !important
+	}
+	aside ul{
+		font-size:15.5px;
+	}

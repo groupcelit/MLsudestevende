@@ -1,5 +1,7 @@
 
-	 .colored,.form span.input-group-addon{
+	 .colored,
+	 .form span.input-group-addon,
+	 nav i{
 	     color:#3680ff;
 	 }
 	 footer a:hover,.navigation ul li a:hover{

@@ -7,9 +7,9 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" href="<?=url()?>/panel.css" />
 	<!--<link rel="stylesheet" href="assets/assets/css/bootstrap.min.css" />-->
-	<link rel="stylesheet" href="<?=url()?>/assets/css/reset.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/animate.min.css" />
 	<!--<link rel="stylesheet" href="assets/css/bootstrap.min.css" />-->
+	<link rel="stylesheet" href="<?=url()?>/assets/css/reset.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/socials.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/magnific-popup.css" />
@@ -22,11 +22,11 @@
 	<link rel="stylesheet" href="<?=url()?>/assets/css/settings.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/style.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/ml.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/backgrounds.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/responsive.css" />
 	<link id="changeable_tone" rel="stylesheet" href="<?=url()?>/assets/css/page_tones/dark.css" />
 	<link  rel="stylesheet" href="<?=url()?>/assets/css/skill.css" />
 	<link rel="shortcut icon" href="<?=url()?>/assets/icons/favicon.ico" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Lobster+Two:700|Open+Sans" rel="stylesheet">
 	<meta name="theme-color" content="#3680ff">
 </head>
 <body class="parallax">
@@ -37,8 +37,8 @@
 				<a href="/bienvenido" class="logo-link scroll">
 					<div class="inline-flex">
 						<!--<img src="images/logo.png"/>-->
-						<div class="text hidden-xs">
-							<p class="no-margin no-padding extrabold">sudestevende</p>
+						<div class="text hidden-xs lobstertwo">
+							<p class="no-margin no-padding extrabold t-shadow">SudesteVende</p>
 						</div>
 					</div>
 				</a>
