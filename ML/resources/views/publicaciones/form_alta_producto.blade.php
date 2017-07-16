@@ -107,7 +107,7 @@
 		</section>
 	</div>
 	@include ("pie")
-	<script type="text/javascript" src="<?=url()?>/assets/js/forms/anuncio.js"></script>
+	<script type="text/javascript" src="<?=url()?>/assets/js/forms/anuncios/anuncio.js"></script>
 	<script>
 		$(window).load(function(){
 			var login_form = $("#alta_anuncio_form");
