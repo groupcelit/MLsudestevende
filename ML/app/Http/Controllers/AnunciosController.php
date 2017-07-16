@@ -58,7 +58,9 @@ class AnunciosController extends Controller
     public function getAnuncioInfoById($id_anuncio){
         $anuncio  = Anuncios::find($id_anuncio)->toArray();
 
-        $q_fotos ="SELECT path, id
+        $q_fotos ="SELECT path,
+                          id  ,
+                          principal
                    FROM  fotos
                    WHERE anuncio_id=".$id_anuncio;
         $results_fotos= \DB::select($q_fotos);
@@ -224,28 +226,29 @@ class AnunciosController extends Controller
         $nombre_publicacion='p/'.$categoria_id.'-'.$subcategoria_id.'-'.$anuncio->id.'-'.$url_amigable;
         $anuncio->path=$nombre_publicacion;
         $anuncio->save();
+        if($request->file('img')) {
+            if ($this->setImage($request->file('img'), $url_amigable, $anuncio->id)) {
+                $result = array('exito' => true,
+                    'msg' => 'Imagen grabada'
+                );
 
-       if($this->setImage($request->file('img'),$url_amigable,$anuncio->id)){
-           $result = array('exito'=> true,
-                           'msg' => 'Imagen grabada'
+                $nombre_archivo = resource_path() . "/views/contenido_anuncios/" . $nombre_publicacion . ".blade.php";
+                if ($this->setTemplate($nombre_archivo, $anuncio->id)) {
+                    $result = array('exito' => true,
+                        'msg' => 'Se creo el template'
                     );
+                } else {
+                    $result = array('exito' => false,
+                        'msg' => 'No se pudo crear el template'
+                    );
+                }
 
-           $nombre_archivo= resource_path()."/views/contenido_anuncios/".$nombre_publicacion.".blade.php";
-           if($this->setTemplate($nombre_archivo,$anuncio->id)){
-               $result = array('exito' => true,
-                               'msg'   => 'Se creo el template'
-                           );
-           }else{
-               $result = array('exito' => false,
-                                'msg'  => 'No se pudo crear el template'
-                           );
-           }
-
-       }else{
-           $result = array( 'exito'=> false,
-                             'msg' => 'No se pudo guardar la imagen'
-           );
-       }
+            } else {
+                $result = array('exito' => false,
+                    'msg' => 'No se pudo guardar la imagen'
+                );
+            }
+        }
 
     return $result;
     }
@@ -253,71 +256,75 @@ class AnunciosController extends Controller
     public function editAnuncio(Request $request){
         $anuncio = Anuncios::find($request->input('anuncio_id'));
         $anuncio->modificado_en = date('Y-m-d H:i:s');
-
-        $fotos_borrar = $request->input('fotos_delete');
-        if (!is_null($fotos_borrar)){
-            foreach ($fotos_borrar as $fotoid) {
-                $foto = Fotos::find($fotoid);
-                $foto->borrado_logico = 1;
-                $foto->save();
-                $image_path = url('/').$foto->path;
-                unlink($image_path);
-            }    
+        if($request->input('fotos_delete')) {
+            $fotos_borrar = $request->input('fotos_delete');
+            $this->deleteImage($fotos_borrar);
         }
 
-        $categoria_id  = $request->input('categoria_id');
-        $subcategoria_id = $request->input('subcategoria_id');
+        $anuncio->nombre    = $request->input('nombre');
 
         $anuncio->subcategoria_id = $request->input('subcategoria_id');
         if($request->input('descripcion')){
             $anuncio->descripcion   = $request->input('descripcion');
         }
 
-        $anuncio->nombre    = $request->input('nombre');
+
         if($request->input('precio')) {
             $anuncio->precio = $request->input('precio');
         }
+
         $anuncio->stock     = $request->input('stock');
         $anuncio->nuevo     = $request->input('nuevo');
 
         $anuncio->save();
 
         $url_amigable= $this->urls_amigables($anuncio->nombre);
-        $nombre_publicacion='publicaciones/'.$categoria_id.'-'.$subcategoria_id.'-'.$anuncio->id.'-'.$url_amigable;
-        $anuncio->path=$nombre_publicacion;
-        $anuncio->save();
+        if($request->file('img')){
+            if($this->setImage($request->file('img'),$url_amigable,$anuncio->id)){
+                $result = array('exito'=> true,
+                    'msg' => 'Imagen grabada'
+                ); 
+            }else{
+                $result = array( 'exito'=> false,
+                    'msg' => 'No se pudo guardar la imagen'
+                );
+            }
+        }     
 
-       if($this->setImage($request->file('img'),$url_amigable,$anuncio->id)){
-           $result = array('exito'=> true,
-                           'msg' => 'Imagen grabada'
+        $nombre_archivo= resource_path()."/views/contenido_anuncios/".$anuncio->path;
+        if($this->setTemplate($nombre_archivo,$anuncio->id)){
+           $result = array('exito' => true,
+                           'msg'   => 'Se creo el template'
+                     );
+        }else{
+           $result = array('exito' => false,
+                            'msg'  => 'No se pudo crear el template'
                     );
+         }
 
-           $nombre_archivo= resource_path()."/views/contenido_anuncios/".$nombre_publicacion.".blade.php";
-           if($this->setTemplate($nombre_archivo,$anuncio->id)){
-               $result = array('exito' => true,
-                               'msg'   => 'Se creo el template'
-                           );
-           }else{
-               $result = array('exito' => false,
-                                'msg'  => 'No se pudo crear el template'
-                           );
-           }
-
-       }else{
-           $result = array( 'exito'=> false,
-                             'msg' => 'No se pudo guardar la imagen'
-           );
-       }
+      
 
        //para evitar doble Principal 
-       $query = \DB::table('fotos as f')
+      /* $query = \DB::table('fotos as f')
             ->select('f.id as id',
                 'f.principal as principal')
             ->where('f.principal','=',1)
-            ->and('f.anuncio_id','=',$request->input('anuncio_id'));
-        var_dump($query);
+            ->where('f.anuncio_id','=',$request->input('anuncio_id'));
+        var_dump($query);*/
     return $result;
 
+    }
+
+    public function deleteImage($fotos_borrar){
+        var_dump($fotos_borrar);
+        exit;
+            foreach ($fotos_borrar as $fotoid) {
+                $foto = Fotos::find($fotoid);
+                $foto->borrado_logico = 1;
+                $foto->save();
+                $image_path = '/'.$foto->path;
+                unlink($image_path);
+        }
     }
 
     public function getShow($bool){

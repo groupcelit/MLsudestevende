@@ -14,7 +14,7 @@
 					<form id="alta_anuncio_form" method="post" enctype="multipart/form-data" class="form-horizontal form" >
 						<div class="form-group">
 							<div class="col-md-12 no-padding">
-								<label for="estado" class="control-label col-sm-2">Estado </label>
+								<label for="estado" class="control-label col-sm-3">Estado </label>
 								<div class="btn-group col-sm-4" data-toggle="buttons">
 									<label for="estado" class="btn btn-primary active">
 										<input type="radio" name="nuevo" id="estado1" value="1" autocomplete="off" checked> Nuevo
@@ -33,14 +33,14 @@
 						</div>
 
 						<div class="form-group">
-							<label for="nombre_id" class="control-label col-sm-2">Nombre</label>
+							<label for="nombre_id" class="control-label col-sm-3">Nombre</label>
 							<div class="col-sm-8"> <!-- This is a new div -->
 								<input type="text" class="form-control"  name="nombre" placeholder=" Ford fuego 2000 300km">
 							</div>
 						</div>
 
 						<div class="form-group"> <!-- Full Name -->
-							<label for="price" class="control-label col-sm-2">Precio</label>
+							<label for="price" class="control-label col-sm-3">Precio</label>
 							<div class="col-sm-8">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
@@ -50,7 +50,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="categoria" class="control-label col-sm-2">Categoria</label>
+							<label for="categoria" class="control-label col-sm-3">Categoria</label>
 							<div class="col-sm-8">
 								<select onchange="anuncio.getSubCategorias()" class="form-control" name="categoria_id">
 								<?php foreach ($categorias as $categoria){ ?>
@@ -61,7 +61,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="subcategoria" class="control-label col-sm-2">Sub categoria</label>
+							<label for="subcategoria" class="control-label col-sm-3">Sub categoria</label>
 							<div class="col-sm-8">
 								<select class="form-control" name="subcategoria_id">
 								</select>
@@ -69,14 +69,14 @@
 						</div>
 
 						<div class="form-group">
-							<label for="descripcion" class="control-label col-sm-2">Descripcion</label>
+							<label for="descripcion" class="control-label col-sm-3">Descripcion</label>
 							<div class="col-sm-8">
 								<textarea type="text" class="form-control" name="descripcion" placeholder=" Es una heladera muy grande" rows="5"></textarea>
 							</div>
 						</div>
 
 						<div id="update_imagenes" class="form-group">
-							<label for="fotos" class="control-label col-sm-2">Imagenes</label>
+							<label for="fotos" class="control-label col-sm-3">Imagenes</label>
 							<div class="col-sm-8">
 								<input type="file" name="img[]" class="file">
 								<div class="input-group col-xs-12 ">
@@ -97,7 +97,7 @@
 						</div>
 
 						<div  id="save" class="form-group" >
-							<div class="col-sm-8 col-sm-offset-2"> <!--New div, offset because there is no label -->
+							<div class="col-sm-8 col-sm-offset-3"> <!--New div, offset because there is no label -->
 								<button  type="button" onclick="anuncio.enviar()" class="btn btn-primary">Guardar</button>
 							</div>
 						</div>

@@ -9,7 +9,6 @@
 <aside class="filters grid" role="complementary">
 	<div class="sidebar-offcanvas hidden-print" id="sidebar" role="navigation">
 		<div class="sidebar-nav">
-			<!--aca empieza el acordeon-->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default white-bg b-shadow  ">
 						<div class="panel-heading colored-bg" role="tab" id="headingFive">
@@ -19,24 +18,21 @@
 							  </a>
 						  </div>
 						</div>
-						<div id="collapseFive" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingFive">
+						<div id="collapseFive" class="panel-collapse collapse in " role="tabpanel" aria-labelledby="headingFive" >
 							<div class="panel-body">
 								<ul class="nav">
-								<li><a href="/q/accesorios_automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
-								<li><a href="/q/automoviles"><i class="fa fa-car"></i> Automóviles</a></li>
-								<li><a href="/q/camionetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
-								<li><a href="/q/grandes_transportes"><i class=" fa fa-truck"></i> Grandes transportes</a></li>
-								<li><a href="/q/motos_cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
-								<li><a href="/q/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
-							  </ul>
+									<li><a href="/q/accesorios_automotor"><i class=" fa fa-life-ring"></i> Accesorios del automotor</a></li>
+									<li><a href="/q/automoviles"><i class="fa fa-car"></i> Automóviles</a></li>
+									<li><a href="/q/camionetas"><i class=" fa fa-bus"></i> Camionetas</a></li>
+									<li><a href="/q/grandes_transportes"><i class=" fa fa-truck"></i> Grandes transportes</a></li>
+									<li><a href="/q/motos_cuatriciclos"><i class="fa fa-motorcycle"></i> Motos y Cuatriciclos</a></li>
+									<li><a href="/q/nautica"><i class="fa fa-ship"></i> Náutica</a></li>
+								</ul>
 							</div>
 						 </div>
 			  </div>
 			</div>
-			<!--aca termina un acordeon-->
 
-
-			<!--aca empieza el acordeon-->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default white-bg b-shadow  ">
 						<div class="panel-heading colored-bg" role="tab" id="headingTwo">
@@ -60,10 +56,7 @@
 						 </div>
 			  </div>
 			</div>
-			<!--aca termina un acordeon-->
 
-
-			<!--aca empieza el acordeon-->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default white-bg b-shadow  ">
 						<div class="panel-heading colored-bg" role="tab" id="headingThree">
@@ -85,9 +78,7 @@
 						 </div>
 			  </div>
 			</div>
-			<!--aca termina un acordeon-->
 
-			<!--aca empieza el acordeon-->
 			<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
 				<div class="panel panel-default white-bg b-shadow  ">
 						<div class="panel-heading colored-bg" role="tab" id="headingFour">
@@ -123,7 +114,6 @@
 						</div>
 			  </div>
 			</div>
-			<!--aca termina un acordeon-->
 
 		</div><!--/.well -->
 	</div>

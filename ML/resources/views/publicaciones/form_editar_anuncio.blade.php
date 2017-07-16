@@ -11,10 +11,10 @@
 		<section id="shop" class="results grid">
 			<div class="col-md-12 clear-main">
 				<div class="form white-bg b-shadow">				
-					<form id="alta_anuncio_form" enctype="multipart/form-data" class="form-horizontal form" >
+					<form id="alta_anuncio_form" method="post" enctype="multipart/form-data" class="form-horizontal form" >
 						<div class="form-group">
 							<div class="col-md-12 no-padding">
-								<label for="estado" class="control-label col-sm-2">Estado </label>
+								<label for="estado" class="control-label col-sm-3">Estado </label>
 								<div class="btn-group col-sm-4" data-toggle="buttons">
 									<label for="estado" class="btn btn-primary <?php if($anuncio['info']->nuevo == 1){?> active <?php } ?>">
 										<input type="radio" name="nuevo" id="estado1" value="1" autocomplete="off" <?php if($anuncio['info']->nuevo == 1) {?> checked <?php } ?>> Nuevo
@@ -33,14 +33,14 @@
 						</div>
 
 						<div class="form-group">
-							<label for="nombre_id" class="control-label col-sm-2">Nombre</label>
+							<label for="nombre_id" class="control-label col-sm-3">Nombre</label>
 							<div class="col-sm-8"> <!-- This is a new div -->
 								<input type="text" class="form-control"  name="nombre" placeholder=" Ford fuego 2000 300km" value="<?=$anuncio['info']->nombre?>">
 							</div>
 						</div>
 
 						<div class="form-group"> <!-- Full Name -->
-							<label for="price" class="control-label col-sm-2">Precio</label>
+							<label for="price" class="control-label col-sm-3">Precio</label>
 							<div class="col-sm-8">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
@@ -51,7 +51,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="categoria" class="control-label col-sm-2">Categoria</label>
+							<label for="categoria" class="control-label col-sm-3">Categoria</label>
 							<div class="col-sm-8">
 								<select onchange="anuncio.getSubCategorias()" class="form-control" name="categoria_id">
 								<?php foreach ($categorias as $categoria){
@@ -65,7 +65,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="subcategoria" class="control-label col-sm-2">Sub categoria</label>
+							<label for="subcategoria" class="control-label col-sm-3">Sub categoria</label>
 							<div class="col-sm-8">
 								<select class="form-control" name="subcategoria_id">
 								</select>
@@ -73,28 +73,32 @@
 						</div>
 
 						<div class="form-group">
-							<label for="descripcion" class="control-label col-sm-2">Descripcion</label>
+							<label for="descripcion" class="control-label col-sm-3">Descripcion</label>
 							<div class="col-sm-8">
 								<textarea type="text" class="form-control" name="descripcion" placeholder=" Es una heladera muy grande" rows="5"><?=$anuncio['info']->descripcion?></textarea>
 							</div>
 						</div>
 
 						<div id="update_imagenes" class="form-group">
-							<label for="fotos" class="control-label col-sm-2">Imagenes</label>
-							<div class="col-sm-10">
-								<?php foreach ($anuncio['foto'] as $foto){ ?>
+							<label for="fotos" class="control-label col-sm-3">Imagenes</label>
+							<div class="col-sm-8">
+								<?php
+									foreach ($anuncio['foto'] as $foto){
+									$principal='';
+										if($foto->principal){$principal="principal";}
+									?>
 									<div class="img-wrap">
 									    <span class="close">&times;</span>
-									    <img src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
+									    <img class=<?=$principal?> src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
 									</div>
 								<?php } ?>
 							</div>
-							<label for="fotos" class="control-label col-sm-2">Agregar Imagenes</label>
+							<label for="fotos" class="control-label col-sm-3">Agregar Imagenes</label>
 							<div class="col-sm-8">
 								<input type="file" name="img[]" class="file">
 								<div class="input-group col-xs-12 ">
 									<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-									<input type="text" class="form-control" disabled placeholder="Seleccione la imagen principal">
+									<input type="text" class="form-control" disabled placeholder="Añadir otra imagen">
 									  <span class="input-group-btn">
 										<button class="browse btn btn-primary" type="button"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 									  	<button class="btn btn-success add_image" type="button"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></button>
@@ -124,11 +128,11 @@
 		var anuncio = anuncio || (function () {
 					var parametros = {};
 					var click = false;
-					var fotos_id_delete = [];
+					var fotos_id_delete = {};
 					$('.img-wrap .close').on('click', function() {
 					    var id = $(this).closest('.img-wrap').find('img').data('id');
-					    fotos_id_delete.push(id);
-					    $(this).closest('.img-wrap').css('visibility','hidden');
+					    fotos_id_delete[id]=(JSON.stringify(id));
+					    $(this).closest('.img-wrap').remove();
 					});
 					return {
 
@@ -141,23 +145,24 @@
 						},
 
 						valid: function () {
-								if($('[type=file]')[0].files[0] != undefined) {
-									$.each($('[type=file]'), function (e, file) {
-										/*2mb*/
-										if (file.files[0].size > 2000000) {
-											$('#msg').removeClass();
-											$('#msg').addClass('alert alert-warning');
-											$('#msg').html('Esta imagen pesa mas de 2mb :C ' + file.files[0].name);
-											$('#msg').focus();
-											return false;
-										}
-									});
+								if($('[type=file]')[0].files[0] != undefined || $('.principal').attr('data-id') != undefined) {
+									if($('[type=file]')[0].files[0] != undefined) {
+										$.each($('[type=file]'), function (e, file) {
+											/*2mb*/
+											if (file.files[0].size > 2000000) {
+												$('#msg').removeClass();
+												$('#msg').addClass('alert alert-warning');
+												$('#msg').html('Esta imagen pesa mas de 2mb :C ' + file.files[0].name);
+												$('#msg').focus();
+												return false;
+											}
+										});
+									}
 								}else{
 									$('#msg').removeClass();
 									$('#msg').addClass('alert alert-danger');
 									$('#msg').html('Elige una imagen principal te ayudara a vender');
 									$('#msg').focus();
-
 									return false;
 								}
 
@@ -168,6 +173,7 @@
 							var datos = $("#alta_anuncio_form").serializeObject();
 							datos.anuncio_id = <?=$anuncio['info']->id?>;
 							datos.fotos_delete = fotos_id_delete;
+
 							console.log(datos.fotos_delete);
 
 							var options = {
@@ -175,7 +181,6 @@
 								beforeSend: function (){
 											console.log('enviado datos');
 								},
-								method: 'PUT',
 							    success: function (response) {
 									console.log(response);
 									click=false;
@@ -197,7 +202,7 @@
 								$.ajax({
 									data :data,
 									url : '/subcategorias/getSubCategorias',
-									type : 'POST',
+									type: 'POST',
 									success: function(response) {
 										$('[name=subcategoria_id] option').remove();
 										$.each(response,function(e,data){

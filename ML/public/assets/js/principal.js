@@ -12,7 +12,7 @@ $(document).on('change', '.file', function(){
 /*Agrego nueva fila de imagen boton*/
 $(document).on('click', '#alta_anuncio_form .add_image', function(){
     var html='';
-    html="<div class='col-sm-8 col-sm-offset-2'>" +
+    html="<div class='col-sm-8 col-sm-offset-3'>" +
             "<input type='file' name='img[]' class='file'>" +
             "<div class='input-group col-xs-12 span-with-bg'>" +
                 "<span class='input-group-addon'><i class='glyphicon glyphicon-picture'></i></span>" +
