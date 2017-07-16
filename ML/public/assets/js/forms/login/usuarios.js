@@ -1,4 +1,5 @@
 var usuarios = usuarios || (function () {
+		var click = false;
         //agrego funcion para validar edad
         jQuery.validator.addMethod("mayorA", 
 			function(value, element, params) {
@@ -21,12 +22,10 @@ var usuarios = usuarios || (function () {
 					x = ((value < result) && ('1920-01-01' < value)); //por las dudas el 1920
 			    }
 				return x
-			},'Debe ser mayor a {0} años.');
-        
+			},'Debe ser mayor a {0} años.');       
 
         return {
         	guardar: function(el) {
-        		
         		var userForm = document.getElementById("edit-user-form");
         		var passForm = document.getElementById("edit-password-form");
         		var createUserForm = document.getElementById("create-user-form");
@@ -40,7 +39,7 @@ var usuarios = usuarios || (function () {
         		} else if (el.form == passForm) {
         			console.log("form edit password");
 					if(usuarios.validarPassword(el)) {
-			        		console.log('validPassword() es true')
+			        		console.log('validPassword() es true');
 			        		usuarios.updateUser(el);
 			        	}
         		} else if (el.form == createUserForm) {
@@ -246,26 +245,29 @@ var usuarios = usuarios || (function () {
 				return $(formPadre).valid();
         	},
         	updateUser: function(el) {
-        		
-        		var data = $(el.form).serializeObject();
-                $.ajax({
-                    data : data,
-                    url : '/usuarios/update_user		',
-                    type : 'PUT',
-					contentType : 'application/x-www-form-urlencoded',
-					beforeSend: function() {
-						console.log('cargando');
-					},
-					success: function(response) {
-						console.log(response);
-						if (response.exito) {
-							$("#savebutton").attr('class','btn btn-success');
-							$("#savebutton").html("Se actualizo");
-						} else {
-							alert("crea una cuenta :3");
+        		if(!click) {
+					var data = $(el.form).serializeObject();
+					$.ajax({
+						data: data,
+						url: '/usuarios/update_user		',
+						type: 'PUT',
+						contentType: 'application/x-www-form-urlencoded',
+						beforeSend: function () {
+							click=true;
+							console.log('cargando');
+						},
+						success: function (response) {
+							click=false;
+							console.log(response);
+							if (response.exito) {
+								$("#save").attr('class', 'btn btn-success');
+								$("#save").html("Se actualizo");
+							} else {
+								alert("crea una cuenta :3");
+							}
 						}
-					}
-                })
+					})
+				}
         	},
         	createUser: function(el) {
         		var data = $(el.form).serializeObject();        		
@@ -280,10 +282,10 @@ var usuarios = usuarios || (function () {
 					},
 					success: function(response) {
 						if (response.exito) {
-							$("#savebutton").attr('class','btn btn-success');
-							$("#savebutton").attr("value","Su cuenta ha sido creada con exito");
-							$("#savebutton").attr("onclick","");
-							setTimeout(function(){ window.location.replace("/ingresar"); }, 2000);
+							$("#save").attr('class','btn btn-success');
+							$("#save").attr("value","Su cuenta ha sido creada con exito");
+							$("#save").attr("onclick","");
+							setTimeout(function(){ window.location.replace("/ingresar"); }, 1000);
 						} else {
 							alert("Hubo un error, intentelo de nuevo");
 							window.location.replace("/registrandome");
@@ -293,34 +295,50 @@ var usuarios = usuarios || (function () {
         	},
         	loginUser: function(el) {
         		var data = $(el.form).serializeObject();
+				if(!click) {
+					$.ajax({
+						data: data,
+						url: 'usuarios/login',
+						type: 'POST',
+						contentType: 'application/x-www-form-urlencoded',
+						beforeSend: function () {
+							click=true;
+							$('#msg').removeClass();
+							$('#msg').addClass('alert alert-info');
+							$('#msg').html('Cargando...');
+							$('#msg').focus();
+						},
+						success: function (response) {
+							click = false;
+							if (response.exito) {
+								$('#msg').removeClass();
+								$('#save').remove();
+								$('#msg').addClass('alert alert-success');
+								$('#msg').html('Ha ingresado correctamente');
+								$('#msg').focus();
+								setTimeout(
+									function () {
+										window.location.href = "/"
+									}
+									, 1500);
 
-        		$.ajax({
-                    data : data,
-                    url : 'usuarios/login',
-                    type : 'POST',
-					contentType : 'application/x-www-form-urlencoded',
-					beforeSend: function() {
-						$("#savebutton").attr('class','btn btn-warning');
-						$("#savebutton").attr("value","Cargando");
-					},
-					success: function(response) {
-						if (response.exito) {
-							$("#savebutton").attr('class','btn btn-success');
-							$("#savebutton").attr("value","Ha ingresado correctamente");
-							$("#savebutton").attr("onclick","");
-							setTimeout(function(){ window.location.replace("/"); }, 1500);
-						} else {
-							$("#savebutton").attr('class','btn btn-danger');
-							$("#savebutton").attr("value","Usuario y/o clave incorrectos");
-							setTimeout(function(){ 
-								$("#savebutton").attr('class','btn btn-primary');
-								$("#savebutton").attr("value","Ingresar");
-								$("#usuario_username").val("");
-								$("#usuario_password").val("");
-							}, 1500);
+							} else {
+								$('#msg').removeClass();
+								$('#msg').addClass('alert alert-warning');
+								$('#msg').html('Usuario y/o clave incorrectos');
+								$('#msg').focus();
+							}
+						},
+						error:function(){
+							click=false;
+							$('#msg').removeClass();
+							$('#msg').addClass('alert alert-warning');
+							$('#msg').html('Ops ocurrio un error inesperado');
+							$('#msg').focus();
 						}
-					}
-                })
+
+					})
+				}
         	}
         }
 	}());

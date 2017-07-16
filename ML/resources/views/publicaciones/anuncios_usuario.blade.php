@@ -57,7 +57,7 @@
 											<div class="item_details t-left">
 												<div class="price "><h3 class="text-left text-info">Stock: <?=$anuncio->stock?></h3></div>
 												<a type="button" href="<?=$anuncio->path_anuncio?>" class="btn btn-primary"><h5 class="bold text-left">Ir al Anuncio</h5></a>
-												<a href="/anuncios/get_anuncio/<?=$anuncio->id?>" id="editar_anuncio_button" type="button" class="btn btn-info">
+												<a href="/anuncios/editar_anuncio/<?=$anuncio->id?>" id="editar_anuncio_button" type="button" class="btn btn-info">
 													<h5 class="bold text-left">Editar Anuncio</h5>
 												</a>
 											</div>
@@ -77,6 +77,6 @@
 		</section>
 	</div>		
 	@include('pie')
-	<script type="text/javascript" src="assets/js/anuncios.js"></script>
+	<script type="text/javascript" src="/assets/js/forms/anuncios/anuncios.js"></script>
 </body>
 <html>

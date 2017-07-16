@@ -120,7 +120,7 @@
                             </div>
 
                             <div class="form-group ">
-                                <input id="savebutton" class="btn btn-primary btn-lg btn-block login-button" type="button" value="Registrar" onclick="usuarios.guardar(this)">
+                                <input id="save" class="btn btn-primary btn-lg btn-block login-button" type="button" value="Registrar" onclick="usuarios.guardar(this)">
                             </div>
                         </form>
                     </div>
@@ -129,7 +129,7 @@
         </section>
 	</div>
     @include('pie')
-    <script type="text/javascript" src="assets/js/usuarios.js"></script>
+    <script type="text/javascript" src="/assets/js/forms/login/usuarios.js"></script>
 
 </body>
 </html>

@@ -36,7 +36,6 @@
 	}
 
 	a,
-	a:hover,
 	button,
 	button:hover{
 		text-decoration:none;
@@ -1761,7 +1760,6 @@
 	.nav-menu ul.dropdown-menu{
 		height: auto;
 		margin:0;
-		box-shadow: none;
 		border-radius: 0;
 		padding:0;
 		position: absolute;
@@ -6991,7 +6989,10 @@
 		-moz-transition: all 0.5s;
 		transition: all 0.5s;
 	}
-
+	aside li a:hover{
+		padding-left: 25px;
+		padding-right: 0px;
+	}
 /*.nav-menu ul li a{
 	height: 100%;
 	line-height: 54px;
@@ -8919,9 +8920,7 @@
 .first-nav2{
 	background-color:#3680ff !important
 }
-.colored{
-	color:#3680ff !important;
-}
+
 .clear-main{
 	padding-left: 0px;
 	padding-right: 22px;

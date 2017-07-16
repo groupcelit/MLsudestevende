@@ -1,7 +1,7 @@
 
 	 .colored,
 	 .form span.input-group-addon,
-	 nav i{
+	 nav form i{
 	     color:#3680ff;
 	 }
 	 footer a:hover,.navigation ul li a:hover{
@@ -87,7 +87,6 @@
 	.colored-bg-hover:hover,
 	.widget ul.categories li:hover,
 	.sidebar .widget a.tag:hover,
-	.sidebar-nav ul li:hover,
 	.post .post-inner .post-more:hover,
 	.dark-btn:hover,
 	.colored-btn,
@@ -102,8 +101,9 @@
 		background-color:#3680ff !important;
 	}
 
-	 .nav>li>a:focus, .nav>li>a:hover{
-		 background-color: #649bfb;
+	 .nav>li>a:focus,
+	 .nav>li>a:hover{
+		 background-color: rgba(54, 128, 255, 0.11);
 	 }
 
 	section#features .feature-boxes .feature-box:hover .feature-icon:after{
@@ -121,4 +121,7 @@
 
 	aside li>a>i {
 		color : #999;
+	}
+	aside li>a>i:hover{
+	 	color : white;
 	}

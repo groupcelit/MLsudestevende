@@ -101,7 +101,7 @@
 						</div> -->
 						<div class="form-group">
 							<div class="col-xs-12">
-								<button type="button" id="savebutton" name="edit-user-submit" onclick="usuarios.guardar(this)" class="btn btn-primary">Guardar</button>
+								<button type="button" id="save" name="edit-user-submit" onclick="usuarios.guardar(this)" class="btn btn-primary">Guardar</button>
 							</div>
 						</div>
 					</form>
@@ -140,6 +140,6 @@
 	
 	@include('pie')
 
-	<script type="text/javascript" src="assets/js/usuarios.js"></script>
+	<script type="text/javascript" src="/assets/js/forms/login/usuarios.js"></script>
 </body>
 <html>

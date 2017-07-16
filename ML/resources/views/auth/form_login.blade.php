@@ -31,9 +31,11 @@
 									</div>
 								</div>
 							</div>
+							<div id="msg" class=" hidden" role="alert" align="center">
 
+							</div>
 							<div class="form-group ">
-								<input onclick="usuarios.guardar(this)" id="savebutton" type="button" class="btn btn-primary btn-lg btn-block login-button" value="Ingresar">
+								<input onclick="usuarios.guardar(this)" id="save" type="button" class="btn btn-primary btn-lg btn-block login-button" value="Ingresar">
 							</div>
 						</form>
 					</div>
@@ -42,6 +44,6 @@
 		</section>
 	</div>
 	@include('pie')
-	<script type="text/javascript" src="assets/js/usuarios.js"></script>
+	<script type="text/javascript" src="/assets/js/forms/login/usuarios.js"></script>
 </body>
 </html>
