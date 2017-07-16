@@ -58,12 +58,12 @@ class AnunciosController extends Controller
     public function getAnuncioInfoById($id_anuncio){
         $anuncio  = Anuncios::find($id_anuncio)->toArray();
 
-        $q_fotos ="SELECT path
+        $q_fotos ="SELECT path, id
                    FROM  fotos
                    WHERE anuncio_id=".$id_anuncio;
         $results_fotos= \DB::select($q_fotos);
             foreach ($results_fotos as $foto){
-                $anuncio['foto'][]=$foto->path;
+                $anuncio['foto'][]=$foto;
             }
         $q_anuncio = "SELECT a.nombre as nombre,
                           a.id as id,
@@ -254,6 +254,17 @@ class AnunciosController extends Controller
         $anuncio = Anuncios::find($request->input('anuncio_id'));
         $anuncio->modificado_en = date('Y-m-d H:i:s');
 
+        $fotos_borrar = $request->input('fotos_delete');
+        if (!is_null($fotos_borrar)){
+            foreach ($fotos_borrar as $fotoid) {
+                $foto = Fotos::find($fotoid);
+                $foto->borrado_logico = 1;
+                $foto->save();
+                $image_path = url('/').$foto->path;
+                unlink($image_path);
+            }    
+        }
+
         $categoria_id  = $request->input('categoria_id');
         $subcategoria_id = $request->input('subcategoria_id');
 
@@ -298,6 +309,13 @@ class AnunciosController extends Controller
            );
        }
 
+       //para evitar doble Principal 
+       $query = \DB::table('fotos as f')
+            ->select('f.id as id',
+                'f.principal as principal')
+            ->where('f.principal','=',1)
+            ->and('f.anuncio_id','=',$request->input('anuncio_id'));
+        var_dump($query);
     return $result;
 
     }

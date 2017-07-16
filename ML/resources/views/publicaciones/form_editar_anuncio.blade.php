@@ -11,7 +11,7 @@
 		<section id="shop" class="results grid">
 			<div class="col-md-12 clear-main">
 				<div class="form white-bg b-shadow">				
-					<form id="alta_anuncio_form" method="PUT" enctype="multipart/form-data" class="form-horizontal form" >
+					<form id="alta_anuncio_form" enctype="multipart/form-data" class="form-horizontal form" >
 						<div class="form-group">
 							<div class="col-md-12 no-padding">
 								<label for="estado" class="control-label col-sm-2">Estado </label>
@@ -81,6 +81,15 @@
 
 						<div id="update_imagenes" class="form-group">
 							<label for="fotos" class="control-label col-sm-2">Imagenes</label>
+							<div class="col-sm-10">
+								<?php foreach ($anuncio['foto'] as $foto){ ?>
+									<div class="img-wrap">
+									    <span class="close">&times;</span>
+									    <img src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
+									</div>
+								<?php } ?>
+							</div>
+							<label for="fotos" class="control-label col-sm-2">Agregar Imagenes</label>
 							<div class="col-sm-8">
 								<input type="file" name="img[]" class="file">
 								<div class="input-group col-xs-12 ">
@@ -115,6 +124,12 @@
 		var anuncio = anuncio || (function () {
 					var parametros = {};
 					var click = false;
+					var fotos_id_delete = [];
+					$('.img-wrap .close').on('click', function() {
+					    var id = $(this).closest('.img-wrap').find('img').data('id');
+					    fotos_id_delete.push(id);
+					    $(this).closest('.img-wrap').css('visibility','hidden');
+					});
 					return {
 
 						enviar:function () {
@@ -152,12 +167,15 @@
 						save: function () {
 							var datos = $("#alta_anuncio_form").serializeObject();
 							datos.anuncio_id = <?=$anuncio['info']->id?>;
+							datos.fotos_delete = fotos_id_delete;
+							console.log(datos.fotos_delete);
+
 							var options = {
 								data: datos,
-								type : 'PUT',
 								beforeSend: function (){
 											console.log('enviado datos');
 								},
+								method: 'PUT',
 							    success: function (response) {
 									console.log(response);
 									click=false;
@@ -198,6 +216,7 @@
 			//checks whether the pressed key is "Enter"
 			login_form.bind("keydown",function(e){ if (e.keyCode === 13) {anuncio.enviar()}});
 			anuncio.getSubCategorias();
+			
 		});
 	</script>
 </body>

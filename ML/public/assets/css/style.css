@@ -3192,6 +3192,36 @@
 		background-color:rgba(0,0,0,0.05);
 	}
 
+	.img-wrap {
+	    position: relative;
+	    display: inline-block;
+	    border: 1px #5bc0de solid;
+	    font-size: 0;
+	}
+	.img-wrap img {
+		max-width: 300px;
+		max-height: 300px;
+	}
+	.img-wrap .close {
+	    position: absolute;
+	    top: 2px;
+	    right: 2px;
+	    z-index: 100;
+	    background-color: #FFF;
+	    padding: 5px 2px 2px;
+	    color: #000;
+	    font-weight: bold;
+	    cursor: pointer;
+	    opacity: .2;
+	    text-align: center;
+	    font-size: 22px;
+	    line-height: 10px;
+	    border-radius: 50%;
+	}
+	.img-wrap:hover .close {
+	    opacity: 1;
+	}
+
 /* Image Content Navigations */
 
 	#home.rev-slider .tp-bullets.preview4 .bullet,
