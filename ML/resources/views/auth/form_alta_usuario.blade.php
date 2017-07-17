@@ -104,7 +104,7 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-                                        <input type="password" class="form-control" name="usuario_password" id="usuario_password"  placeholder="Ingresa una Contraseña"/>
+                                        <input type="password" class="form-control" name="usuario_password" id="usuario_password_id"  placeholder="Ingresa una Contraseña"/>
                                     </div>
                                 </div>
                             </div>

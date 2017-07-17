@@ -30,7 +30,7 @@ var usuarios = usuarios || (function () {
         		var passForm = document.getElementById("edit-password-form");
         		var createUserForm = document.getElementById("create-user-form");
         		var loginUserForm = document.getElementById("login_usuario_form");
-        		console.log(createUserForm);
+
         		if (el.form == userForm) {
         		
         			if (usuarios.validarUserEdit(el)) {
@@ -47,7 +47,6 @@ var usuarios = usuarios || (function () {
         			if(usuarios.validarUserCreate(el)) {
         				console.log('validUserCreate() es true');
         				usuarios.createUser(el);
-        				//usuarios.CreateUser(el,id);
         			}
         		} else if (el.form == loginUserForm) {
         			console.log("form login user");
@@ -123,10 +122,12 @@ var usuarios = usuarios || (function () {
 
         		$(formPadre).validate({
         			rules: {
-        				usuario_password: "required",
-					    passverifyinput: {
-					      equalTo: "#usuario_password"
-					    }
+			            usuario_password: {
+			            	required: true
+			            },
+			            usuario_password_confirm: {
+			            	equalTo: "#usuario_password_id"
+			            }
         			},
 			        errorPlacement: function(error, element) {
 					    error.insertAfter(element.parentElement);
@@ -185,6 +186,9 @@ var usuarios = usuarios || (function () {
 			            },
 			            usuario_password: {
 			            	required: true
+			            },
+			            usuario_password_confirm: {
+			            	equalTo: "#usuario_password_id"
 			            }
 			        },
 			        errorPlacement: function(error, element) {
@@ -260,8 +264,8 @@ var usuarios = usuarios || (function () {
 							click=false;
 							console.log(response);
 							if (response.exito) {
-								$("#save").attr('class', 'btn btn-success');
-								$("#save").html("Se actualizo");
+								$(el).attr('class', 'btn btn-success');
+								$(el).html("Se actualizo");
 							} else {
 								alert("crea una cuenta :3");
 							}
