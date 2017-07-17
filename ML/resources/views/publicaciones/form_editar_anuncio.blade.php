@@ -35,7 +35,7 @@
 						<div class="form-group">
 							<label for="nombre_id" class="control-label col-sm-3">Nombre</label>
 							<div class="col-sm-8"> <!-- This is a new div -->
-								<input type="text" class="form-control"  name="nombre" placeholder="Escriba un nombre para el anuncio" value="<?=$anuncio['info']->nombre?>">
+								<input type="text" class="form-control"  name="nombre" placeholder=" Ford fuego 2000 300km" value="<?=$anuncio['info']->nombre?>">
 							</div>
 						</div>
 
@@ -44,7 +44,7 @@
 							<div class="col-sm-8">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="price" name="precio"
+									<input type="number" class="form-control" id="price" name="precio" placeholder=" 500"
 									value="<?=$anuncio['info']->precio?>">
 								</div>
 							</div>
@@ -75,25 +75,27 @@
 						<div class="form-group">
 							<label for="descripcion" class="control-label col-sm-3">Descripcion</label>
 							<div class="col-sm-8">
-								<textarea type="text" class="form-control" name="descripcion" placeholder="Escriba una descripción" rows="5"><?=$anuncio['info']->descripcion?></textarea>
+								<textarea type="text" class="form-control" name="descripcion" placeholder=" Es una heladera muy grande" rows="5"><?=$anuncio['info']->descripcion?></textarea>
 							</div>
 						</div>
 
 						<div id="update_imagenes" class="form-group">
 							<div class="col-md-12">
 								<label for="fotos" class="control-label col-sm-3">Imagenes</label>
-								<div class="col-sm-8">
-									<?php
-									foreach ($anuncio['foto'] as $foto){
-									$principal='';
-									if($foto->principal){$principal="principal";}
-									?>
+								<?php
+								foreach ($anuncio['foto'] as $key => $foto){
+								$principal='';
+								if($key<>0){$class="col-sm-8 col-sm-offset-3";}else{$class="col-sm-8";}
+								if($foto->principal){$principal="principal";}
+								?>
+								<div class="<?=$class?>">
 									<div class="img-wrap">
 										<span class="close">&times;</span>
-										<img class=<?=$principal?> src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
+										<img class="<?=$principal?>" src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
 									</div>
-									<?php } ?>
+
 								</div>
+								<?php } ?>
 							</div>
 							<div class="col-md-12">
 								<label for="fotos" class="control-label col-sm-3">Agregar Imagenes</label>

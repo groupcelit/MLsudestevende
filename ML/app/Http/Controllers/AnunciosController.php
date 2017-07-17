@@ -172,7 +172,9 @@ class AnunciosController extends Controller
     }
 
     public function setImage($imagenes, $url_amigable ,$anuncio_id){
+
         foreach ($imagenes as $key => $img){
+
             if ($key==0){$principal=1;}else{$principal=0;}
 
             $foto= new Fotos();
@@ -180,22 +182,23 @@ class AnunciosController extends Controller
             $foto->creado_en    =   date("Y-m-d H:i:s");
             $foto->anuncio_id   =   $anuncio_id;
             $foto->save();
-            $nombre_foto='public_images/'.$foto->id.'-'.$url_amigable;
-            $foto->path=$nombre_foto;
-
             $archivo =$foto->id.'-'.$url_amigable;
+            $nombre_foto='public_images/'.$archivo;
+            $foto->path=$nombre_foto;
             if($img->move('public_images/',$archivo)){
                 if($foto->save()){
-                    return true;
+                    $result=true;
                 }else{
-                    return false;
+                    $result=false;
+                    return $result;
                 }
             }else{
-                return false;
+                $result= false;
+                return $result;
             }
-
-
         }
+
+        return $result;
 
     }
 
