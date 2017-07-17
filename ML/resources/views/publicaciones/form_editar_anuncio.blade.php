@@ -35,7 +35,7 @@
 						<div class="form-group">
 							<label for="nombre_id" class="control-label col-sm-3">Nombre</label>
 							<div class="col-sm-8"> <!-- This is a new div -->
-								<input type="text" class="form-control"  name="nombre" placeholder=" Ford fuego 2000 300km" value="<?=$anuncio['info']->nombre?>">
+								<input type="text" class="form-control"  name="nombre" placeholder="Escriba un nombre para el anuncio" value="<?=$anuncio['info']->nombre?>">
 							</div>
 						</div>
 
@@ -44,7 +44,7 @@
 							<div class="col-sm-8">
 								<div class="input-group">
 									<span class="input-group-addon">$</span>
-									<input type="number" class="form-control" id="price" name="precio" placeholder=" 500"
+									<input type="number" class="form-control" id="price" name="precio"
 									value="<?=$anuncio['info']->precio?>">
 								</div>
 							</div>
@@ -75,7 +75,7 @@
 						<div class="form-group">
 							<label for="descripcion" class="control-label col-sm-3">Descripcion</label>
 							<div class="col-sm-8">
-								<textarea type="text" class="form-control" name="descripcion" placeholder=" Es una heladera muy grande" rows="5"><?=$anuncio['info']->descripcion?></textarea>
+								<textarea type="text" class="form-control" name="descripcion" placeholder="Escriba una descripción" rows="5"><?=$anuncio['info']->descripcion?></textarea>
 							</div>
 						</div>
 

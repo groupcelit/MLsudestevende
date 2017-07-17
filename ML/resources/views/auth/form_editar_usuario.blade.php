@@ -91,22 +91,14 @@
 							</div>
 						</div>
 						
-						<!-- <div class="form-group">
-							<label class="control-label" for="cityinput">Localidad</label>
-						    <div class="row">
-								<div class="col-md-8">
-									<input name="domicilio-input" type="text" class="form-control" value="">
-								</div>
-							</div>
-						</div> -->
 						<div class="form-group">
 							<div class="col-xs-12">
-								<button type="button" id="save" name="edit-user-submit" onclick="usuarios.guardar(this)" class="btn btn-primary">Guardar</button>
+								<button type="button" name="edit-user-submit" onclick="usuarios.guardar(this)" class="btn btn-primary">Guardar</button>
 							</div>
 						</div>
 					</form>
 				</div>
-				<!-- <h2>Cambiar Contraseña</h2>
+				<h2>Cambiar Contraseña</h2>
 				<div class="form white-bg b-shadow">
 					<form id="edit-password-form" class="form edit form-horizontal" >
 						<div class="form-group">
@@ -114,26 +106,28 @@
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input  id="usuario_password" name="usuario_password" type="password" class="form-control" required>
+									<input  id="usuario_password_id" name="usuario_password" type="password" class="form-control" required>
 								</div>
 								<div class="error_msg_password"></div>
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="passverifyinput" class="col-sm-10">Confirmar Nueva Contraseña</label>
+							<label for="usuario_password_confirm" class="col-sm-10">Confirmar Nueva Contraseña</label>
 							<div class="col-sm-12">
 								<div class="input-group">
 									<span class="input-group-addon"><i class="fa fa-lock fa-lg" aria-hidden="true"></i></span>
-									<input type="password" class="form-control" id="passverifyinput" required>
+									<input type="password" class="form-control" name="usuario_password_confirm" id="usuario_password_confirm" required>
 								</div>
 								<div class="error_msg_password"></div>
 							</div>
 						</div>
-						<div class="col-xs-12">
-							<button type="button" style="float: right" class="btn btn-info" onclick="usuarios.guardar(this,<?=$_SESSION['key']?>)">Guardar</button>
+						<div class="form-group">
+							<div class="col-xs-12">
+								<button type="button" class="btn btn-primary" onclick="usuarios.guardar(this)">Guardar</button>
+							</div>
 						</div>
 					</form>
-				</div> -->
+				</div>
 			</div>
 		</section>
 	</div>
