@@ -12,8 +12,13 @@
 		@include('menu.aside')
 		<section id="shop" class="results grid">
 			<ol class="box section search-results grid f-left">
-				<?php foreach($anuncios as $anuncio) {?>
-				<li class="results-item grid">
+				<?php
+					$inicio=0;
+					foreach($anuncios as $anuncio) {
+					$inicio=$inicio+50;
+				?>
+
+				<li class="results-item grid animated" data-animation="fadeIn" data-animation-delay="<?=$inicio?>">
 					<a href="/<?=$anuncio->path_anuncio?>">
 						<div class="item-image item item--grid">
 							<div class="item__image">

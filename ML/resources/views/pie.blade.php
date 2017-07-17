@@ -1,5 +1,5 @@
 <footer class="big-footer fullwidth colored-bg t-left">
-    <div class="footer_bottom">
+    <div class="footer_bottom inner">
         <div class="boxed clearfix">
             <div class="left f-left">
                 <h6 class="copyright white light animated" data-animation="fadeIn" data-animation-delay="200">

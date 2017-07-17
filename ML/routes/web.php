@@ -69,8 +69,8 @@ $app->get('/p/{path}', function ($path) {
     });
     $app->get('/admin/anuncios',function ()  {
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
-            $anuncios=app('App\Http\Controllers\AnunciosController')->getAdminAnuncios();
-            return view('admin.anuncios', ['anuncios' => $anuncios]);
+            $anuncios=app('App\Http\Controllers\AnunciosController')->getShowAdmin();
+            return view('admin.anuncios_list_admin', ['anuncios' => $anuncios]);
         } else{
             return redirect('/');
         }
@@ -153,7 +153,7 @@ $app->get('/p/{path}', function ($path) {
         $app->get('/anuncios/show','AnunciosController@getShow');
         //Crear Anuncios
         $app->post('/anuncios/new_anuncio', 'AnunciosController@setAnuncio');
-        $app->put('/anuncios/edit_anuncio', 'AnunciosController@editAnuncio');
+        $app->post('/anuncios/edit_anuncio', 'AnunciosController@editAnuncio');
         $app->post('/anuncios/enviar', 'AnunciosController@setAnuncio');
         /*aside*/
         $app->get('/q/{codigo}','AnunciosController@getAnuncioCodigo');

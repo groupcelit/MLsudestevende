@@ -15,7 +15,6 @@ use App\Models\SubCategorias;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
-
 class AnunciosController extends Controller
 {
     /**
@@ -257,7 +256,7 @@ class AnunciosController extends Controller
         $anuncio = Anuncios::find($request->input('anuncio_id'));
         $anuncio->modificado_en = date('Y-m-d H:i:s');
         if($request->input('fotos_delete')) {
-            $fotos_borrar = $request->input('fotos_delete');
+            $fotos_borrar = json_decode($request->input('fotos_delete'));            
             $this->deleteImage($fotos_borrar);
         }
 
@@ -312,17 +311,13 @@ class AnunciosController extends Controller
             ->where('f.anuncio_id','=',$request->input('anuncio_id'));
         var_dump($query);*/
     return $result;
-
     }
 
-    public function deleteImage($fotos_borrar){
-        var_dump($fotos_borrar);
-        exit;
+    public function deleteImage($fotos_borrar){       
             foreach ($fotos_borrar as $fotoid) {
                 $foto = Fotos::find($fotoid);
-                $foto->borrado_logico = 1;
-                $foto->save();
-                $image_path = '/'.$foto->path;
+                $foto->delete();
+                $image_path = $foto->path;
                 unlink($image_path);
         }
     }
@@ -345,6 +340,25 @@ class AnunciosController extends Controller
         }
 
         $query= $query->where('a.borrado_logico','=',0)
+            ->orderBy('a.creado_en', 'desc')
+            ->paginate(40);
+
+        /*var_dump($query->links('home'));*/
+        return $query;
+    }
+
+    public function getShowAdmin(){
+        $query = \DB::table('anuncios as a')
+            ->join('usuarios as u','u.id','=','a.usuario_id')
+            ->select('a.nombre as nombre',
+                    'u.username as username',
+                    'a.id as id',
+                    'a.usuario_id as u_id',
+                    'a.descripcion as descripcion',
+                    'a.path as path_anuncio',
+                    'a.precio as precio',
+                    'a.stock as stock',
+                    'a.borrado_logico as activo')
             ->orderBy('a.creado_en', 'desc')
             ->paginate(40);
 

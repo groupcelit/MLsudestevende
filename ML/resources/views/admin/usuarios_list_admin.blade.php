@@ -5,8 +5,7 @@
         @include('menu')
 	</div>
 	<div id="main">
-		@include('menu.aside')
-		<section  id="usuarios" class="results grid">
+		<section  id="usuarios" class="grid inner">
             <div class="main-login main-center clear-main">
             	<div class="container">
             		<h1>Usuarios</h1>
@@ -57,6 +56,6 @@
         </section>
     </div>
     @include('pie')
-    <script type="text/javascript" src="assets/js/usuarios_admin.js"></script>
+    <script type="text/javascript" src="assets/js/admin/usuarios_admin.js"></script>
 </body>
 </html>

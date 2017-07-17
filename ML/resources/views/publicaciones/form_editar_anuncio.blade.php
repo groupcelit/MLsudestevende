@@ -80,33 +80,37 @@
 						</div>
 
 						<div id="update_imagenes" class="form-group">
-							<label for="fotos" class="control-label col-sm-3">Imagenes</label>
-							<div class="col-sm-8">
-								<?php
+							<div class="col-md-12">
+								<label for="fotos" class="control-label col-sm-3">Imagenes</label>
+								<div class="col-sm-8">
+									<?php
 									foreach ($anuncio['foto'] as $foto){
 									$principal='';
-										if($foto->principal){$principal="principal";}
+									if($foto->principal){$principal="principal";}
 									?>
 									<div class="img-wrap">
-									    <span class="close">&times;</span>
-									    <img class=<?=$principal?> src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
+										<span class="close">&times;</span>
+										<img class=<?=$principal?> src="/<?=$foto->path?>" data-id="<?=$foto->id?>" data-delete="0">
 									</div>
-								<?php } ?>
+									<?php } ?>
+								</div>
 							</div>
-							<label for="fotos" class="control-label col-sm-3">Agregar Imagenes</label>
-							<div class="col-sm-8">
-								<input type="file" name="img[]" class="file">
-								<div class="input-group col-xs-12 ">
-									<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-									<input type="text" class="form-control" disabled placeholder="Añadir otra imagen">
+							<div class="col-md-12">
+								<label for="fotos" class="control-label col-sm-3">Agregar Imagenes</label>
+								<div class="col-sm-8">
+									<input type="file" name="img[]" class="file">
+									<div class="input-group col-xs-12 ">
+										<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+										<input type="text" class="form-control" disabled placeholder="Añadir otra imagen">
 									  <span class="input-group-btn">
 										<button class="browse btn btn-primary" type="button"><i class="glyphicon glyphicon-search"></i> Buscar</button>
 									  	<button class="btn btn-success add_image" type="button"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></button>
 									  </span>
 
+									</div>
 								</div>
-
 							</div>
+
 						</div>
 
 						<div id="msg" class=" hidden" role="alert" align="center">
@@ -128,10 +132,10 @@
 		var anuncio = anuncio || (function () {
 					var parametros = {};
 					var click = false;
-					var fotos_id_delete = {};
+					var fotos_id_delete = [];
 					$('.img-wrap .close').on('click', function() {
 					    var id = $(this).closest('.img-wrap').find('img').data('id');
-					    fotos_id_delete[id]=(JSON.stringify(id));
+					    fotos_id_delete.push(id);
 					    $(this).closest('.img-wrap').remove();
 					});
 					return {
@@ -172,9 +176,9 @@
 						save: function () {
 							var datos = $("#alta_anuncio_form").serializeObject();
 							datos.anuncio_id = <?=$anuncio['info']->id?>;
-							datos.fotos_delete = fotos_id_delete;
+							datos.fotos_delete =JSON.stringify(fotos_id_delete);
 
-							console.log(datos.fotos_delete);
+							console.log(datos);
 
 							var options = {
 								data: datos,
