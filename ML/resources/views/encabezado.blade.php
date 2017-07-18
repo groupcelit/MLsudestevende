@@ -28,6 +28,13 @@
 	<link rel="shortcut icon" href="<?=url()?>/assets/icons/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Lobster+Two:700|Open+Sans" rel="stylesheet">
 	<meta name="theme-color" content="#3680ff">
+	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<script>
+		(adsbygoogle = window.adsbygoogle || []).push({
+			google_ad_client: "ca-pub-5918529515154442",
+			enable_page_level_ads: true
+		});
+	</script>
 </head>
 <body class="parallax">
 	<nav id="navigation" class="white-nav">
