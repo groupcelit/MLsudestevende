@@ -206,6 +206,82 @@ class UsuariosController extends Controller
 
     }
 
+    public function forgotPassword(Request $request) {
+       $consulta='SELECT u.id AS id,
+                          u.username AS username,
+                          pd.email AS email,
+                          pd.nombres AS nombres
+                   FROM usuarios AS u
+                   INNER JOIN person_data AS pd ON pd.id = u.person_data_id
+                   WHERE username="'.$request->input('usuario_username').'"
+                   AND email="'.$request->input('usuario_email').'"
+                   LIMIT 1';
+         /* echo $consulta;*/
+        $result= \DB::select($consulta);
+        if (count($result)==0) {
+          $resultado['exito'] = false;
+          $resultado['msg'] = "El usuario y email no concuerdan";
+        } elseif (count($result)==1) {
+          $usuarioid = $result[0]->id;
+          //genero nueva contraseña
+          $newpassword = $this->crearNuevaPassword(random_int(8, 12));
+
+          //modifico db
+          $usuario = Usuarios::find($usuarioid);
+          $usuario->modificado_en = date('Y-m-d H:i:s');
+          $usuario->password = $newpassword;
+          $usuario->save();
+
+          //Preparo y envio mail
+
+          $headers  = "MIME-Version: 1.0" . "\r\n";
+          $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
+          $headers .= "From: Sudestevende <groupcelit@gmail.com>"."\r\n";
+          $headers .= "Reply-To: groupcelit@gmail.com\r\n";
+          $headers .= "X-Mailer: PHP/" . phpversion();
+          $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+
+          // write the email content
+          $email_content = "Nombre   : ".$result[0]->username." \r\n";
+          $email_content .= "Email   : asdfdsafa\vsdfsd\r\n";
+          $email_content .= "Mensaje : Hola Mundoversion  3\r\n\n";
+
+          $message = '<html><body>';
+          $message .= '<h1>Hola '.$result[0]->nombres.'!</h1>';
+          $message .= '<p>Recientemente requeriste cambiar tu contraseña para tu cuenta de Sudestevende.</p>';
+          $message .= '<h3>Tu nueva contraseña es: '.$newpassword.' </h3>';
+          $message .= '<p>Recomendamos cambiar la contraseña a una de tu agrado.</p>';
+          $message .= '<p>Si no requeriste un cambio de contraseña por favor ignora este email o notificanos del error.</p>';
+          $message .= '<p>Gracias,</p>';
+          $message .= '<h4>Group-Celit</h4>';
+          $message .= '</body></html>';
+          // send the email
+          
+          if(mail($result[0]->email,'Sudestevende' , $message, $headers)) {
+            $resultado['exito'] = true;
+            $resultado['msg'] = "Se ha enviado una nueva contraseña a su mail";
+          } else {
+            $resultado['exito'] = false;
+            $resultado['msg'] = "Ocurrio un error al enviar el mail";
+          }
+        } else {
+          $resultado['exito'] = false;
+          $resultado['msg'] = "Ops ocurrio un error inesperado";
+        }
+      
+        return $resultado;
+    }
+
+    private function crearNuevaPassword($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+            $str = '';
+            $max = mb_strlen($keyspace, '8bit') - 1;
+            for ($i = 0; $i < $length; ++$i) {
+                $str .= $keyspace[random_int(0, $max)];
+            }
+            return $str;
+      }
+  
+
     public function destroySession(){
         session_unset();
         session_destroy();

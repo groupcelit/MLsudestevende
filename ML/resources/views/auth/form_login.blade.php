@@ -31,6 +31,7 @@
 									</div>
 								</div>
 							</div>
+							<a href="/olvide_contrasenia"><h6 class="colored pull-right">Olvide mi contraseña</h6></a>
 							<div id="msg" class=" hidden" role="alert" align="center">
 
 							</div>

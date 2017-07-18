@@ -30,6 +30,7 @@ var usuarios = usuarios || (function () {
         		var passForm = document.getElementById("edit-password-form");
         		var createUserForm = document.getElementById("create-user-form");
         		var loginUserForm = document.getElementById("login_usuario_form");
+        		var forgotPassForm = document.getElementById("forgot_password_form");
 
         		if (el.form == userForm) {
         		
@@ -37,23 +38,20 @@ var usuarios = usuarios || (function () {
 		        		usuarios.updateUser(el);
 		        	}
         		} else if (el.form == passForm) {
-        			console.log("form edit password");
 					if(usuarios.validarPassword(el)) {
-			        		console.log('validPassword() es true');
 			        		usuarios.updateUser(el);
 			        	}
         		} else if (el.form == createUserForm) {
-        			console.log("form create user");
         			if(usuarios.validarUserCreate(el)) {
-        				console.log('validUserCreate() es true');
         				usuarios.createUser(el);
         			}
         		} else if (el.form == loginUserForm) {
-        			console.log("form login user");
         			if(usuarios.validarUserLogin(el)) {
-        				console.log('validUserLogin() es true');
         				usuarios.loginUser(el);
-        				//usuarios.CreateUser(el,id);
+        			}
+        		} else if (el.form == forgotPassForm) {
+        			if(usuarios.validarForgotPassword(el)) {
+        				usuarios.forgotPassword(el);
         			}
         		} else {
 	        		console.log('no se valido');
@@ -91,17 +89,8 @@ var usuarios = usuarios || (function () {
 			            	maxlength: 8
 			            }
 			        },
-			        errorPlacement: function(error, element) {
-					    error.insertAfter(element.parentElement);
-					},
-			        highlight: function (element) {
-			            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-			            
-			        },
-			        success: function (element) {
-			            element.addClass('valid')
-			                .closest('.form-group').removeClass('has-error').addClass('has-success');
-			        }
+        			errorClass: "alert-danger",
+        			validClass: "alert-success"
 			    });
         		
 			    jQuery.extend(jQuery.validator.messages, {
@@ -129,17 +118,8 @@ var usuarios = usuarios || (function () {
 			            	equalTo: "#usuario_password_id"
 			            }
         			},
-			        errorPlacement: function(error, element) {
-					    error.insertAfter(element.parentElement);
-					},
-			        highlight: function (element) {
-			            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-			            
-			        },
-			        success: function (element) {
-			            element.addClass('valid')
-			                .closest('.control-group').removeClass('has-error').addClass('has-success');
-			        }
+        			errorClass: "alert-danger",
+        			validClass: "alert-success"
 			    });
         		
 			    jQuery.extend(jQuery.validator.messages, {
@@ -191,17 +171,8 @@ var usuarios = usuarios || (function () {
 			            	equalTo: "#usuario_password_id"
 			            }
 			        },
-			        errorPlacement: function(error, element) {
-					    error.insertAfter(element.parentElement);
-					},
-			        highlight: function (element) {
-			            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-			            
-			        },
-			        success: function (element) {
-			            element.addClass('valid')
-			                .closest('.form-group').removeClass('has-error').addClass('has-success');
-			        }
+        			errorClass: "alert-danger",
+        			validClass: "alert-success"
 			    });
 
         		jQuery.extend(jQuery.validator.messages, {
@@ -229,17 +200,8 @@ var usuarios = usuarios || (function () {
         				}
 
         			},
-			        errorPlacement: function(error, element) {
-					    error.insertAfter(element.parentElement);
-					},
-			        highlight: function (element) {
-			            $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-			            
-			        },
-			        success: function (element) {
-			            element.addClass('valid')
-			                .closest('.form-group').removeClass('has-error').addClass('has-success');
-			        }
+        			errorClass: "alert-danger",
+        			validClass: "alert-success"
         		});
 
         		jQuery.extend(jQuery.validator.messages, {
@@ -248,6 +210,32 @@ var usuarios = usuarios || (function () {
 
 				return $(formPadre).valid();
         	},
+        	validarForgotPassword: function(el) {
+        		var formPadre = el.form;
+
+        		var formPadre = el.form;
+
+        		$(formPadre).validate({
+        			rules: {
+        				usuario_username: {
+        					required: true
+        				},
+        				usuario_email: {
+        					required: true
+        				}
+        			},
+        			errorClass: "alert-danger",
+        			validClass: "alert-success"
+        		});
+
+        		jQuery.extend(jQuery.validator.messages, {
+				    required: "",
+				    email: ""
+				});
+
+				return $(formPadre).valid();
+        	},
+
         	updateUser: function(el) {
         		if(!click) {
 					var data = $(el.form).serializeObject();
@@ -262,7 +250,6 @@ var usuarios = usuarios || (function () {
 						},
 						success: function (response) {
 							click=false;
-							console.log(response);
 							if (response.exito) {
 								$(el).attr('class', 'btn btn-success');
 								$(el).html("Se actualizo");
@@ -330,6 +317,54 @@ var usuarios = usuarios || (function () {
 								$('#msg').removeClass();
 								$('#msg').addClass('alert alert-warning');
 								$('#msg').html('Usuario y/o clave incorrectos');
+								$('#msg').focus();
+							}
+						},
+						error:function(){
+							click=false;
+							$('#msg').removeClass();
+							$('#msg').addClass('alert alert-warning');
+							$('#msg').html('Ops ocurrio un error inesperado');
+							$('#msg').focus();
+						}
+
+					})
+				}
+        	},
+        	forgotPassword: function(el) {
+        		var data = $(el.form).serializeObject();
+        		if(!click) {
+					$.ajax({
+						data: data,
+						url: '/usuarios/forgot_password',
+						type: 'GET',
+						contentType: 'application/x-www-form-urlencoded',
+						beforeSend: function () {
+							click=true;
+							$('#msg').removeClass();
+							$('#msg').addClass('alert alert-info');
+							$('#msg').html('Cargando...');
+							$('#msg').focus();
+						},
+						success: function (response) {
+							click = false;
+							console.log(response);
+							if (response.exito) {
+								$('#msg').removeClass();
+								$('#save').remove();
+								$('#msg').addClass('alert alert-success');
+								$('#msg').html(response.msg);
+								$('#msg').focus();
+								setTimeout(
+									function () {
+										window.location.href = "/"
+									}
+									, 3000);
+
+							} else {
+								$('#msg').removeClass();
+								$('#msg').addClass('alert alert-danger');
+								$('#msg').html(response.msg);
 								$('#msg').focus();
 							}
 						},
