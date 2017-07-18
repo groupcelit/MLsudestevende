@@ -1,38 +1,14 @@
-/***************************************************
-			      	globales
-***************************************************/
-*{margin: 0px;padding: 0px; border:none; }
-
-body {
-	/*font-family:"Myriad Pro", "Trebuchet MS", Arial, sans-serif;*/
-	font-size: 13px;
-	color: #444;
-	line-height: 1.5;
-}
-
 #nav{
 	margin-top: 54px;
-    width: 100%;
-	text-align: center;
-	background: #ccd7e9;
+  	text-align: center;
 }
-#main {
-	/*width:100%;*/
-	margin: auto;
-	/*padding: 10px 10px 45px 10px;	*/
-	max-width: 1265px;
-}
-a {
-    text-decoration: none;
-    color: #3F6592;
-}
+
 a:hover {
 	text-decoration: none;
 }
 /***************************************************
 			      	menu
 ***************************************************/
-
 #nav ul {
 	display: block;
     margin: 0px auto;
@@ -46,7 +22,6 @@ a:hover {
     list-style-type: none;
     margin: 0 5px;
     padding: 8px 10px;
-    background: #f5f5f5;
 }
 #nav ul li:hover {
     color: black;
@@ -54,81 +29,10 @@ a:hover {
 /***************************************************
 			      	clases
 ***************************************************/
-.panel, #panel{
-	width:100%;
-	margin:auto;
-	background-color:#f1f5fe;
-	border: 1px solid #4fb8db;
-	}
-.paneles, #paneles{
-	margin:15px auto;
-	width: 450px;
-	margin:15px auto;
-	border: 1px solid #4fb8db;
-	background-color:#e8f7ff;
+textarea{
+	resize:none;
 }
-.titulo, th{
-	font-weight:bold;
-	background-color:#d9e5fb;
-	}
-.lista, .titulo td{
-	border:1px dashed #dbe1ea;
-	border-bottom:1px solid #c9e0fc;
-	}
-
-textarea{height:145px;resize:none;}
-
-.panelesU{
-    font-family: "Trebuchet MS";
-    margin:15px auto;
-    width: 350px;
-    height: 100px;
-    padding: 15px;
-    border: 1px solid #b8d0ff;
-    background-color:#c9e0fd;
-    color: #333;
-}
-
-#error{
-	width: 450px;
-	margin:15px auto;
-	color: #f00;
-	text-align:center;
-	font-weight:bolder;
-}
-
-
-
 h3{
 	text-align:center;
 }
-.centrar{
-	margin: auto;
-	text-align:center;
-}
 
-#contenedor{
-	width: 100%;
-	margin-left: 3%;
-
-
-}
-.paneladmin{
-	display:inline-block;
-	margin:auto;
-	padding:5%;
-	background-color: #3F6592;
-    border: 2px solid #FFF;
-    border-radius: 25px;
-    height: 120px;
-}
-
-.paneladmin img{
-	width: 120px;
-	height: 110px;
-
-}
-
-.paneladmin p{
-	color:#FFF;
-}

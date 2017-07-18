@@ -1,14 +1,12 @@
 
 @include('encabezado')
-
 </head>
 <body>
-	<!--<div id="top"><img src="imagenes/top.png" alt="encabezado" width="980" height="80"></div>-->
 	<div id="nav">
 		@include('menu')
 	</div>
 	<section class="home container"></section>
-	<div  id="main">
+	<div id="main">
 		@include('menu.aside')
 		<section id="shop" class="results grid">
 			<ol class="box section search-results grid f-left">
@@ -17,7 +15,6 @@
 					foreach($anuncios as $anuncio) {
 					$inicio=$inicio+50;
 				?>
-
 				<li class="results-item grid animated" data-animation="fadeIn" data-animation-delay="<?=$inicio?>">
 					<a href="/<?=$anuncio->path_anuncio?>">
 						<div class="item-image item item--grid">
@@ -34,9 +31,7 @@
 					</a>
 				</li>
 				<?php } ?>
-
 			</ol>
-
 			<nav align="center" aria-label="Paginado">
 				<?=$anuncios->links();?>
 			</nav>

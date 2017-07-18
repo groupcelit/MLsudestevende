@@ -125,3 +125,7 @@
 	aside li>a>i:hover{
 	 	color : white;
 	}
+
+	 .panel{
+		 border: 1px solid #4fb8db;
+	 }
