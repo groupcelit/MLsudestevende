@@ -279,8 +279,38 @@ class UsuariosController extends Controller
                 $str .= $keyspace[random_int(0, $max)];
             }
             return $str;
+    }
+
+    public function confirmUsuario(Request $request) {
+      $consulta='SELECT *
+                   FROM usuarios AS u
+                   WHERE username="'.$request->input('usuario_username').'"
+                   LIMIT 1';
+      
+      $result= \DB::select($consulta);
+      if(count($result)==0) {
+        $resultado['exito'] = true;
+      } else {
+        $resultado['exito'] = false;
       }
-  
+    return $resultado;
+    }
+
+    public function confirmEmail(Request $request) {
+      $consulta='SELECT *
+                   FROM usuarios AS u
+                   INNER JOIN person_data AS pd ON pd.id = u.person_data_id
+                   WHERE pd.email="'.$request->input('usuario_email').'"
+                   LIMIT 1';
+      
+      $result= \DB::select($consulta);
+      if(count($result)==0) {
+        $resultado['exito'] = true;
+      } else {
+        $resultado['exito'] = false;
+      }
+    return $resultado;
+    }
 
     public function destroySession(){
         session_unset();

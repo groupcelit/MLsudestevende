@@ -44,7 +44,9 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-users fa" aria-hidden="true"></i></span>
-                                        <input type="text" class="form-control" name="usuario_username" id="usuario_username"  placeholder="Nombre de usuario"/>
+                                        <input type="text" class="form-control" name="usuario_username" id="usuario_username_id"  placeholder="Nombre de usuario" aria-describedby="inputUsernameStatus"/>
+                                        <span id="inputUsernameStatusSpan" aria-hidden="true"></span>
+                                        <span id="inputUsernameStatus" class="sr-only">(success)</span>
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +56,9 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
-                                        <input type="email" class="form-control" name="persona_email" id="persona_email"  placeholder="Cual es tu email?"/>
+                                        <input type="email" class="form-control" name="persona_email" id="persona_email_id"  placeholder="Cual es tu email?" aria-describedby="inputEmailStatus"/>
+                                        <span id="inputEmailStatusSpan" aria-hidden="true"></span>
+                                        <span id="inputEmailStatus" class="sr-only">(success)</span>
                                     </div>
                                 </div>
                             </div>
@@ -130,7 +134,24 @@
 	</div>
     @include('pie')
     <script type="text/javascript" src="/assets/js/forms/login/usuarios.js"></script>
-
+    <script type="text/javascript">
+        $(window).load(function(){
+            $("#usuario_username_id").focusout(function() {
+                usuarios.validarUsername(this);
+                if(this.value=='') {
+                    $('#inputUsernameStatusSpan').removeClass('glyphicon-ok').addClass('glyphicon glyphicon-remove form-control-feedback');
+                    $(this).parent().parent().parent().removeClass('has-success').addClass('has-error has-feedback');
+                }
+            })
+            $("#persona_email_id").focusout(function() {
+                usuarios.validarEmail(this);
+                if(this.value=='') {
+                    $('#inputEmailStatusSpan').removeClass('glyphicon-ok').addClass('glyphicon glyphicon-remove form-control-feedback');
+                    $(this).parent().parent().parent().removeClass('has-success').addClass('has-error has-feedback');
+                }
+            })
+        });
+    </script>
 </body>
 </html>
 

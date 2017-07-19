@@ -63,16 +63,17 @@
 								<div class="error_msg"></div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="persona_email" class="col-sm-10">Email</label>
-							<div class="col-sm-12">
-								<div class="input-group">
-									<span class="input-group-addon"><i class="fa fa-envelope" aria-hidden="true"></i></span>
-									<input id="persona_email" name="persona_email" type="email" class="form-control" required value="<?=$person_data->email?>">
-								</div>
-								<div class="error_msg"></div>
-							</div>
-						</div>
+ 						<div class="form-group">
+                            <label for="email" class="col-sm-10">Email</label>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+                                    <input type="email" class="form-control" name="persona_email" id="persona_email_id"  placeholder="Cual es tu email?" aria-describedby="inputEmailStatus" value="<?=$person_data->email?>"/>
+                                    <span id="inputEmailStatusSpan" aria-hidden="true"></span>
+                                    <span id="inputEmailStatus" class="sr-only">(success)</span>
+                                </div>
+                            </div>
+                        </div>
 						<div class="form-group">
 							<label for="persona_celular_codigo" class="col-sm-12">Telefono</label>
 							<div class="col-sm-3">
@@ -135,5 +136,19 @@
 	@include('pie')
 
 	<script type="text/javascript" src="/assets/js/forms/login/usuarios.js"></script>
+	 <script type="text/javascript">
+        $(window).load(function(){
+            $("#persona_email_id").focusout(function() {
+                usuarios.validarEmail(this);
+                if(this.value=='') {
+                    $('#inputEmailStatusSpan').removeClass('glyphicon-ok').addClass('glyphicon glyphicon-remove form-control-feedback');
+                    $(this).parent().parent().parent().removeClass('has-success').addClass('has-error has-feedback');
+                } else if (this.value=='<?=$person_data->email?>') {
+                	$('#inputEmailStatusSpan').removeClass('glyphicon-remove');
+                    $(this).parent().parent().parent().removeClass('has-error');
+                }
+            })
+        });
+    </script>
 </body>
 <html>

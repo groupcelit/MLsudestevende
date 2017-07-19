@@ -236,6 +236,51 @@ var usuarios = usuarios || (function () {
 				return $(formPadre).valid();
         	},
 
+        	validarUsername: function(el) {
+        		if (el.value!='') {
+        			var data = {usuario_username : el.value}
+	        		$.ajax({
+	        			data: data,
+						url: '/usuarios/confirmar_usuario_unico',
+						type: 'GET',
+						contentType: 'application/x-www-form-urlencoded',
+						success: function(response) {
+							if (response.exito) {
+								$('#inputUsernameStatusSpan').removeClass('glyphicon-remove').addClass('glyphicon glyphicon-ok form-control-feedback');
+								$(el).parent().parent().parent().removeClass('has-error').addClass('has-success has-feedback')
+							} else {
+								$('#inputUsernameStatusSpan').addClass('glyphicon glyphicon-remove form-control-feedback');
+								$(el).parent().parent().parent().addClass('has-error has-feedback')
+							}
+						}
+
+	        		})
+        		}
+        		
+        	},
+        	validarEmail: function(el) {
+        		if (el.value!='') {
+        			var data = {usuario_email : el.value}
+	        		$.ajax({
+	        			data: data,
+						url: '/usuarios/confirmar_email_unico',
+						type: 'GET',
+						contentType: 'application/x-www-form-urlencoded',
+						success: function(response) {
+							if (response.exito) {
+								$('#inputEmailStatusSpan').removeClass('glyphicon-remove').addClass('glyphicon glyphicon-ok form-control-feedback');
+								$(el).parent().parent().parent().removeClass('has-error').addClass('has-success has-feedback')
+							} else {
+								$('#inputEmailStatusSpan').addClass('glyphicon glyphicon-remove form-control-feedback');
+								$(el).parent().parent().parent().addClass('has-error has-feedback')
+							}
+						}
+
+	        		})
+        		}
+        		
+        	},
+
         	updateUser: function(el) {
         		if(!click) {
 					var data = $(el.form).serializeObject();

@@ -148,6 +148,11 @@ $app->get('/p/{path}', function ($path) {
         /*Logearse*/
         $app->post('/usuarios/login','UsuariosController@postLogin');
 
+        /*Confirmar usuario unico*/
+        $app->get('/usuarios/confirmar_usuario_unico','UsuariosController@confirmUsuario');
+        /*Confirmar email unico*/
+        $app->get('/usuarios/confirmar_email_unico','UsuariosController@confirmEmail');
+
 
         /*Olvido contraseña*/
         $app->get('/olvide_contrasenia',function() {
