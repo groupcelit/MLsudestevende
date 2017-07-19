@@ -10,6 +10,22 @@
 		@include('menu.aside')
 		<section id="shop" class="results grid">
 			<ol class="box section search-results grid f-left">
+				<?php 
+					if (empty($anuncios[0])) { ?>
+						
+					<ul class="nav">
+						<div class="logo f-left item-image">
+						    <i class="fa fa-search fa-5x" aria-hidden="true"></i>
+						</div>
+						<h2><p class="bg-warning">No hay publicaciones que coincidan con tu búsqueda.</p></h2>
+						<ul class="nav">
+						    <li><p class="bg-warning">Revisa la ortografía de la palabra.</p></li>
+						    <li><p class="bg-warning">Utiliza palabras más genéricas o menos palabras.</p></li>
+						    <li><p class="bg-warning">Navega por categorías de productos para encontrar un producto similar.</p></li>
+						</ul>
+					</ul>
+
+				<?php } ?>
 				<?php
 					$inicio=0;
 					foreach($anuncios as $anuncio) {
