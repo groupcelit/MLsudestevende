@@ -37,18 +37,6 @@ PAGE LOADER
     $("#pageloader").delay(300).fadeOut("slow");
 
 /* ==============================================
-HOME PAGE IMAGE SLIDER (SUPER SLIDES)
-=============================================== */
-
-    $('#fullscreen').superslides({
-        play: 12000,
-        animation_speed: 600,
-        usekeyboard: false,
-        animation: 'fade',
-        inherit_height_from: window
-    });
-
-/* ==============================================
 TEXT ROTATOR FOR HOME TEXTS
 =============================================== */  
         
@@ -103,42 +91,9 @@ NAVIGATION SCROLL EFFECT
 
     //Add Navigation Color
     $('.white-nav > .navigation').addClass('white-nav');
-    $('.dark-nav > .navigation').addClass('dark-nav');
-    $('.colored-nav > .navigation').addClass('colored-nav');
-
-    //Clone Navigation
-    $(".double-nav").clone().insertAfter("#navigation");
-    //Select Second Nav
-    var sMenu = $('#navigation + .double-nav');
-    $(sMenu).addClass('second-nav').removeClass('first-nav');
-
-    //Change Logo SRC For White Nav
-    $('.second-nav.white-nav .logo a img').each(function() {
-        var secondLogo = $(this).data('second-logo');
-        $(this).attr('src', secondLogo);
-    });
-
-    //AddClass for ScrollSpy
-    $('#navigation + .double-nav .nav-menu').addClass('navigation-menu');
 
     var pagetopHeight = $('#pagetop').outerHeight();
-    var headerH = $('nav').outerHeight();
     $('#pagetop + nav').css({'margin-top': pagetopHeight + 'px'});
-
-    //Second Nav Script
-    /*$(window).scroll(function () {
-        //Visible Second Nav Scripts
-        var y = $(this).scrollTop();
-        var homeH = $('body section:nth-of-type(1)').outerHeight();
-        var headerH = $('nav').outerHeight();
-        var z = $('body section:nth-of-type(1)').offset().top + homeH - headerH;
-        if (y >= z) {
-            $(sMenu).css({top: '0' + 'px'})
-
-        } else {
-            $(sMenu).css({top: '-90' + 'px'})
-        }
-    });// End Scroll Function*/
 
 /* ==============================================
 NAVIGATION DROP DOWN MENU
@@ -188,13 +143,7 @@ MOBILE NAV BUTTON
             $("nav + .navigation .nav-menu").slideToggle("2000")
         }
     });
-
-/* ==============================================
-FIT VIDEOS
-=============================================== */
-
-     $(".fitvid").fitVids();
-
+    
  /* ==============================================
 ALERT CLOSE
 =============================================== */
@@ -204,21 +153,6 @@ ALERT CLOSE
         return false;
     });
 
-/* ==============================================
-CONTENT OPTIONS
-=============================================== */
-
-   $(".content .video").each(function(){
-        'use strict';
-        // Add video button
-        $(this).append("<a class='play mp-video'></a>");
-        // Add background image
-        $(this).append("<span class='image'></span>");
-        var imageBg = $(this).data('image');
-        var videoLink = $(this).data('video');
-        $(this).find('a.play').attr({'href' : videoLink});
-        $(this).find("span.image").css({'background-image' : 'url(images/' + imageBg + ')' });
-    });
 
 /* ==============================================
 SOFT SCROLL EFFECT FOR NAVIGATION LINKS
@@ -248,323 +182,6 @@ FEATURES COLLAPSE
     });
 
 /* ==============================================
-CAROUSEL SLIDER FOR BOXES / 3 ITEMS
-=============================================== */  
-
-    var owlBox = $(".box-carousel.three-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 3,
-        // Responsive Settings
-        itemsDesktop : [1169,3],
-        itemsDesktopSmall : [979,2],
-        itemsTablet : [800,2],
-        itemsTabletSmall : false,
-        itemsMobile : [560,1],
-        // End Responsive Settings
-        mouseDrag : false,
-        pagination : true,
-        navigation : true,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-
-    // Arrows
-    $( ".boxes-type-4 .owl-prev" ).addClass( "fa fa-angle-left" );
-    $( ".boxes-type-4 .owl-next" ).addClass( "fa fa-angle-right" );
-
-/* ==============================================
-CAROUSEL SLIDER FOR BOXES / 3 ITEMS / DRAGABLE
-=============================================== */  
-
-    var owlBox = $(".box-carousel-dragable.three-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 3,
-        // Responsive Settings
-        itemsDesktop : [1169,3],
-        itemsDesktopSmall : [979,2],
-        itemsTablet : [600,2],
-        itemsTabletSmall : false,
-        itemsMobile : [560,1],
-        // End Responsive Settings
-        mouseDrag : true,
-        pagination : false,
-        navigation : true,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-
-/* ==============================================
-CAROUSEL SLIDER FOR BOXES / 4 ITEMS
-=============================================== */  
-
-    var owlBox = $(".box-carousel.four-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 4,
-        // Responsive Settings
-        itemsDesktop : [1169,3],
-        itemsDesktopSmall : [979,3],
-        itemsTablet : [640,2],
-        itemsTabletSmall : false,
-        itemsMobile : [560,1],
-        // End Responsive Settings
-        mouseDrag : false,
-        pagination : true,
-        navigation : true,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-
-/* ==============================================
-CAROUSEL SLIDER FOR BOXES / 4 ITEMS / DRAGABLE
-=============================================== */  
-
-    var owlBox = $(".box-carousel-dragable.four-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 4,
-        // Responsive Settings
-        itemsDesktop : [1169,3],
-        itemsDesktopSmall : [979,3],
-        itemsTablet : [640,2],
-        itemsTabletSmall : false,
-        itemsMobile : [560,1],
-        // End Responsive Settings
-        mouseDrag : true,
-        pagination : false,
-        navigation : true,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-
-/* ==============================================
-CAROUSEL SLIDER FOR BOXES / 5 ITEMS
-=============================================== */  
-
-    var owlBox = $(".box-carousel.five-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 5,
-        // Responsive Settings
-        itemsDesktop : [1169,5],
-        itemsDesktopSmall : [979,4],
-        itemsTablet : [640,3],
-        itemsTabletSmall : false,
-        itemsMobile : [560,3],
-        // End Responsive Settings
-        mouseDrag : true,
-        pagination : false,
-        navigation : false,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-
-/* ==============================================
-CAROUSEL SLIDER FOR BOXES / 6 ITEMS
-=============================================== */  
-
-    var owlBox = $(".box-carousel.six-items");
-    
-    // Add .box-carousel class to boxes div
-    owlBox.owlCarousel({
-        items : 6,
-        // Responsive Settings
-        itemsDesktop : [1169,5],
-        itemsDesktopSmall : [979,4],
-        itemsTablet : [600,3],
-        itemsTabletSmall : false,
-        itemsMobile : [560,2],
-        // End Responsive Settings
-        mouseDrag : false,
-        pagination : true,
-        navigation : true,
-        touchDrag : true,
-        slideSpeed : 400
-    });
-  
-/* ==============================================
-CAROUSEL SLIDER FOR CATEGORIES AND INNER SLIDER
-=============================================== */ 
-    
-    // Category Tag
-    var owlCategory = $(".double-slider");
-    // Inner Slider Tag
-    var owlInnerSlider = $(".inner-slider");
-    
-    // Categories Slider
-    owlCategory.owlCarousel({
-        items : 5,
-        // Responsive Settings
-        itemsDesktop : [1170,3],
-        itemsDesktopSmall : [979,3],
-        itemsTablet : [800,2],
-        itemsTabletSmall : false,
-        itemsMobile : [560,1],
-        // End Responsive Settings
-        mouseDrag : false,
-        pagination : false,
-        navigation : true,
-        touchDrag : false,
-        slideSpeed : 400,
-        // Top Navigation
-        afterInit : function(elem){
-            var that = this
-            that.owlControls.prependTo(elem)
-        }
-    });
-
-    // Categories - Inner Slider
-    owlInnerSlider.owlCarousel({
-        navigation : false, // Show next and prev buttons
-        slideSpeed : 300,
-        transitionStyle : "fade",
-        pagination : true,
-        paginationSpeed : 700,
-        // Will be active on all categories
-        autoPlay: false,
-        singleItem:true
-        // "singleItem:true" is a shortcut for:
-        // items : 1
-        // itemsDesktop : false,
-        // itemsDesktopSmall : false,
-        // itemsTablet: false,
-        // itemsMobile : false
-  });
-
-
-/* ==============================================
-TESTIMONIALS
-=============================================== */
-
-    var gridContainer = $('.testimonial-slide'),
-        filtersContainer = $('#filters-container'),
-        wrap, filtersCallback;
-
-    gridContainer.cubeportfolio({
-        layoutMode: 'slider',
-        drag: true,
-        auto: true,
-        autoTimeout: 4000,
-        autoPauseOnHover: true,
-        showNavigation: false,
-        showPagination: true,
-        rewindNav: false,
-        scrollByPage: false,
-        gridAdjustment: 'responsive',
-        mediaQueries: [{
-            width: 1,
-            cols: 1
-        }],
-        gapHorizontal: 0,
-        gapVertical: 0,
-        caption: 'overlayBottomReveal',
-        displayType: 'lazyLoading',
-        displayTypeSpeed: 100
-    });
-
-/* ==============================================
-CUSTOM IMAGE SLIDER
-=============================================== */  
-        
-    $('.basic_slider').flexslider({
-        animation: "fade",
-        selector: ".image_slider li",
-        controlNav: true,
-        directionNav: true,
-        animationSpeed: 500,
-        slideshowSpeed: 5000,
-        pauseOnHover: true, 
-        direction: "vertical",
-        start: function(slider){
-            $('body').removeClass('loading'); 
-        }
-     });
-
-/* ==============================================
-FLEX SLIDER WITH IMAGE PAGINATION
-=============================================== */  
-        
-    $('.image-pgn-slider').flexslider({
-        animation: "slide",
-        controlNav: "thumbnails"
-    });
-
-/* ==============================================
-MAGNIFIC POPUP (LIGHTBOX PLUGIN)
-=============================================== */
-
-    // Magnific Popup Calling
-    $('.image-link').magnificPopup({
-        type:'image',
-        mainClass: 'mfp-with-zoom mfp-img-mobile'
-    });
-
-    $('.mp-video, .mp-map').magnificPopup({
-        type:'iframe',
-        mainClass: 'mfp-with-zoom mfp-img-mobile'
-    });
-
-    //iframe scripts
-    $.extend(true, $.magnificPopup.defaults, {  
-        iframe: {
-            patterns: {
-                //youtube videos
-                youtube: {
-                    index: 'youtube.com/', 
-                    id: 'v=', 
-                    src: 'http://www.youtube.com/embed/%id%?autoplay=1' 
-                },
-                //vimeo videos
-                vimeo: {
-                    index: 'vimeo.com/',
-                    id: '/',
-                    src: 'http://player.vimeo.com/video/%id%?autoplay=1'
-                },
-                //google maps
-                gmaps: {
-                    index: '//maps.google.',
-                    src: '%id%&output=embed'
-                }
-            }
-        }
-    });
-
-    //for image gallery
-    $('.mp-gallery').each(function() { // the containers for all your galleries
-        $(this).magnificPopup({
-            delegate: 'a', // the selector for gallery item
-            type: 'image',
-            mainClass: 'mfp-with-zoom mfp-img-mobile',
-            gallery: {
-              enabled:true
-            }
-        });
-    }); 
-
-/* ==============================================
-VIDEO PLAYER
-=============================================== */  
-
-    $(".player").mb_YTPlayer();
-
-/* ==============================================
-CHANGE BG TONE WITH HOVER
-=============================================== */ 
-
-    $("#fullpage .feature-boxes").on('hover', function(){
-        $(".page_bg").animate({"opacity": 0.8}, 400);
-    }, function(){
-        $(".page_bg").animate({"opacity": 1}, 400);
-    });
-
-/* ==============================================
 FULL SCREEN FEATURES SCRIPTS
 =============================================== */
 
@@ -591,7 +208,6 @@ MOBILE BACKGROUND FOR VIDEO BACKGROUNDS
 =============================================== */
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-        $('.mbYTP_wrapper').addClass('mobile-bg');
         $('section , div').addClass('b-scroll');
         $('.animated').addClass('visible');
     }
@@ -630,21 +246,6 @@ MOBILE BACKGROUND FOR VIDEO BACKGROUNDS
                 }
             }
         });
-
-        //Parallax Classes
-        $('body.parallax .parallax').parallax("50%", 0.5);
-        $('body.parallax .parallax1').parallax("50%", 0.5);
-        $('body.parallax .parallax2').parallax("50%", 0.5);
-        $('body.parallax .parallax3').parallax("50%", 0.5);
-        $('body.parallax .parallax4').parallax("50%", 0.5);
-        $('body.parallax .parallax5').parallax("50%", 0.5);
-        $('body.parallax .parallax6').parallax("50%", 0.5);
-        $('body.parallax .parallax7').parallax("50%", 0.5);
-        $('body.parallax .parallax8').parallax("50%", 0.5);
-        $('body.parallax .parallax9').parallax("50%", 0.5);
-        $('body.parallax .parallax10').parallax("50%", 0.5);
-        $('body.parallax .parallax11').parallax("50%", 0.5);
-
     }
 
     if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -717,21 +318,7 @@ CHECK FOR INTERNET EXPLORER
         $('.logo').css({"margin-top": - logoH / 2 + 'px'});
     } else{}
 
-/* ==============================================
-NAVIGATION TYPE 2 - NAV CLOSE/OPEN
-=============================================== */  
 
-    // Navigation Type 2 Scripts
-    var navt = $('#navigation-type2 .nav-menu');
-    $(navt).append('<span class="fa fa-bars"></span>');
-
-    $('#navigation-type2 .nav-menu span').on('click', function () { 
-        $('#navigation-type2 .nav-menu ul').fadeToggle("slow");
-    });
-     $('#navigation-type2 .nav-menu a').on('click', function () { 
-        $('#navigation-type2 .nav-menu ul').fadeOut("slow");
-    }); 
-     
 /* ==============================================
 CALCULATE HOME INNER HEIGHT
 =============================================== */

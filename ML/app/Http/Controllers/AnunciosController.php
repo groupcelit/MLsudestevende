@@ -90,8 +90,7 @@ class AnunciosController extends Controller
         }
 
         return $anuncio;
-    }
-    
+    }    
     /*public function getShow($bool){
         $limit = " LIMIT 40";
         $and = " ";
@@ -361,12 +360,32 @@ class AnunciosController extends Controller
                     'a.path as path_anuncio',
                     'a.precio as precio',
                     'a.stock as stock',
-                    'a.borrado_logico as activo')
+                    'a.activo as activo')
             ->orderBy('a.creado_en', 'desc')
             ->paginate(40);
 
         /*var_dump($query->links('home'));*/
         return $query;
+    }
+
+    public function updateActivoAnuncio($id) {
+        $anuncio = Anuncios::find($id);
+        $anuncio->modificado_en = date('Y-m-d H:i:s');
+
+        if($anuncio->activo === 1) {
+            $anuncio->activo= 0;
+        }elseif ($anuncio->activo === 0) {
+            $anuncio->activo = 1;
+        }
+
+        if($anuncio->save()){
+            $return['exito'] = true;
+        }else{
+            $return['exito'] = false;
+        }
+
+        return response()->json($return);
+
     }
 
     public function getSearch(Request $request){

@@ -23,7 +23,10 @@ var usuarios_admin = usuarios_admin || (function () {
 								} else {
 									console.log("fallo");
 								}
-							}
+							},
+							error:function (e) {
+							alert('lo sentimos ocurrio un error inesperado, intentelo de nuevo, error:'+e)
+						}
 			            })
         			}
 

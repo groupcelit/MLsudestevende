@@ -58,7 +58,7 @@
                                     <div class="form-group no-margin">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="anuncio_activo" id="<?=$anuncio->id?>" autocomplete="off" <?php if(!$anuncio->activo) {?> checked
+                                                <input type="checkbox" name="anuncio_activo" id="<?=$anuncio->id?>" autocomplete="off" <?php if($anuncio->activo) {?> checked
                                                 <?php } ?> > Activo
                                             </label>
                                         </div>

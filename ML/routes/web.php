@@ -29,15 +29,9 @@ $app->get('/p/{path}', function ($path) {
     });
 
     $anuncios=app('App\Http\Controllers\AnunciosController')->getShow(false);
-    /*foreach ($anuncios as $anuncio){
-        $app->get('/'.$anuncio->path_anuncio, function ()  {
-           return view('encabezado');
-        });
-    }*/
 
 /*Auth*/
     $app->get('/ingresar', function ()  {
-        //$anuncios=app('App\Http\Controllers\AnunciosController')->getShow();
         return view('auth.form_login');
     });
     /*salir*/
@@ -60,6 +54,7 @@ $app->get('/p/{path}', function ($path) {
         }
     });
 
+    /*Administrador*/
     $app->get('/admin/usuarios',function ()  {
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $usuarios_data=app('App\Http\Controllers\UsuariosController')->getUserDataAdmin();
@@ -76,7 +71,6 @@ $app->get('/p/{path}', function ($path) {
             return redirect('/');
         }
     });
-
     $app->put('/usuarios_admin/delete_user_admin',function (Request $request)  {
         if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
             $consulta = app('App\Http\Controllers\UsuariosController')->deleteUsuarioAdmin($request->input('user'));
@@ -93,9 +87,14 @@ $app->get('/p/{path}', function ($path) {
             return redirect('/');
         }
     });
-
-
-    $app->get('/template','AnunciosController@setTestTemplate');
+    $app->put('/anuncios_admin/update_activo',function (Request $request) {
+        if(isset($_SESSION['login']) && $_SESSION['keyword']=="admin_celit" ) {
+            $premium = app('App\Http\Controllers\AnunciosController')->updateActivoAnuncio($request->input('id'));
+            return $premium;
+        } else{
+            return redirect('/');
+        }
+    });
 
     /*publicaciones*/
         $app->get('/vender', function ()  {
@@ -173,6 +172,7 @@ $app->get('/p/{path}', function ($path) {
 /*CATEGORIAS*/         
         $app->post('/subcategorias/getSubCategorias','SubCategoriasController@getSubCategorias');
 
+        $app->get('/template','AnunciosController@setTestTemplate');
 
 $app->extend("session",function($obj)use($app){
     $app->configure("session");

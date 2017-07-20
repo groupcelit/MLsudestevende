@@ -5,36 +5,27 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Venta de productos cerca de ti | Sudestevende</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-	<link rel="stylesheet" href="<?=url()?>/panel.css" />
 	<!--<link rel="stylesheet" href="assets/assets/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="<?=url()?>/assets/css/animate.min.css" />
 	<!--<link rel="stylesheet" href="assets/css/bootstrap.min.css" />-->
 	<link rel="stylesheet" href="<?=url()?>/assets/css/reset.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/socials.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/magnific-popup.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/flexslider.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/simpletextrotator.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/cubeportfolio.min.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/timeline.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/owl.carousel.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/settings-ie8.css" />
-	<link rel="stylesheet" href="<?=url()?>/assets/css/settings.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/style.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/ml.css" />
 	<link rel="stylesheet" href="<?=url()?>/assets/css/responsive.css" />
-	<link id="changeable_tone" rel="stylesheet" href="<?=url()?>/assets/css/page_tones/dark.css" />
 	<link  rel="stylesheet" href="<?=url()?>/assets/css/skill.css" />
 	<link rel="shortcut icon" href="<?=url()?>/assets/icons/favicon.ico" type="image/x-icon">
 	<link href="https://fonts.googleapis.com/css?family=Lobster+Two:700|Open+Sans" rel="stylesheet">
 	<meta name="theme-color" content="#3680ff">
-	<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-	<script>
+	{{--<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>--}}
+	{{--<script>
 		(adsbygoogle = window.adsbygoogle || []).push({
 			google_ad_client: "ca-pub-5918529515154442",
 			enable_page_level_ads: true
 		});
-	</script>
+	</script>--}}
 </head>
 <body class="parallax">
 	<nav id="navigation" class="white-nav">

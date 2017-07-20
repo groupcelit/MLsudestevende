@@ -8,13 +8,11 @@ var anuncios_admin = anuncios_admin || (function () {
 
         return {
             validar: function(el) {
-
                 if ($(el.form).valid()) {
                     var data = {id : el.id};
-
                     $.ajax({
                         data : data,
-                        url : '/usuarios_admin/update_premium',
+                        url : '/anuncios_admin/update_activo',
                         type : 'PUT',
                         contentType : 'application/x-www-form-urlencoded',
                         success: function(response) {
@@ -23,7 +21,11 @@ var anuncios_admin = anuncios_admin || (function () {
                             } else {
                                 console.log("fallo");
                             }
-                        }
+                        },
+                        error:function (e) {
+                            alert('lo sentimos ocurrio un error inesperado, intentelo de nuevo, error:'+e)   
+                        }                            
+                        
                     })
                 }
 

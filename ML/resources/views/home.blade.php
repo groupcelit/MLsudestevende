@@ -29,7 +29,6 @@
 				<?php
 					$inicio=0;
 					foreach($anuncios as $anuncio) {
-					$inicio=$inicio+50;
 				?>
 				<li class="results-item grid animated" data-animation="fadeIn" data-animation-delay="<?=$inicio?>">
 					<a href="/<?=$anuncio->path_anuncio?>">
@@ -46,7 +45,9 @@
 						</div>
 					</a>
 				</li>
-				<?php } ?>
+				<?php
+					$inicio=$inicio+50;
+					} ?>
 			</ol>
 			<nav align="center" aria-label="Paginado">
 				<?=$anuncios->links();?>
