@@ -236,28 +236,165 @@ class UsuariosController extends Controller
 
           $headers  = "MIME-Version: 1.0" . "\r\n";
           $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-          $headers .= "From: Sudestevende <groupcelit@gmail.com>"."\r\n";
+          $headers .= "From: SudesteVende <groupcelit@gmail.com>"."\r\n";
           $headers .= "Reply-To: groupcelit@gmail.com\r\n";
           $headers .= "X-Mailer: PHP/" . phpversion();
           $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
-          // write the email content
-          $email_content = "Nombre   : ".$result[0]->username." \r\n";
-          $email_content .= "Email   : asdfdsafa\vsdfsd\r\n";
-          $email_content .= "Mensaje : Hola Mundoversion  3\r\n\n";
-
-          $message = '<html><body>';
-          $message .= '<h1>Hola '.$result[0]->nombres.'!</h1>';
-          $message .= '<p>Recientemente requeriste cambiar tu contraseña para tu cuenta de Sudestevende.</p>';
-          $message .= '<h3>Tu nueva contraseña es: '.$newpassword.' </h3>';
-          $message .= '<p>Recomendamos cambiar la contraseña a una de tu agrado.</p>';
-          $message .= '<p>Si no requeriste un cambio de contraseña por favor ignora este email o notificanos del error.</p>';
-          $message .= '<p>Gracias,</p>';
-          $message .= '<h4>Group-Celit</h4>';
-          $message .= '</body></html>';
+          $message = '<div style="margin:0;padding:0">
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed" class="m_857503240172684144min-width">
+                                <tbody>
+                                    <tr>
+                                    <td align="center" class="m_857503240172684144section-padding">
+                                        <table border="0" cellpadding="0" cellspacing="0" width="600" class="m_857503240172684144responsive-table">
+                                            <tbody>
+                                                <tr>
+                                                    <td align="left">
+                                                        <img src="'.url().'/assets/email/images/logo.png" alt="" width="150" style="display:block;padding:5px 0px" class="CToWUd">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="vertical-align:top;border-collapse:collapse">
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top-left-radius:5px;border-top-right-radius:5px">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td style="border-top-left-radius:5px;border-top-right-radius:5px;vertical-align:top;border-collapse:collapse;padding-top:2px;padding-right:7%;padding-left:7%;background-color:#3680ff;font-size:4px">&nbsp;</td>
+                                                                </tr>
+                                                                <tr bgcolor="#f6f6f6">
+                                                                    <td>
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody><tr>
+                                                                                <td class="m_857503240172684144padding2">
+                                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border-top-left-radius:5px;border-top-right-radius:5px">
+                                                                                        <tbody><tr>
+                                                                                            <td align="center" style="padding:25px 0px 25px 0px">
+                                                                                                <img src="'.url().'/assets/email/images/key.png" width="160" height="147" border="0" alt="" style="display:block;padding:0;color:#777777;text-decoration:none" class="m_857503240172684144img-max CToWUd a6T" tabindex="0"><div class="a6S" dir="ltr" style="opacity: 0.01; left: 397.5px; top: 194px;"><div id=":1iv" class="T-I J-J5-Ji aQv T-I-ax7 L3 a5q" role="button" tabindex="0" aria-label="Descargar el archivo adjunto " data-tooltip-class="a1V" data-tooltip="Descargar"><div class="aSK J-J5-Ji aYr"></div></div></div>
+                                                                                            </td>
+                                                                                        </tr></tbody>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </tr></tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding:0 35px">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" style="font-size:28px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;color:#777777;padding-top:10px" class="m_857503240172684144padding2"> Hola '.$result[0]->nombres.'!
+                                                                                    </td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" style="padding:0">
+                                                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tbody>
+                                                                                            <tr align="center" style="font-size:16px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;color:#777777;text-decoration:none;color:#777777;text-decoration:none;padding:12px 0px 0px;border:1px solid #ffffff;display:block">
+                                                                                                <td>Recientemente requeriste cambiar tu contraseña para tu cuenta de Sudestevende.
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            <tr align="center" style="font-size:16px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;color:#777777;text-decoration:none;color:#777777;text-decoration:none;padding:12px 0px;border:1px solid #ffffff;display:block">
+                                                                                                <td>Tu nueva contraseña es:
+                                                                                                </td>
+                                                                                            </tr>
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td align="center">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>
+                                                                                    <td align="center" style="padding:0px 0px 15px 0px" class="m_857503240172684144padding2">
+                                                                                        <table border="0" cellspacing="0" cellpadding="0" class="m_857503240172684144responsive-button">
+                                                                                            <tbody><tr>
+                                                                                                <td align="center" style="padding:0px">
+                                                                                                    <table border="0" cellspacing="0" cellpadding="0" class="m_857503240172684144responsive-button">
+                                                                                                        <tbody><tr>
+                                                                                                            <td align="center" style="border-radius:3px" bgcolor="#3680ff">
+                                                                                                                <a style="font-size:16px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;color:#ffffff;text-decoration:none;color:#ffffff;text-decoration:none;border-radius:3px;padding:12px 18px;display:block;border:1px solid #3680ff" target="_blank" data-mt-detrack-inspected="true"><b>'.$newpassword.'</b></a>
+                                                                                                            </td>
+                                                                                                        </tr></tbody>
+                                                                                                    </table>
+                                                                                                </td>
+                                                                                            </tr></tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>                                                
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding:0 35px">
+                                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                            <tbody>
+                                                                                <tr>                                                       
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td align="center" style="padding:0">
+                                                                                        <table border="0" cellspacing="0" cellpadding="0">
+                                                                                            <tbody>
+                                                                                            <tr align="center" style="font-size:16px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;color:#777777;text-decoration:none;color:#777777;text-decoration:none;padding:12px 0px;border:1px solid #ffffff;display:block">
+                                                                                                <td>Recomendamos cambiar la contraseña a una de tu agrado.
+                                                                                                </td>
+                                                                                            </tr>                                                            
+                                                                                            </tbody>
+                                                                                        </table>
+                                                                                    </td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="table-layout:fixed" class="m_857503240172684144min-width">
+                                <tbody>
+                                    <tr class="m_857503240172684144section-padding">
+                                        <td align="center" style="padding:10px 0px" class="m_857503240172684144section-padding">
+                                            <table border="0" cellpadding="0" cellspacing="0" width="600" class="m_857503240172684144responsive-table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                            <tbody><tr>
+                                                                <td>
+                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                        <tbody><tr>
+                                                                            <td style="border-bottom-left-radius: 5px;border-bottom-right-radius: 5px;background-color:#3680FF;text-align:center;font-size:12px;font-family:Proxima Nova,\'proxima_nova_regular\',Helvetica,Arial,sans-serif;padding:5px 15px;color:white">
+                                                                                Si no requeriste un cambio de contraseña por favor ignora este email o notificanos del error.<br><br>Este email llego gracias a:<br> GroupCelit <br>
+                                                                            </td>
+                                                                        </tr></tbody>
+                                                                    </table>
+                                                                </td>
+                                                            </tr></tbody>
+                                                        </table>
+                                                    </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                      </div>';
           // send the email
           
-          if(mail($result[0]->email,'Sudestevende' , $message, $headers)) {
+          if(mail($result[0]->email,'Recupera tu contraseña' , $message, $headers)) {
             $resultado['exito'] = true;
             $resultado['msg'] = "Se ha enviado una nueva contraseña a su mail";
           } else {
