@@ -236,8 +236,8 @@ class UsuariosController extends Controller
 
           $headers  = "MIME-Version: 1.0" . "\r\n";
           $headers .= "Content-type: text/html; charset=iso-8859-1" . "\r\n";
-          $headers .= "From: SudesteVende <groupcelit@gmail.com>"."\r\n";
-          $headers .= "Reply-To: groupcelit@gmail.com\r\n";
+          $headers .= "From: SudesteVende <info@".$_SERVER['HTTP_HOST'].">\r\n";
+          $headers .= "Reply-To: <info@".$_SERVER['HTTP_HOST'].">\r\n";
           $headers .= "X-Mailer: PHP/" . phpversion();
           $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 
