@@ -180,8 +180,6 @@
 							datos.anuncio_id = <?=$anuncio['info']->id?>;
 							datos.fotos_delete =JSON.stringify(fotos_id_delete);
 
-							console.log(datos);
-
 							var options = {
 								data: datos,
 								beforeSend: function (){

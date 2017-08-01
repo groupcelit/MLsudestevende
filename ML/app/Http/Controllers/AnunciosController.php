@@ -170,6 +170,15 @@ class AnunciosController extends Controller
         fclose($archivo_a_subir);
     }
 
+    public function editTemplate($nombre_archivo,$anuncio_id){
+        if(unlink($nombre_archivo)) {
+            $this->setTemplate($nombre_archivo, $anuncio_id);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function setImage($imagenes, $url_amigable ,$anuncio_id){
 
         foreach ($imagenes as $key => $img){
@@ -276,7 +285,6 @@ class AnunciosController extends Controller
 
         $anuncio->stock     = $request->input('stock');
         $anuncio->nuevo     = $request->input('nuevo');
-
         $anuncio->save();
 
         $url_amigable= $this->urls_amigables($anuncio->nombre);
@@ -291,27 +299,37 @@ class AnunciosController extends Controller
                 );
             }
         }     
-
-        $nombre_archivo= resource_path()."/views/contenido_anuncios/".$anuncio->path;
-        if($this->setTemplate($nombre_archivo,$anuncio->id)){
+        $nombre_archivo = resource_path() . "/views/contenido_anuncios/" . $anuncio->path . ".blade.php";
+        if($this->editTemplate($nombre_archivo,$anuncio->id)){
            $result = array('exito' => true,
-                           'msg'   => 'Se creo el template'
+                           'msg'   => 'Se edito el template'
                      );
         }else{
            $result = array('exito' => false,
-                            'msg'  => 'No se pudo crear el template'
+                            'msg'  => 'No se pudo editar el template'
                     );
          }
 
-      
-
        //para evitar doble Principal 
-      /* $query = \DB::table('fotos as f')
+       $query = \DB::table('fotos as f')
             ->select('f.id as id',
                 'f.principal as principal')
-            ->where('f.principal','=',1)
-            ->where('f.anuncio_id','=',$request->input('anuncio_id'));
-        var_dump($query);*/
+            ->where([['f.principal','=',1],
+                    ['f.anuncio_id','=',$anuncio->id]]);
+
+        if (count($query->get()) > 1) {
+            //Primer foto como principal
+            $counter = 1;
+            foreach ($query->get() as $foto) {
+                if ($counter > 1) {
+                    \DB::table('fotos as f')
+                        ->where('id',$foto->id)
+                        ->update(['principal' => 0]);
+                }
+                $counter+=1;
+            }
+        }
+        
     return $result;
     }
 
